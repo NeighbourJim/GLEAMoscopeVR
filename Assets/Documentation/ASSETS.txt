@@ -1,0 +1,4 @@
+﻿GLEAMoscopeVR - Iteration 02 - Prototyping Project
+=============================
+
+Octahedron Spheres - https://catlikecoding.com/unity/tutorials/octahedron-sphere/
