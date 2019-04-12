@@ -18,8 +18,17 @@ public class Script_RayReceiverButton : MonoBehaviour, IRayClickable, IRayIntera
         }
     }
 
+    // MM 12/04/19 - added temporarily for interaction with iteration 1 UI
     void IRayInteractable.Activate()
     {
-        print("Tested");
+        if (gameObject.GetComponent<Button>() != null)
+        {
+            gameObject.GetComponent<Button>().onClick.Invoke();
+            print("IRayClickable.Click() was invoke correctly on - " + gameObject.name);
+        }
+        else
+        {
+            print("Tested");
+        }
     }
 }
