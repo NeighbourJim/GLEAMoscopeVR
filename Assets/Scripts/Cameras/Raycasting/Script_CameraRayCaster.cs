@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Animations;
+﻿using UnityEngine;
 
 //2019/04/10
 //TODO:Rework animation logic to correctly handle when current obj that has a interactable interface 
