@@ -72,6 +72,7 @@ public class Script_CameraRayCaster : MonoBehaviour
     public bool hasActivated = false;
     public float secondsToActivate = 2f;
     public float activateTimer = 2f;
+    public GameObject lastActivatedObject;
 
     void Start()
     {
@@ -100,8 +101,10 @@ public class Script_CameraRayCaster : MonoBehaviour
             CheckCurrentClickableInterface();
         }
 
-        
+
         CheckCurrentInteractableInterface();
+
+        
         SetCurrentReticleAnimationState();
     }
 
@@ -116,6 +119,14 @@ public class Script_CameraRayCaster : MonoBehaviour
         {
             if(currentCentreHitObject.GetComponent<IRayInteractable>() != null)
             {
+                //
+                if(currentCentreHitObject != lastActivatedObject &&
+                    lastActivatedObject != null)
+                {
+
+                    hasActivated = false;
+                }
+
                 //Is default, set to loading
                 if (isDefault && !isLoading 
                     && !isActivated && !hasActivated)
@@ -140,6 +151,7 @@ public class Script_CameraRayCaster : MonoBehaviour
                         hasActivated = true;
                         activateTimer = secondsToActivate;
                         currentCentreHitObject.GetComponent<IRayInteractable>().Activate();
+                        lastActivatedObject = currentCentreHitObject;
                     }
                     //Still loading, subtract timer.
                     else
