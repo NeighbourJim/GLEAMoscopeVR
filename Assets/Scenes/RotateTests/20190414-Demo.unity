@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311926, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3596,6 +3596,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (7)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3665,11 +3670,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (7)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -3833,6 +3833,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (5)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3897,11 +3902,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (5)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -3996,6 +3996,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (4)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4060,11 +4065,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (4)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -4386,6 +4386,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (2)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4455,11 +4460,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (2)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -4855,6 +4855,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (3)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4920,11 +4925,6 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (3)
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
 --- !u!1001 &1863014228307963436
@@ -4934,6 +4934,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4998,11 +5003,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (1)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -5102,6 +5102,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03 (6)
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5156,11 +5161,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -130.539
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03 (6)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -6673,6 +6673,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1863014226680984992}
     m_Modifications:
+    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
+        type: 3}
+      propertyPath: m_Name
+      value: RockFlat03
+      objectReference: {fileID: 0}
     - target: {fileID: 1056215998086990798, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6737,11 +6742,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5389168826107855701, guid: 46ab3fa087e5abb41bde854b7fd63e0c,
-        type: 3}
-      propertyPath: m_Name
-      value: RockFlat03
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46ab3fa087e5abb41bde854b7fd63e0c, type: 3}
@@ -9852,8 +9852,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.01
+  far clip plane: 2000
   field of view: 60
   orthographic: 0
   orthographic size: 5
@@ -9903,11 +9903,11 @@ MonoBehaviour:
   activeCamera: {fileID: 6237064248982446290}
   mouseCurrentWorldPos: {x: 0, y: 0, z: 0}
   mouseCurrentScreenPos: {x: 0, y: 0, z: 0}
-  isFloatingReticle: 0
+  isFloatingReticle: 1
   doesReticleHideOnNoHit: 0
   doesReticleFloatOnNoHit: 1
   doesReticleRotateOffNormal: 1
-  floatingReticleDistance: 0.25
+  floatingReticleDistance: 2
   reticleObject: {fileID: 6237064248815276852}
   reticleScale: 0.01
   reticleStartScale: 1

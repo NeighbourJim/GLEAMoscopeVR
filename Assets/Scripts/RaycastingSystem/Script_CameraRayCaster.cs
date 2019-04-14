@@ -28,9 +28,9 @@ namespace GLEAMoscopeVR.RaycastingSystem
         [Header("Reticle Alpha/Shader Options.")] [Range(0, 255)]
         public int reticleAlpha = 255;
 
-        [Header("Proximity (Spherecast) Scaling Options/Info")] [Tooltip("Set to <=0 for infinite raycast distance.")]
+        [Header("Proximity (Spherecast) Scaling Options/Info")]
+        [Tooltip("Set to <=0 for infinite raycast distance.")]
         public float maxProxCastDistance = 0f;
-
         public float proxCastRadius = 0.5f;
 
         //Proximity Sphere Raycast Info/Vars

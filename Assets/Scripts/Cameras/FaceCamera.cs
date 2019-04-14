@@ -17,7 +17,8 @@ namespace GLEAMoscopeVR.Cameras
 
         void LateUpdate()
         {
-            transform.LookAt(cam.transform.position, cam.transform.forward);
+            //DC 2019/04/14 cam.transform.up FROM cam.transform.forward.
+            transform.LookAt(cam.transform.position, cam.transform.up);
         }
     }
 }
