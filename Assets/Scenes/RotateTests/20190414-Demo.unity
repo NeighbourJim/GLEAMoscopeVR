@@ -5727,6 +5727,7 @@ GameObject:
   - component: {fileID: 2177027899538324455}
   - component: {fileID: 2177027899538324449}
   - component: {fileID: 2177027899538324454}
+  - component: {fileID: 2177027899538324453}
   m_Layer: 0
   m_Name: ImageBorder
   m_TagString: Untagged
@@ -5734,6 +5735,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2177027899538324453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177027899538324452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fed29c162ccd974fa52aceebd89646a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderMat: {fileID: 4800000, guid: d7b01b0b6cfc6a7419e14319e6985e36, type: 3}
 --- !u!114 &2177027899538324454
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6135,6 +6149,7 @@ GameObject:
   - component: {fileID: 2177027900201898248}
   - component: {fileID: 2177027900201898250}
   - component: {fileID: 2177027900201898251}
+  - component: {fileID: 2177027900201898252}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -6179,6 +6194,19 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &2177027900201898252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177027900201898249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fed29c162ccd974fa52aceebd89646a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderMat: {fileID: 4800000, guid: d7b01b0b6cfc6a7419e14319e6985e36, type: 3}
 --- !u!114 &2177027900324859944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6247,6 +6275,7 @@ GameObject:
   - component: {fileID: 2177027900324859945}
   - component: {fileID: 2177027900324859947}
   - component: {fileID: 2177027900324859944}
+  - component: {fileID: 2177027900324859951}
   m_Layer: 0
   m_Name: PointImage
   m_TagString: Untagged
@@ -6254,6 +6283,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2177027900324859951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177027900324859950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8fed29c162ccd974fa52aceebd89646a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shaderMat: {fileID: 4800000, guid: d7b01b0b6cfc6a7419e14319e6985e36, type: 3}
 --- !u!224 &2177027900383334730
 RectTransform:
   m_ObjectHideFlags: 0
