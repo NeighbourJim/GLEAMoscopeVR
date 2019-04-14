@@ -1,33 +1,60 @@
 ﻿using System;
+using GLEAMoscopeVR.Interaction;
+using GLEAMoscopeVR.Settings;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace MM.GLEAMoscopeVR.POIs
+// Todo: paired nodes, material change-out, OnPOIDeactivated.
+
+namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
     /// Base class for Point of Interest nodes.
     /// <see cref="POIMapNode"/> <see cref="POISkyNode"/>
+    
     /// </summary>
-    public abstract class POINode : MonoBehaviour, IRayInteractable
+    public abstract class POINode : MonoBehaviour, IActivatable
     {
+        /// <summary> Point of Interest ScriptableObject asset file. </summary>
+        [Header("Data"), SerializeField]
+        protected POIData data;
+        
+        /// <summary> Specifies whether the node is currently activated. </summary>
         [SerializeField]
-        protected POIData poiData;
+        protected bool isActivated = false;
+
+        #region Events
+        public abstract event Action<POINode> OnPOINodeActivated;
+        #endregion
+
+        #region Public Accessors
+        public abstract POIData Data { get; }
+        public abstract ExperienceMode ActivatableMode { get; }
+        public abstract bool IsActivated { get; }
+        #endregion
         
-        public abstract event Action<PointOfInterest> OnNodeActivated;
-        
+        #region References
+        protected ExperienceModeController _modeController;
+        #endregion
+
+        #region Unity Methods
         protected virtual void Start()
         {
             GetComponentReferences();
         }
+        #endregion
 
-        /// <summary>
-        /// IRayInteractable implementation.
-        /// </summary>
+        #region IActivatable
+        public abstract bool CanActivate();
         public abstract void Activate();
+        public abstract void Deactivate();
+        #endregion
 
         protected virtual void GetComponentReferences()
         {
-            Assert.IsNotNull(poiData, $"{gameObject.name} has no POIData assigned.");
+            _modeController = ExperienceModeController.Instance;
+            Assert.IsNotNull(_modeController, $"{gameObject.name} cannot find ExperienceModeController.");
+            Assert.IsNotNull(data, $"{gameObject.name} has no POIData assigned.");
         }
     }
 }

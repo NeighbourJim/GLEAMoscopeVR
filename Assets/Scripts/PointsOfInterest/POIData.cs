@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MM.GLEAMoscopeVR.POIs
+namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
     /// Updated 12/04/19 - MM

@@ -1,47 +1,95 @@
 ﻿using System;
+using GLEAMoscopeVR.Settings;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-namespace MM.GLEAMoscopeVR.POIs
+namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
     /// War-table map point of interest nodes.
+    /// Todo: OnNodeDeactivated, set PassiveModeRotator to respond to OnNodeActivated event.
     /// </summary>
     public class POIMapNode : POINode
     {
-        /// <summary>
-        /// Transform used to bring the Point of Interest to
-        /// the user's original,  forward-facing position.
-        /// </summary>
-        public Transform POITransform;
-
-        #region References
-        TransformRotator _rotator;
+        #region Constants
+        private const ExperienceMode activatableMode = ExperienceMode.Passive;
         #endregion
 
+        /// <summary>
+        /// Point of Interest world-space transform. Used by <see cref="PassiveModeRotator"/>
+        /// to bring the Point of Interest into view (when interacting in passive <see cref="ExperienceMode"/>).
+        /// </summary>
+        [Header("Rotation"), SerializeField, Tooltip("Point of Interest world-space transform.")]
+        private Transform poiTransform = null;
+        
+        #region Public Accessors
+        public override ExperienceMode ActivatableMode => activatableMode;
+        public override bool IsActivated => isActivated;
+        public override POIData Data => data;
+        #endregion
+
+        #region Events
         /// <summary>
         /// Invoked when a node is activated.
         /// </summary>
-        public override event Action<PointOfInterest> OnNodeActivated;
-        
-        #region IRayInteractable Implementation
-
-        public override void Activate()
-        {
-            if (_rotator.CanRotate())
-            {
-                _rotator.SetTargetTransformAndRotate(POITransform);
-                OnNodeActivated?.Invoke(new PointOfInterest(poiData));
-            }
-        }
-        
+        public override event Action<POINode> OnPOINodeActivated;
         #endregion
 
+        #region References
+        /// <summary>
+        /// Reference to the <see cref="PassiveModeRotator"/> script used to rotate Points of interest into the user's original, forward-facing direction.
+        /// </summary>
+        PassiveModeRotator _rotator;
+        #endregion
+
+        #region IActivatable Implementation
+        /// <summary> Specifies whether this GameObject can currently be activated. </summary>
+        public override bool CanActivate()
+        {
+            return activatableMode == _modeController.CurrentMode && !isActivated && _rotator.CanRotate();
+        }
+
+        /// <summary>
+        /// Invoked by the <see cref="Script_CameraRayCaster"/> when the reticle loading process is complete.
+        /// Triggers rotation of the Point of Interest into the user's view and notifies the <see cref="POIManager"/>
+        /// that it has been activated.
+        /// </summary>
+        public override void Activate()
+        {
+            if (!CanActivate())
+            {
+                Debug.LogWarning($"[POIMapNode] {gameObject.name} is trying to activate when it shouldn't be able to.");
+                Debug.Break();
+                return;
+            }
+
+            isActivated = true;
+            _rotator.SetTargetTransformAndRotate(poiTransform);
+            OnPOINodeActivated?.Invoke(this);
+        }
+
+        /// <summary>
+        /// Invoked by the <see cref="POIManager"/> when another node is activated.
+        /// </summary>
+        public override void Deactivate()
+        {
+            if (!isActivated)
+            {
+                Debug.LogWarning($"[POIMapNode] {gameObject.name} is attempting to deactivate but it is not activated.");
+                Debug.Break();
+                return;
+            }
+
+            isActivated = false;
+        }
+        #endregion
+        
         protected override void GetComponentReferences()
         {
             base.GetComponentReferences();
-            _rotator = FindObjectOfType<TransformRotator>();
-            Assert.IsNotNull(_rotator, $"{gameObject.name} cannot find TransformRotator in scene.");
+            Assert.IsNotNull(poiTransform, $"[POIMapNode] POITransform has not been allocated for {gameObject.name} (POI Name: {Data.Name}).");
+            _rotator = FindObjectOfType<PassiveModeRotator>();
+            Assert.IsNotNull(_rotator, $"{gameObject.name} cannot find PassiveModeRotator in scene.");
         }
     }
 }
