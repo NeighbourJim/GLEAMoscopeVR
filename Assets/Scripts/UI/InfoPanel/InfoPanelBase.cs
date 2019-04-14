@@ -53,7 +53,6 @@ namespace GLEAMoscopeVR.POIs
             DistanceText.text = $"Distance: {poi.Distance}";
             DescriptionText.text = poi.Description;
             PointImage.sprite = poi.Sprite;
-            print($"UPdating display for {poi.Name}");
 
             SetCanvasGroupState(true);
         }
