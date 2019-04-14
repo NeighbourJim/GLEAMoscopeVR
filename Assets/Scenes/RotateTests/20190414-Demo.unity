@@ -10735,7 +10735,7 @@ MonoBehaviour:
   - {fileID: 8903038542024649925}
   - {fileID: 8903038542024649924}
   - {fileID: 8903038542024649979}
-  initialSphereIndex: 6
+  initialSphereIndex: 2
   wavelengthSlider: {fileID: 1137729597498864407}
   wavelengthLabel: {fileID: 1137729595566186854}
 --- !u!1 &7775276219166101104
