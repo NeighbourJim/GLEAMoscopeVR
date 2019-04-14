@@ -13,12 +13,12 @@ namespace GLEAMoscopeVR.Utility.Debugging
         private float deltaTime;                    // This is the smoothed out time between frames.
 
         TextMeshProUGUI _fpsText;                   // Reference to the component that displays the fps.
-        
+
         void Start ()
         {
             _fpsText = GetComponent<TextMeshProUGUI> ();
         }
-
+   
         void Update ()
         {
             // This line has the effect of smoothing out delta time.
