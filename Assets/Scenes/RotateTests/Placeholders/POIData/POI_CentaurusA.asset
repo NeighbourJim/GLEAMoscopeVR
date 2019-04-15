@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
-  m_Name: ph_POI_CentaurusA
+  m_Name: POI_CentaurusA
   m_EditorClassIdentifier: 
-  ID: -3370
+  ID: 11032
   Name: Centaurus A
   ShortDescription: "Centaurus A or NGC 5128 is a galaxy in the constellation of Centaurus.
     \nThe center of the galaxy contains a supermassive black hole with a mass equivalent

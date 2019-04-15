@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
-  m_Name: ph_POI_VelaPulsar
+  m_Name: POI_VelaPulsar
   m_EditorClassIdentifier: 
-  ID: 11198
+  ID: 11344
   Name: Vela Pulsar
   ShortDescription: 'The Vela Pulsar is a radio, optical, X-ray- and gamma-emitting
     pulsar associated with the Vela Supernova Remnant in the constellation of Vela.

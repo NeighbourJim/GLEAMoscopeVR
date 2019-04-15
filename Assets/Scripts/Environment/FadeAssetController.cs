@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class FadeAssetController : MonoBehaviour
 {
@@ -13,11 +14,18 @@ public class FadeAssetController : MonoBehaviour
     [SerializeField]
     GameObject[] meshObjects = null;
 
+    [Header("User Platform"), SerializeField]
+    private Renderer platformRenderer = null;
+
+    void Awake()
+    {
+        GetComponentReferences();
+    }
+
     public void StartFade()
     {
         explortationMode = !explortationMode;
-
-
+        
         if(explortationMode)
         {
             if (meshObjects != null)
@@ -26,10 +34,13 @@ public class FadeAssetController : MonoBehaviour
                 {
                     StartCoroutine(FadeUp(mesh));
                 }
+
+                
             }
         }
         else
         {
+            platformRenderer.enabled = true;
             print("Fade down");
             if (meshObjects != null)
             {
@@ -48,17 +59,22 @@ public class FadeAssetController : MonoBehaviour
             pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, i);
             yield return new WaitForSeconds(0.05f);
         }
+        platformRenderer.enabled = false;
     }
 
     IEnumerator FadeDown(GameObject pObject)
     {
-
         for (float i = 0f; i <= 1f; i += 0.023809f)
         {
             print("into Fade down");
             pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, 1-i);
             yield return new WaitForSeconds(0.05f);
         }
+    }
+
+    private void GetComponentReferences()
+    {
+        Assert.IsNotNull(platformRenderer, $"[FadeAssetController] does not have a reference to the platform renderer.");
     }
 }
 

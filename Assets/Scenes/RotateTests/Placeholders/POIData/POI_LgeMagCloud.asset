@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
-  m_Name: ph_POI_LgeMagCloud
+  m_Name: POI_LgeMagCloud
   m_EditorClassIdentifier: 
-  ID: 14232
+  ID: 11276
   Name: Large Magellanic Cloud
   ShortDescription: "The Large Magellanic Cloud is classified as a Magellanic spiral.
     \nIt contains a stellar bar that is geometrically off-center, suggesting that
