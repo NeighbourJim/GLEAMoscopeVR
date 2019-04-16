@@ -22,8 +22,8 @@ namespace GLEAMoscopeVR.Settings
     {
         public static ExperienceModeController Instance { get; private set; }
 
-        public InfoPanel_WarTable SkyInfoPanel;
-        public InfoPanel_Manager WarTablePanel;
+        public InfoPanel_WarTable WarTablePanel;
+        public InfoPanel_Manager SkyPanel;
 
         public TextMeshProUGUI ModeText;
 
@@ -66,7 +66,7 @@ namespace GLEAMoscopeVR.Settings
 
         private void ResetInfoPanels()
         {
-            SkyInfoPanel.SetCanvasGroupState(false);
+            SkyPanel.SetCanvasGroupState(false);
             WarTablePanel.SetCanvasGroupState(false);
         }
 
@@ -84,7 +84,7 @@ namespace GLEAMoscopeVR.Settings
 
         private void GetComponentReferences()
         {
-            Assert.IsNotNull(SkyInfoPanel, $"[ExperienceModeController] does not have reference to the SkyInfoPanel");
+            Assert.IsNotNull(SkyPanel, $"[ExperienceModeController] does not have reference to the SkyInfoPanel");
             Assert.IsNotNull(WarTablePanel, $"[ExperienceModeController] does not have reference to the WarTablePanel");
         }
     }
