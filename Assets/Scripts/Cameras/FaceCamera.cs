@@ -5,6 +5,7 @@ namespace GLEAMoscopeVR.Cameras
     /// <summary>
     /// Forces a game object to face the camera's forward vector.
     /// </summary>
+    [ExecuteInEditMode]
     public class FaceCamera : MonoBehaviour
     {
         [SerializeField]
