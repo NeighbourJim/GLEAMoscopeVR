@@ -52,6 +52,7 @@ namespace MM.GLEAMoscopeVR.Spectrum
         void Start()
         {
             SetInitialRendererState();
+            UpdateWavelengthLabel(currentWavelength);
         }
         #endregion
 
@@ -80,14 +81,6 @@ namespace MM.GLEAMoscopeVR.Spectrum
         #endregion
 
         #region State Management
-
-        /// <summary>
-        /// Returns a boolean value that determines whether the scene can be reset based on it's current state.
-        /// </summary>
-        //public bool CanReset()
-        //    => !fadingUp
-        //       && !fadingDown
-        //       && currentWavelength != Wavelengths.Visible;
 
         /// <summary>
         /// Calls ChangeState() to move the state forward (longer wavelengths, e.g Visible -> Infrared)
@@ -248,6 +241,16 @@ namespace MM.GLEAMoscopeVR.Spectrum
 
         #endregion
 
+        #endregion
+
+        #region Not Used
+        // <summary>
+        // Returns a boolean value that determines whether the scene can be reset based on it's current state.
+        // </summary>
+        //public bool CanReset()
+        //    => !fadingUp
+        //       && !fadingDown
+        //       && currentWavelength != Wavelengths.Visible;
         #endregion
     }
 }

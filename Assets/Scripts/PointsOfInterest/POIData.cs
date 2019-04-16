@@ -5,7 +5,7 @@ namespace GLEAMoscopeVR.POIs
     /// <summary>
     /// Updated 12/04/19 - MM
     /// Stores Point of Interest data that can be entered in the Unity Editor
-    /// and passed to the constructor of the <see cref="PointOfInterest"/> class
+    /// and passed to the constructor of the <see cref="POIObject"/> class
     /// to instantiate an instance at runtime.
     /// NOTE: this class will change, but the way in which it is interacted with should not.
     /// </summary>
@@ -43,6 +43,12 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         [Tooltip("Sprite used to display the Point of Interest in the user interface panel.")]
         public Sprite Sprite;
+
+        /// <summary>
+        /// The Transform used to rotate the Point of Interest into the user's original, forward-facing viewport.
+        /// </summary>
+        [Tooltip("The Transform used to rotate the Point of Interest into the user's original, forward-facing viewport.")]
+        public Transform SkyTransform;
 
         /// <summary>
         /// Voice over to be played on Point of Interest activation.

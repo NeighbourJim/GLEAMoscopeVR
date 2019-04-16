@@ -26,35 +26,36 @@ namespace GLEAMoscopeVR.POIs
         public GameObject SkyNodesParent;
 
         /// <summary>
-        /// List of POIMapNodes retrieved from the MapNodesParent GameObject
-        /// </summary>
-        [Header("Nodes (Debugging)")]
-        [SerializeField, Tooltip("Stores the POIMapNodes within the MapNodesParent GameObject.")]
-        private List<POIMapNode> mapNodes;
-        
-        /// <summary>
-        /// List of POISkyNodes retrieved from the MapSkyParent GameObject
-        /// </summary>
-        [SerializeField, Tooltip("Stores the POISkyNodes within the SkyNodesParent GameObject.")]
-        private List<POISkyNode> skyNodes;
-        
-        /// <summary>
-        /// The currently active (or most recently activated) POINode. For debugging purposes only.
-        /// </summary>
-        [SerializeField, Tooltip("The currently active (or most recently activated) POINode. For debugging purposes only.")]
-        private POINode currentltyActiveNode = null;
-
-        /// <summary>
         /// InfoPanel_Manager script reference used to update the data displayed for Point of Interest nodes in the sky.
         /// </summary>
         [Header("UI")]
         [Tooltip("GameObject with the InfoPanel_Manager script attached.")]
         public InfoPanel_Manager InfoPanelSky;
+        
         /// <summary>
         /// InfoPanel_WarTable script reference used to update the data displayed for Point of Interest above the War Table.
         /// </summary>
         [Tooltip("GameObject with the InfoPanel_Manager script attached.")]
         public InfoPanel_WarTable InfoPanelWarTable;
+
+        /// <summary>
+        /// List of POIMapNodes retrieved from the MapNodesParent GameObject
+        /// </summary>
+        [Header("Nodes (Debugging)")]
+        [SerializeField, Tooltip("Stores the POIMapNodes within the MapNodesParent GameObject.")]
+        private List<POIMapNode> mapNodes;
+
+        /// <summary>
+        /// List of POISkyNodes retrieved from the MapSkyParent GameObject
+        /// </summary>
+        [SerializeField, Tooltip("Stores the POISkyNodes within the SkyNodesParent GameObject.")]
+        private List<POISkyNode> skyNodes;
+
+        /// <summary>
+        /// The currently active (or most recently activated) POINode. For debugging purposes only.
+        /// </summary>
+        [SerializeField, Tooltip("The currently active (or most recently activated) POINode. For debugging purposes only.")]
+        private POINode currentltyActiveNode = null;
 
         /// <summary>
         /// Reference to the current <see cref="ExperienceMode"/> set in the <see cref="ExperienceModeController"/>
@@ -187,7 +188,7 @@ namespace GLEAMoscopeVR.POIs
         {
             if (activatedNode == null || activatedNode == currentltyActiveNode) return;
 
-            PointOfInterest poi = new PointOfInterest(activatedNode.Data);
+            POIObject poi = new POIObject(activatedNode.Data);
 
             if (currentltyActiveNode == null)
             {
@@ -222,7 +223,7 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="activatedNode">The node containing the <see cref="POIData"/> to be displayed.</param>
         private void UpdateInfoPanels(POINode activatedNode)
         {
-            PointOfInterest poi = new PointOfInterest(activatedNode.Data);
+            POIObject poi = new POIObject(activatedNode.Data);
             if (activatedNode is POISkyNode)
             {
                 InfoPanelSky.CreateToolTip(poi, activatedNode.transform, 0, 0, 0);

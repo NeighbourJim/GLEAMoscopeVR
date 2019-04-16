@@ -16,7 +16,7 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="xOffset">The offset value on the X-axis.</param>
         /// <param name="yOffset">The offset value on the Y-axis.</param>
         /// <param name="zOffset">The offset value on the Z-axis.</param>
-        void SetLocation(Transform targetTransform, float xOffset, float yOffset, float zOffset)
+        void SetLocation(Transform targetTransform, float xOffset = 0f, float yOffset = 0f, float zOffset = 0f)
         {
             Vector3 targetPos = targetTransform.position;
             gameObject.transform.position =
@@ -31,7 +31,7 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="xOffset">The offset value on the X-axis.</param>
         /// <param name="yOffset">The offset value on the Y-axis.</param>
         /// <param name="zOffset">The offset value on the Z-axis.</param>
-        public void CreateToolTip(PointOfInterest point, Transform targetTransform, float xOffset, float yOffset, float zOffset)
+        public void CreateToolTip(POIObject point, Transform targetTransform, float xOffset, float yOffset, float zOffset)
         {
             UpdateDisplay(point);
             SetLocation(targetTransform, xOffset, yOffset, zOffset);

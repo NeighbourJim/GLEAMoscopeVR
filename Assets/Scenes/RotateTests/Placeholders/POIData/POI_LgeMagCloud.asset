@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_LgeMagCloud
   m_EditorClassIdentifier: 
-  ID: 11276
+  ID: 11394
   Name: Large Magellanic Cloud
   ShortDescription: "The Large Magellanic Cloud is classified as a Magellanic spiral.
     \nIt contains a stellar bar that is geometrically off-center, suggesting that
@@ -20,4 +20,7 @@ MonoBehaviour:
     by tidal interactions from the Small Magellanic Cloud, and the Milky Way's gravity."
   Distance: Approx. 163,000 light-years
   Sprite: {fileID: 21300000, guid: 4f32b6679d23cb446a58f0d7e0bf0916, type: 3}
+  SkyTransform: {fileID: 7419252101298141449, guid: 6e28495a5f9f6854a82019a753e33ff2,
+    type: 3}
+  YOffset: 0
   Voiceover: {fileID: 0}

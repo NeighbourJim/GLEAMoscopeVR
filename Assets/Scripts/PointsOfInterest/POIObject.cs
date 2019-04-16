@@ -9,7 +9,7 @@ namespace GLEAMoscopeVR.POIs
     /// NOTE: this class will change, but the way in which it is interacted with should not.
     /// </summary>
     [System.Serializable]
-    public class PointOfInterest
+    public class POIObject
     {
         #region Properties
 
@@ -46,6 +46,11 @@ namespace GLEAMoscopeVR.POIs
         public Sprite Sprite => Data.Sprite;
 
         /// <summary>
+        /// The Transform used to rotate the Point of Interest into the user's original, forward-facing viewport.
+        /// </summary>
+        public Transform SkyTransform => Data.SkyTransform;
+
+        /// <summary>
         /// Voice over to be played on Point of Interest activation.
         /// </summary>
         public AudioClip Voiceover => Data.Voiceover;
@@ -54,7 +59,7 @@ namespace GLEAMoscopeVR.POIs
 
         #region Constructors
 
-        public PointOfInterest(POIData data)
+        public POIObject(POIData data)
         {
             _data = data;
         }

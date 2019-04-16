@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
-    /// Base class for <see cref="PointOfInterest"/> data display panels.
+    /// Base class for <see cref="POIObject"/> data display panels.
     /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
     public class InfoPanelBase : MonoBehaviour
@@ -44,10 +44,10 @@ namespace GLEAMoscopeVR.POIs
 
         /// <summary>
         /// Update the panel's display of information with a new point of interest.
-        /// Takes a PointOfInterest object, and utilises the Name, Distance, Description and Sprite parameters.
+        /// Takes a POIObject object, and utilises the Name, Distance, Description and Sprite parameters.
         /// </summary>
         /// <param name="point">The Point of Interest object whose parameters will be displayed on the panel.</param>
-        public virtual void UpdateDisplay(PointOfInterest poi)
+        public virtual void UpdateDisplay(POIObject poi)
         {
             TitleText.text = poi.Name;
             DistanceText.text = $"Distance: {poi.Distance}";

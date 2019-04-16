@@ -19,8 +19,6 @@ namespace GLEAMoscopeVR.POIs
         /// Point of Interest world-space transform. Used by <see cref="PassiveModeRotator"/>
         /// to bring the Point of Interest into view (when interacting in passive <see cref="ExperienceMode"/>).
         /// </summary>
-        [Header("Rotation"), SerializeField, Tooltip("Point of Interest world-space transform.")]
-        private Transform poiTransform = null;
         
         #region Public Accessors
         public override ExperienceMode ActivatableMode => activatableMode;
@@ -64,7 +62,7 @@ namespace GLEAMoscopeVR.POIs
             }
 
             isActivated = true;
-            _rotator.SetTargetTransformAndRotate(poiTransform);
+            _rotator.SetTargetTransformAndRotate(Data.SkyTransform);
             OnPOINodeActivated?.Invoke(this);
         }
 
@@ -87,7 +85,7 @@ namespace GLEAMoscopeVR.POIs
         protected override void GetComponentReferences()
         {
             base.GetComponentReferences();
-            Assert.IsNotNull(poiTransform, $"[POIMapNode] POITransform has not been allocated for {gameObject.name} (POI Name: {Data.Name}).");
+            //Assert.IsNotNull(poiTransform, $"[POIMapNode] POITransform has not been allocated for {gameObject.name} (POI Name: {Data.Name}).");
             _rotator = FindObjectOfType<PassiveModeRotator>();
             Assert.IsNotNull(_rotator, $"{gameObject.name} cannot find PassiveModeRotator in scene.");
         }
