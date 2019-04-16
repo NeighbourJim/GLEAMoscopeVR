@@ -8,26 +8,24 @@ using UnityEngine.Assertions;
 namespace GLEAMoscopeVR.Settings
 {
     /// <summary>
+    /// 20190413 MM - Added to assist with enabling and disabling functionality until a decision is made as to whether there will be separate modes
+    /// or mixed functionality.
+    /// For the sake of simplicity, the first iteration 02 prototype will separate Exploration and Passive modes.
+    /// They can be toggled (resetting functionality to the appropriate state), but they will exist as separate systems.
     /// <see cref="ExperienceMode"/> 
-    /// </summary>
-    /// <summary>
-    /// 20190413 MM - Added to assist with enabling and disabling functionality
-    /// until a decision is made as to whether there will be separate modes
-    /// or mixed functionality. For the sake of simplicity, the first iteration 02
-    /// prototype will separate Exploration and Passive modes.
-    /// They can be toggled (resetting functionality to the appropriate state),
-    /// but they will exist as separate systems.
     /// </summary>
     public class ExperienceModeController : MonoBehaviour//GenericSingleton<ExperienceModeController>
     {
         public static ExperienceModeController Instance { get; private set; }
 
-        public InfoPanel_WarTable WarTablePanel;
-        public InfoPanel_Manager SkyPanel;
+        private const ExperienceMode DEFAULT_MODE = ExperienceMode.Exploration;
 
+        [Header("Settings Components")]
         public TextMeshProUGUI ModeText;
 
-        private const ExperienceMode DEFAULT_MODE = ExperienceMode.Exploration;
+        [Header("Display Components")]
+        public InfoPanel_WarTable WarTablePanel;
+        public InfoPanel_Manager SkyPanel;
 
         [SerializeField]
         private ExperienceMode currentMode = ExperienceMode.Exploration;
@@ -86,6 +84,7 @@ namespace GLEAMoscopeVR.Settings
         {
             Assert.IsNotNull(SkyPanel, $"[ExperienceModeController] does not have reference to the SkyInfoPanel");
             Assert.IsNotNull(WarTablePanel, $"[ExperienceModeController] does not have reference to the WarTablePanel");
+            Assert.IsNotNull(ModeText, $"[ExperienceModeController] does not have reference to the Mode Text component.");
         }
     }
 }

@@ -7,7 +7,7 @@ namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
     /// War-table map point of interest nodes.
-    /// Todo: OnNodeDeactivated, set PassiveModeRotator to respond to OnNodeActivated event.
+    /// Todo: MM - OnNodeDeactivated, set PassiveModeRotator to respond to OnNodeActivated event.
     /// </summary>
     public class POIMapNode : POINode
     {

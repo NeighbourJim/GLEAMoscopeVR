@@ -5,6 +5,8 @@ using UnityEngine.Assertions;
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
+    /// 20190416 MM - hacky fix to ensure that if mode button is activated while a POI is rotating into view, it still rotates correctly back to origin
+    /// Todo: MM Replace once a decision is made regarding interaction "modes"
     /// Handles rotating Points of Interest into the user's original, forward-facing direction when operating in Passive <see cref="ExperienceMode"/>.
     /// </summary>
     public class PassiveModeRotator : MonoBehaviour
@@ -20,17 +22,17 @@ namespace GLEAMoscopeVR.POIs
         public bool ShouldSlerp = true;
         [Tooltip("If true, speed is clamped.\nIf false, speed is unclamped.")]
         public bool IsClamped = true;
-
-        [Header("Rotation State")]
         [SerializeField]
         private float rotationSpeed = 0.25f;
+        [SerializeField]
+        private float resetTolerance = 6f;
+      
+        [Header("Debugging")]
+        [SerializeField]
+        private float remainingAngle = 0;
 
-        [Header("State")]
-        [SerializeField]
-        private bool isRotating = false;
-        [SerializeField]
-        private bool shouldRotate = false;
-        
+        bool shouldRotate = false;
+
         Transform current = null;
         Transform target = null;
 
@@ -38,7 +40,7 @@ namespace GLEAMoscopeVR.POIs
         ExperienceModeController _modeController;
         #endregion
 
-        public bool CanRotate() => !isRotating;
+        public bool CanRotate() => remainingAngle < resetTolerance;
 
         void Awake()
         {
@@ -55,6 +57,10 @@ namespace GLEAMoscopeVR.POIs
         {
             if (_modeController.CurrentMode == ExperienceMode.Exploration)
             {
+                if (remainingAngle > 0)
+                {
+                    ResetState();
+                }
                 SetTargetTransformAndRotate(OriginTransform);
             }
         }
@@ -80,6 +86,8 @@ namespace GLEAMoscopeVR.POIs
             {
                 Lerp();
             }
+
+            remainingAngle = Quaternion.Angle(transform.rotation, target.rotation);
 
             if (transform.rotation == target.rotation)
             {
@@ -125,14 +133,13 @@ namespace GLEAMoscopeVR.POIs
 
         public void SetTargetTransformAndRotate(Transform targetTransform)
         {
-            if (isRotating)
+            if (!CanRotate())
             {
                 Debug.Log($"Can't set target, currently rotating.");
                 return;
             }
 
             target = targetTransform;
-            isRotating = true;
             shouldRotate = true;
         }
 
@@ -140,7 +147,7 @@ namespace GLEAMoscopeVR.POIs
         {
             target = transform;
             shouldRotate = false;
-            isRotating = false;
+            remainingAngle = 0;
         }
 
         private void SubscribeToExperienceModeEvents()
