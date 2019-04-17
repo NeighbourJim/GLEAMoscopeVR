@@ -1,38 +1,14 @@
 ﻿GLEAMoscopeVR - Iteration 02 - Prototyping Project
-=============================
+===========================================================
 
 Build Log 
-=============================
+=========
 At a minumim, this should include the details for all major builds / revisions.
 Outline what has been added / implemented / changed and provide reasons for doing so.
 Version numbers and dates should correspond directly to the build version and build date.
 
-0.01	Build date:			01/01/2019
-		Build by:			Fred
-		Build purpose:		First build after adding UI components from iteration 01 project.
-		To be tested by:	That Guy
-		Client test date:	N/A
-		
-		
-0.02	Build date:			
-		Build by:			
-		Build purpose:		
-		To be tested by:	
-		Client test date:
-		
-1.00	Build date:			05/01/2019
-		Build by:			Bob
-		Build purpose:		Item interaction system fully tested and implemented.
-		To be tested by:	Jack (Client Company)
-		Client test date:	06/01/2019
-
-1.01	Build date:			07/01/2019
-		Build by:			Fred
-		Build purpose:		Fixed all the thing the Client complained about:
-							- Too dark. Added white directional light.
-							- Added stupid looking kangaroo.
-							- Font colour changed from black to "Charcoal" because apparently there is a difference.
-							Build to be tested by programmers.
-							Feedback forms to be complete.
-		To be tested by:	All programmers
-		Client test date:	10/01/2019
+00.10	Build date:			17/04/2019
+		Build by:			MM
+		Build purpose:		First iteration 01 prototype demonstrating interaction / experience modes.
+		To be tested by:	ICRAR
+		Client test date:	17/04/19 onwards
