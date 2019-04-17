@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using GLEAMoscopeVR.Utility.Extensions;
-using GLEAMoscopeVR.Wavelengths;
+using GLEAMoscopeVR.Utility.Management;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace MM.GLEAMoscopeVR.Spectrum
+namespace GLEAMoscopeVR.Spectrum
 {
     /// <summary>
     /// Placeholder script that drops frame rate by disabling renderers for spheres that do not need to be rendered.
     /// </summary>
-    public class ph_SphereFadeControl : MonoBehaviour
+    public class ph_SphereFadeControl : GenericSingleton<ph_SphereFadeControl>
     {
         #region Variable Declarations
 
@@ -223,20 +223,7 @@ namespace MM.GLEAMoscopeVR.Spectrum
         /// <param name="state">The state being transitioned towards.</param>
         void UpdateWavelengthLabel(Wavelengths state)
         {
-            // updated by MM on 28/02/2019
             wavelengthLabel.text = state.GetDescription();
-            //if (state == Wavelengths.XRay)
-            //{
-            //    wavelengthLabel.text = "X-Ray";
-            //}
-            //else if (state == Wavelengths.Radio)
-            //{
-            //    wavelengthLabel.text = "GLEAM (Radio)";
-            //}
-            //else
-            //{
-            //    wavelengthLabel.text = state.ToString();
-            //}
         }
 
         #endregion

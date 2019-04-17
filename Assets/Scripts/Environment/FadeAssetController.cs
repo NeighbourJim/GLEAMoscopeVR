@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using GLEAMoscopeVR.Settings;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -16,10 +16,19 @@ public class FadeAssetController : MonoBehaviour
 
     [Header("User Platform"), SerializeField]
     private Renderer platformRenderer = null;
+    
+    ExperienceModeController _modeController;
 
-    void Awake()
+    void Start()
     {
         GetComponentReferences();
+    }
+
+    // Added so that the environment doesn't fade back in when the mode doesn't change
+    private void HandleExperienceModeChanged()
+    {
+        print("Handle mode changed");
+        StartFade();
     }
 
     public void StartFade()
@@ -34,14 +43,12 @@ public class FadeAssetController : MonoBehaviour
                 {
                     StartCoroutine(FadeUp(mesh));
                 }
-
-                
             }
         }
         else
         {
             platformRenderer.enabled = true;
-            print("Fade down");
+            //print("Fade down");
             if (meshObjects != null)
             {
                 foreach (GameObject mesh in meshObjects)
@@ -66,7 +73,7 @@ public class FadeAssetController : MonoBehaviour
     {
         for (float i = 0f; i <= 1f; i += 0.023809f)
         {
-            print("into Fade down");
+            //print("into Fade down");
             pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, 1-i);
             yield return new WaitForSeconds(0.05f);
         }
@@ -74,6 +81,9 @@ public class FadeAssetController : MonoBehaviour
 
     private void GetComponentReferences()
     {
+        _modeController = FindObjectOfType<ExperienceModeController>().Instance;
+        Assert.IsNotNull(_modeController, $"[FadeAssetController] does not have a reference to the experience mode controller.");
+        _modeController.OnExperienceModeChanged += HandleExperienceModeChanged;
         Assert.IsNotNull(platformRenderer, $"[FadeAssetController] does not have a reference to the platform renderer.");
     }
 }

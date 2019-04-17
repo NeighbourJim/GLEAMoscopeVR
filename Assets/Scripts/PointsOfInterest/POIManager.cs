@@ -234,12 +234,12 @@ namespace GLEAMoscopeVR.POIs
         
         private void GetComponentReferences()
         {
+            _modeController = FindObjectOfType<ExperienceModeController>().Instance;
+            Assert.IsNotNull(_modeController, $"[POIManager] can not find reference to ExperienceModeController.");
             Assert.IsNotNull(InfoPanelSky, $"[POIManager] InfoPanel_Manager has not been assigned.");
             Assert.IsNotNull(InfoPanelWarTable, $"[POIManager] InfoPanel_WarTable has not been assigned assigned.");
             Assert.IsNotNull(MapNodesParent, $"[POIManager] MapNodesParent has not been assigned.");
             Assert.IsNotNull(SkyNodesParent, $"[POIManager] SkyNodesParent has not been assigned.");
-
-            _modeController = ExperienceModeController.Instance;
         }
     }
 }

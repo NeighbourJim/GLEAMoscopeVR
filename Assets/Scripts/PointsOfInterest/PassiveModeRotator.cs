@@ -5,8 +5,8 @@ using UnityEngine.Assertions;
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
-    /// 20190416 MM - hacky fix to ensure that if mode button is activated while a POI is rotating into view, it still rotates correctly back to origin
-    /// Todo: MM Replace once a decision is made regarding interaction "modes"
+    /// todo: MM fix once interaction functionality is decided and comment
+    /// 20190416 MM - removed ability to interrupt rotation to set new transform. Will rectify when feedback on "modes" is provided.
     /// Handles rotating Points of Interest into the user's original, forward-facing direction when operating in Passive <see cref="ExperienceMode"/>.
     /// </summary>
     public class PassiveModeRotator : MonoBehaviour
@@ -19,20 +19,19 @@ namespace GLEAMoscopeVR.POIs
         
         [Header("Options")]
         [Tooltip("If true, spherical interpolation is used.\nIf false, linear interpolation is used.")]
-        public bool ShouldSlerp = true;
+        public bool ShouldSlerp = false;
         [Tooltip("If true, speed is clamped.\nIf false, speed is unclamped.")]
         public bool IsClamped = true;
         [SerializeField]
         private float rotationSpeed = 0.25f;
         [SerializeField]
-        private float resetTolerance = 6f;
-      
+        private float retargetTolerance = 1f;
+
         [Header("Debugging")]
         [SerializeField]
         private float remainingAngle = 0;
-
         bool shouldRotate = false;
-
+        
         Transform current = null;
         Transform target = null;
 
@@ -40,8 +39,8 @@ namespace GLEAMoscopeVR.POIs
         ExperienceModeController _modeController;
         #endregion
 
-        public bool CanRotate() => remainingAngle < resetTolerance;
-
+        public bool CanSetRotationTarget() => remainingAngle < retargetTolerance;
+        
         void Awake()
         {
             current = transform;
@@ -57,10 +56,11 @@ namespace GLEAMoscopeVR.POIs
         {
             if (_modeController.CurrentMode == ExperienceMode.Exploration)
             {
-                if (remainingAngle > 0)
+                if(remainingAngle > 0)
                 {
                     ResetState();
                 }
+                
                 SetTargetTransformAndRotate(OriginTransform);
             }
         }
@@ -76,19 +76,17 @@ namespace GLEAMoscopeVR.POIs
 
         private void Rotate()
         {
-            // Spherical Interpolation
             if (ShouldSlerp)
             {
                 Slerp();
             }
-            // Linear Interpolation
             else
             {
                 Lerp();
             }
 
             remainingAngle = Quaternion.Angle(transform.rotation, target.rotation);
-
+            
             if (transform.rotation == target.rotation)
             {
                 ResetState();
@@ -133,7 +131,7 @@ namespace GLEAMoscopeVR.POIs
 
         public void SetTargetTransformAndRotate(Transform targetTransform)
         {
-            if (!CanRotate())
+            if (!CanSetRotationTarget())
             {
                 Debug.Log($"Can't set target, currently rotating.");
                 return;
@@ -152,7 +150,7 @@ namespace GLEAMoscopeVR.POIs
 
         private void SubscribeToExperienceModeEvents()
         {
-            _modeController = ExperienceModeController.Instance;
+            _modeController = FindObjectOfType<ExperienceModeController>().Instance;
             Assert.IsNotNull(_modeController, "$[PassiveModeRotator] Cannot find a reference to ExperienceModeController.");
             _modeController.OnExperienceModeChanged += HandleModeChanged;
         }

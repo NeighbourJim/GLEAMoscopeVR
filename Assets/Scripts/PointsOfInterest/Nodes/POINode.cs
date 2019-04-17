@@ -52,7 +52,7 @@ namespace GLEAMoscopeVR.POIs
 
         protected virtual void GetComponentReferences()
         {
-            _modeController = ExperienceModeController.Instance;
+            _modeController = FindObjectOfType<ExperienceModeController>().Instance;
             Assert.IsNotNull(_modeController, $"{gameObject.name} cannot find ExperienceModeController.");
             Assert.IsNotNull(data, $"{gameObject.name} has no POIData assigned.");
         }

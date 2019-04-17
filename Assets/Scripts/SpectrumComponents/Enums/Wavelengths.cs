@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GLEAMoscopeVR.Wavelengths
+namespace GLEAMoscopeVR.Spectrum
 {
     public enum Wavelengths
     {

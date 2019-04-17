@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace GLEAMoscopeVR.Wavelengths
+namespace GLEAMoscopeVR.Spectrum
 {
     public class SphereFadeControl : GenericSingleton<SphereFadeControl>
     {

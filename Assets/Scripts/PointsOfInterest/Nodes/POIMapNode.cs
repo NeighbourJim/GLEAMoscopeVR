@@ -44,7 +44,7 @@ namespace GLEAMoscopeVR.POIs
         /// <summary> Specifies whether this GameObject can currently be activated. </summary>
         public override bool CanActivate()
         {
-            return activatableMode == _modeController.CurrentMode && !isActivated && _rotator.CanRotate();
+            return activatableMode == _modeController.CurrentMode && !isActivated && _rotator.CanSetRotationTarget();
         }
 
         /// <summary>
@@ -85,7 +85,6 @@ namespace GLEAMoscopeVR.POIs
         protected override void GetComponentReferences()
         {
             base.GetComponentReferences();
-            //Assert.IsNotNull(poiTransform, $"[POIMapNode] POITransform has not been allocated for {gameObject.name} (POI Name: {Data.Name}).");
             _rotator = FindObjectOfType<PassiveModeRotator>();
             Assert.IsNotNull(_rotator, $"{gameObject.name} cannot find PassiveModeRotator in scene.");
         }
