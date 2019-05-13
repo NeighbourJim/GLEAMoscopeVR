@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CameraBlink : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class CameraBlink : MonoBehaviour
 
     [Header("Status")]
     [Tooltip("The state of whether the eye is closed or not.")]
-    public bool EyeClosed = false;
+    public UnityEvent EyeClosed;
 
     Material fadeMaterial;
 
@@ -53,9 +54,8 @@ public class CameraBlink : MonoBehaviour
             fadeMaterial.SetFloat("_Transparency", i);
             yield return new WaitForSeconds(IncrementWait);
         }
-        EyeClosed = true;
+        EyeClosed.Invoke();
         yield return new WaitForSeconds(SecondsToStayBlack);
-        EyeClosed = false;
 
         for (float i = 1; i >= 0f; i -= Increment)
         {
