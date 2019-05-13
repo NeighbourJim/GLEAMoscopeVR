@@ -14,9 +14,13 @@ public class CameraBlink : MonoBehaviour
     [Tooltip("How many seconds the 'eye' remains shut for once fading to black.")]
     public float SecondsToStayBlack = 0.5f;
 
-    [Header("Status")]
-    [Tooltip("The state of whether the eye is closed or not.")]
+    [Header("Unity Events")]
+    [Tooltip("Invoked when the eye begins to close.")]
+    public UnityEvent BlinkStart;
+    [Tooltip("Invoked when the eye is fully closed.")]
     public UnityEvent EyeClosed;
+    [Tooltip("Invoked when the eye has closed and opened again.")]
+    public UnityEvent BlinkEnded;
 
     Material fadeMaterial;
 
@@ -48,13 +52,17 @@ public class CameraBlink : MonoBehaviour
 
     IEnumerator BlinkRoutine()        
     {
+        BlinkStart.Invoke();
+
         fadeMaterial.SetFloat("_Transparency", 0f);
         for (float i = 0; i <= 1f; i += Increment)
         {
             fadeMaterial.SetFloat("_Transparency", i);
             yield return new WaitForSeconds(IncrementWait);
         }
+        fadeMaterial.SetFloat("_Transparency", 1f);
         EyeClosed.Invoke();
+
         yield return new WaitForSeconds(SecondsToStayBlack);
 
         for (float i = 1; i >= 0f; i -= Increment)
@@ -63,5 +71,7 @@ public class CameraBlink : MonoBehaviour
             yield return new WaitForSeconds(IncrementWait);
         }
         fadeMaterial.SetFloat("_Transparency", 0f);
+
+        BlinkEnded.Invoke();
     }
 }

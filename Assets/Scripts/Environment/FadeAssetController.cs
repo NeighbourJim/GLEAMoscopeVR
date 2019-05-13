@@ -28,7 +28,7 @@ public class FadeAssetController : MonoBehaviour
     private void HandleExperienceModeChanged()
     {
         print("Handle mode changed");
-        StartFade();
+        //StartFade();  CP 13/05 - Commented out for now since fading the ground/trees away is not currently necessary
     }
 
     public void StartFade()
