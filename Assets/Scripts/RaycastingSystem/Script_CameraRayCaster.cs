@@ -98,11 +98,6 @@ namespace GLEAMoscopeVR.RaycastingSystem
                 IActivatable activatable = currentCentreHitObject.GetComponent<IActivatable>();
                 IRayClickable clickable = currentCentreHitObject.GetComponent<IRayClickable>();
 
-                if(clickable != null)
-                {
-                    print("Found clickable.");
-                }
-
                 if (activatable != null && activatable.CanActivate())
                 {
                     HandleActivatableObject(activatable);
