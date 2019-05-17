@@ -33,10 +33,15 @@ namespace GLEAMoscopeVR.Settings
         public PassiveModeRotator Rotator;
 
         [SerializeField]
+        private float activationTime = 1f;
+
+        [SerializeField]
         private ExperienceMode currentMode = ExperienceMode.Exploration;
         public ExperienceMode CurrentMode => currentMode;
 
         bool IActivatable.IsActivated => false;
+
+        float IActivatable.ActivationTime => activationTime;
 
         /// <summary>
         /// Notifies dependent scripts that the interaction mode has changed.

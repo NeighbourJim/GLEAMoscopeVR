@@ -24,6 +24,7 @@ namespace GLEAMoscopeVR.POIs
         public override ExperienceMode ActivatableMode => activatableMode;
         public override bool IsActivated => isActivated;
         public override POIData Data => data;
+        public override float ActivationTime => activationTime;
         #endregion
 
         #region Events

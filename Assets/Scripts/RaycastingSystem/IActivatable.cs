@@ -2,6 +2,7 @@
 {
     public interface IActivatable
     {
+        float ActivationTime { get; }
         bool IsActivated { get; }
 
         bool CanActivate();

@@ -18,7 +18,10 @@ namespace GLEAMoscopeVR.POIs
         /// <summary> Point of Interest ScriptableObject asset file. </summary>
         [Header("Data"), SerializeField]
         protected POIData data;
-        
+
+        [SerializeField]
+        protected float activationTime = 1f;
+
         /// <summary> Specifies whether the node is currently activated. </summary>
         [SerializeField]
         protected bool isActivated = false;
@@ -30,6 +33,7 @@ namespace GLEAMoscopeVR.POIs
         #region Public Accessors
         public abstract POIData Data { get; }
         public abstract ExperienceMode ActivatableMode { get; }
+        public abstract float ActivationTime { get; }
         public abstract bool IsActivated { get; }
         #endregion
         
