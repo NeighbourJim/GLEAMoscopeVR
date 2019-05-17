@@ -7129,7 +7129,7 @@ MonoBehaviour:
   doesReticleHideOnNoHit: 0
   doesReticleFloatOnNoHit: 1
   doesReticleRotateOffNormal: 1
-  floatingReticleDistance: 2
+  floatingReticleDistance: 5
   reticleObject: {fileID: 6237064248815276852}
   reticleScale: 0.01
   reticleStartScale: 1

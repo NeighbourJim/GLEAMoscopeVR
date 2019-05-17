@@ -3,10 +3,11 @@ using UnityEngine;
 
 namespace GLEAMoscopeVR.RaycastingSystem
 {
-    //2019/04/14
-    //Correctly implement floating reticle transform in update methods.
-    //Implement Google Daydream Controller VR override
-
+    //2019/05/17
+    //TODO: Seperate Animation from Activate. Read through IActivatable script for logic. Use triggers from any state to possibly remove issues/clutter with boolean logic.
+    //TODO: CheckingInteractable() should NOT handle activated. Extract method and refactor.
+    //TODO: Move time to activate from current script to IActivatable so it do can contextual to the object.
+    //TODO: Correctly implement proximity reticle transform in update methods.
     public class Script_CameraRayCaster : MonoBehaviour
     {
         public Camera activeCamera;
@@ -80,7 +81,6 @@ namespace GLEAMoscopeVR.RaycastingSystem
             UpdateProxReticleObjAlpha();
 
             CheckCurrentInteractableInterface();
-
             SetCurrentReticleAnimationState();
         }
 
@@ -96,13 +96,18 @@ namespace GLEAMoscopeVR.RaycastingSystem
                 // 13/04/19 MM - ADDED IActivatable that checks that the object can be activated before it is activated.
                 // START -----------------------------
                 IActivatable activatable = currentCentreHitObject.GetComponent<IActivatable>();
+                IRayClickable clickable = currentCentreHitObject.GetComponent<IRayClickable>();
 
+                if(clickable != null)
+                {
+                    print("Found clickable.");
+                }
 
                 if (activatable != null && activatable.CanActivate())
                 {
                     HandleActivatableObject(activatable);
                 }
-                else if (currentCentreHitObject.GetComponent<IRayClickable>() != null)
+                else if (currentCentreHitObject.GetComponent<IRayClickable>() != null && currentCentreHitObject != null)
                 {
                     //
                     if (currentCentreHitObject != lastActivatedObject &&
