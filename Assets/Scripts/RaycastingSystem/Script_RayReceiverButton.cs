@@ -3,11 +3,14 @@ using UnityEngine.UI;
 
 namespace GLEAMoscopeVR.RaycastingSystem
 {
-    public class Script_RayReceiverButton : MonoBehaviour, IRayInteractable, IRayClickable
+    public class Script_RayReceiverButton : MonoBehaviour, IRayClickable
     {
-        void IRayInteractable.Activate()
+        [SerializeField]
+        protected float activationTime = 1f;
+
+        float IRayClickable.GetActivationTime()
         {
-            print("Tested");
+            return activationTime;
         }
 
         void IRayClickable.Click()

@@ -5,5 +5,6 @@ using UnityEngine.Events;
 
 public interface IRayClickable
 {
+    float GetActivationTime();
     void Click();
 }

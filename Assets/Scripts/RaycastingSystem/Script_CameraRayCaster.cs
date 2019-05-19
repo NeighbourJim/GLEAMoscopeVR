@@ -48,15 +48,14 @@ namespace GLEAMoscopeVR.RaycastingSystem
         [SerializeField] GameObject currentCentreHitObject;
         [SerializeField] GameObject lastCentreHitObject;
 
-        [Header("Animator Controller States/Timer Info")] [SerializeField]
-        bool isDefault = true;
-
-        [SerializeField] bool isLoading = false;
-        [SerializeField] bool isActivated = false;
-        [SerializeField] bool hasActivated = false;
-        [SerializeField] float secondsToActivate = 2f;
-        [SerializeField] float activateTimer = 2f;
+        [Header("Animator Controller States/Timer Info")]
         [SerializeField] GameObject lastActivatedObject;
+        [SerializeField] float currentLoadingTimer = 2f;
+        [SerializeField] int currentAnimationState = 0;
+        enum AnimationStates {
+            Default,
+            Loading,
+            Activated};
 
         void Start()
         {
@@ -65,8 +64,6 @@ namespace GLEAMoscopeVR.RaycastingSystem
             {
                 activeCamera = Camera.main;
             }
-
-            activateTimer = secondsToActivate;
         }
 
         // Update is called once per frame
@@ -80,215 +77,167 @@ namespace GLEAMoscopeVR.RaycastingSystem
             UpdateProxReticleObjScale();
             UpdateProxReticleObjAlpha();
 
-            CheckCurrentInteractableInterface();
-            SetCurrentReticleAnimationState();
+            CheckCurrentCentreHitObjectInterfaces();
         }
 
-        //DC 2019/04/10
-        //Checks if current object IRay interface
-        //if founnd, sets triggers for reticle object animation state machine
-        //AND manages timer
-        //AND changes current script state boolean logic
-        void CheckCurrentInteractableInterface()
+        //DC 2019/05/17
+        //Checks for interfaces and passes component to appropriate method.
+        //Use's component's timeToActivate field and passes to scale reticle activation state
+        private void CheckCurrentCentreHitObjectInterfaces()
         {
             if (currentCentreHitObject != null)
             {
-                // 13/04/19 MM - ADDED IActivatable that checks that the object can be activated before it is activated.
-                // START -----------------------------
                 IActivatable activatable = currentCentreHitObject.GetComponent<IActivatable>();
                 IRayClickable clickable = currentCentreHitObject.GetComponent<IRayClickable>();
 
-                if (activatable != null && activatable.CanActivate())
+                if (activatable != null && activatable.CanActivate()
+                    && currentAnimationState != (int)AnimationStates.Activated
+                    && lastActivatedObject == null)
                 {
-                    HandleActivatableObject(activatable);
+                    HandleActivatableObjectTimer(activatable);
                 }
-                else if (currentCentreHitObject.GetComponent<IRayClickable>() != null && currentCentreHitObject != null)
+                else if (clickable != null && currentAnimationState != (int)AnimationStates.Activated
+                         && lastActivatedObject == null)
                 {
-                    //
-                    if (currentCentreHitObject != lastActivatedObject &&
-                        lastActivatedObject != null)
-                    {
-
-                        hasActivated = false;
-                    }
-
-                    //Is default, set to loading
-                    if (isDefault && !isLoading
-                                  && !isActivated && !hasActivated)
-                    {
-                        isDefault = false;
-                        isLoading = true;
-                        isActivated = false;
-                        hasActivated = false;
-
-                    }
-                    //Is loading, reduce timer
-                    //if timer is <= , set to activated
-                    else if (!isDefault && isLoading
-                                        && !isActivated && !hasActivated)
-                    {
-                        //Activate
-                        if (activateTimer <= 0)
-                        {
-                            isDefault = false;
-                            isLoading = false;
-                            isActivated = true;
-                            hasActivated = true;
-                            activateTimer = secondsToActivate;
-                            currentCentreHitObject.GetComponent<IRayClickable>().Click();
-                            lastActivatedObject = currentCentreHitObject;
-                        }
-                        //Still loading, subtract timer.
-                        else
-                        {
-                            activateTimer -= Time.deltaTime;
-                        }
-
-                    }
-                    else if (!isDefault && !isLoading
-                                        && isActivated && hasActivated)
-                    {
-                        isDefault = true;
-                        isLoading = false;
-                        isActivated = false;
-                        hasActivated = true;
-                    }
+                    HandleClickableObjectTimer(clickable);
                 }
-                // END ----------------------------
-                else if (currentCentreHitObject.GetComponent<IRayInteractable>() != null)
+                else if (currentAnimationState == (int)AnimationStates.Activated)
                 {
-                    //
-                    if (currentCentreHitObject != lastActivatedObject &&
-                        lastActivatedObject != null)
-                    {
-
-                        hasActivated = false;
-                    }
-
-                    //Is default, set to loading
-                    if (isDefault && !isLoading
-                                  && !isActivated && !hasActivated)
-                    {
-                        isDefault = false;
-                        isLoading = true;
-                        isActivated = false;
-                        hasActivated = false;
-
-                    }
-                    //Is loading, reduce timer
-                    //if timer is <= , set to activated
-                    else if (!isDefault && isLoading
-                                        && !isActivated && !hasActivated)
-                    {
-                        //Activate
-                        if (activateTimer <= 0)
-                        {
-                            isDefault = false;
-                            isLoading = false;
-                            isActivated = true;
-                            hasActivated = true;
-                            activateTimer = secondsToActivate;
-                            currentCentreHitObject.GetComponent<IRayInteractable>().Activate();
-                            lastActivatedObject = currentCentreHitObject;
-                        }
-                        //Still loading, subtract timer.
-                        else
-                        {
-                            activateTimer -= Time.deltaTime;
-                        }
-
-                    }
-                    else if (!isDefault && !isLoading
-                                        && isActivated && hasActivated)
-                    {
-                        isDefault = true;
-                        isLoading = false;
-                        isActivated = false;
-                        hasActivated = true;
-                    }
+                    //Meant to be empty
                 }
-                //Not an interactable obj
                 else
                 {
-                    isDefault = true;
-                    isLoading = false;
-                    isActivated = false;
-                    hasActivated = false;
-                    activateTimer = secondsToActivate;
+                    SetDefaultReticleState();
                 }
             }
-            //No current objs in centre ray
             else
             {
-                isDefault = true;
-                isLoading = false;
-                isActivated = false;
-                hasActivated = false;
-                activateTimer = secondsToActivate;
+                SetDefaultReticleState();
             }
         }
 
-        // 20190414 MM - Added to handle IActivatable objects.
-        private void HandleActivatableObject(IActivatable activatableComponent)
+        private void SetDefaultReticleState()
         {
-            if (currentCentreHitObject != lastActivatedObject && lastActivatedObject != null)
-            {
-                hasActivated = false;
-            }
+            lastActivatedObject = null;
+            currentAnimationState = (int)AnimationStates.Default;
+            UpdateCurrentReticleAnimationState(2f);
+        }
 
-            //Is default, set to loading
-            if (isDefault && !isLoading && !isActivated && !hasActivated)
+        //DC 2019/05/19
+        //Takes a object's interface component and handles relevent interface methods.
+        //Use's component's timeToActivate field and passes to scale reticle activation state
+        private void HandleActivatableObjectTimer(IActivatable activatableComponent)
+        {
+            float localActivationTime = activatableComponent.ActivationTime;
+
+            if (currentAnimationState == (int)AnimationStates.Default)
             {
-                isDefault = false;
-                isLoading = true;
-                isActivated = false;
-                hasActivated = false;
+                UpdateCurrentReticleAnimationState(2f);
+                currentAnimationState = (int)AnimationStates.Loading;
+                currentLoadingTimer = activatableComponent.ActivationTime;
             }
-            //Is loading, reduce timer if timer is <= , set to activated
-            else if (!isDefault && isLoading && !isActivated && !hasActivated)
+            else if (currentAnimationState == (int)AnimationStates.Loading)
             {
-                //Activate
-                if (activateTimer <= 0)
+                if (currentLoadingTimer <= 0f)
                 {
-                    isDefault = false;
-                    isLoading = false;
-                    isActivated = true;
-                    hasActivated = true;
-                    activateTimer = secondsToActivate;
                     activatableComponent.Activate();
-                    //currentCentreHitObject.GetComponent<IRayInteractable>().Activate();
                     lastActivatedObject = currentCentreHitObject;
+                    currentAnimationState = (int)AnimationStates.Activated;
                 }
-                //Still loading, subtract timer.
                 else
                 {
-                    activateTimer -= Time.deltaTime;
+                    currentLoadingTimer -= Time.deltaTime;
                 }
+                UpdateCurrentReticleAnimationState(localActivationTime);
             }
-            else if (!isDefault && !isLoading
-                                && isActivated && hasActivated)
+            else if (currentAnimationState == (int)AnimationStates.Activated)
             {
-                isDefault = true;
-                isLoading = false;
-                isActivated = false;
-                hasActivated = true;
+                currentAnimationState = (int)AnimationStates.Activated;
+                currentLoadingTimer = activatableComponent.ActivationTime;
+                UpdateCurrentReticleAnimationState(localActivationTime);
             }
         }
 
-        void SetCurrentReticleAnimationState()
+        //DC 2019/05/19
+        //Takes a object's interface component and handles relevent interface methods.
+        //Use's component's timeToActivate field and passes to scale reticle activation state
+        private void HandleClickableObjectTimer(IRayClickable clickableComponent)
+        {
+            float localActivationTime = clickableComponent.GetActivationTime();
+
+            if (currentAnimationState == (int)AnimationStates.Default)
+            {
+                UpdateCurrentReticleAnimationState(2f);
+                currentAnimationState = (int)AnimationStates.Loading;
+                currentLoadingTimer = clickableComponent.GetActivationTime();
+            }
+            else if (currentAnimationState == (int)AnimationStates.Loading)
+            {
+                if (currentLoadingTimer <= 0f)
+                {
+                    clickableComponent.Click();
+                    lastActivatedObject = currentCentreHitObject;
+                    currentAnimationState = (int)AnimationStates.Activated;
+                }
+                else
+                {
+                    currentLoadingTimer -= Time.deltaTime;
+                }
+                UpdateCurrentReticleAnimationState(localActivationTime);
+            }
+            else if (currentAnimationState == (int)AnimationStates.Activated)
+            {
+                currentAnimationState = (int)AnimationStates.Activated;
+                currentLoadingTimer = clickableComponent.GetActivationTime();
+                UpdateCurrentReticleAnimationState(localActivationTime);
+            }
+        }
+
+        //DC 2019/05/19
+        //Handles animatorController state after logic has been handled on update.
+        private void UpdateCurrentReticleAnimationState(float componentActivationTime)
+        {
+            if (reticleObject.GetComponent<Animator>().runtimeAnimatorController != null)
+            {
+                Animator reticleAnimator = reticleObject.GetComponent<Animator>();
+
+                if(currentAnimationState == (int)AnimationStates.Default)
+                {
+                    reticleAnimator.SetBool("IsDefault", true);
+                    reticleAnimator.SetBool("IsLoading", false);
+                    reticleAnimator.SetBool("HasActivated", false);
+                }
+                else if (currentAnimationState == (int)AnimationStates.Loading)
+                {
+                    SetLoadingAnimationMult(componentActivationTime);
+                    reticleAnimator.SetBool("IsDefault", false);
+                    reticleAnimator.SetBool("IsLoading", true);
+                    reticleAnimator.SetBool("HasActivated", false);
+                }
+                else if (currentAnimationState == (int)AnimationStates.Activated)
+                {
+                    reticleAnimator.SetBool("IsDefault", true);
+                    reticleAnimator.SetBool("IsLoading", false);
+                    reticleAnimator.SetBool("HasActivated", true);
+                }
+            }
+        }
+
+        //DC 2019/05/19
+        //Calculates the speed mult by dividing the time (seconds) it takes to execute a full loading animation.
+        //(240frames/60fps)(2seconds) 
+        private void SetLoadingAnimationMult(float activationTime)
         {
             if (reticleObject.GetComponent<Animator>().runtimeAnimatorController != null)
             {
                 Animator reticleRefAnimator = reticleObject.GetComponent<Animator>();
-                reticleRefAnimator.SetBool("IsDefault", isDefault);
-                reticleRefAnimator.SetBool("IsLoading", isLoading);
-                reticleRefAnimator.SetBool("IsActivated", isActivated);
-                reticleRefAnimator.SetBool("HasActivated", hasActivated);
+                float activationMult = 2/activationTime;
+                reticleRefAnimator.SetFloat("ActivationTime", activationMult);
             }
         }
 
         //DC 2019/03/28
-        void UpdateProxReticleObjPosition()
+        private void UpdateProxReticleObjPosition()
         {
             if (reticleObject != null)
             {
@@ -334,7 +283,7 @@ namespace GLEAMoscopeVR.RaycastingSystem
         }
 
         //DC 2019/03/28
-        void UpdateProxReticleObjRotation()
+        private void UpdateProxReticleObjRotation()
         {
             if (reticleObject != null)
             {
@@ -398,7 +347,7 @@ namespace GLEAMoscopeVR.RaycastingSystem
         }
 
         //DC 2019/04/08
-        void UpdateProxReticleObjScale()
+        private void UpdateProxReticleObjScale()
         {
             if (reticleObject != null)
             {
@@ -472,7 +421,7 @@ namespace GLEAMoscopeVR.RaycastingSystem
         }
 
         //DC 2019/03/28
-        void UpdateProxReticleObjAlpha()
+        private void UpdateProxReticleObjAlpha()
         {
             if (reticleObject != null)
             {
@@ -491,13 +440,13 @@ namespace GLEAMoscopeVR.RaycastingSystem
             }
         }
 
-        void UpdateMousePositions()
+        private void UpdateMousePositions()
         {
             mouseCurrentScreenPos = Input.mousePosition;
         }
 
         //DC 2019/03/25
-        void ProxRaycastFromCamToMouseWorld()
+        private void ProxRaycastFromCamToMouseWorld()
         {
             RaycastHit hit;
             Ray ray;
@@ -541,45 +490,6 @@ namespace GLEAMoscopeVR.RaycastingSystem
                 {
                     lastProxHitObject = tempProxObject;
                 }
-
-                //Centre cast of proximity cast.
-                if (Physics.Raycast(ray, out hit, localRaycastDistance + proxCastRadius))
-                {
-                    currentCentreRay = ray;
-                    currentCentreHit = hit;
-                    currentCentreRayDistance = hit.distance;
-
-                    Debug.DrawRay(activeCamera.transform.position, -activeCamera.transform.position + hit.point,
-                        Color.magenta, 0.5f);
-
-                    currentCentreHitObject = hit.transform.gameObject;
-
-                    GameObject tempCentreObject = currentCentreHitObject;
-
-                    if (lastCentreHitObject == null)
-                    {
-                        lastCentreHitObject = currentCentreHitObject;
-                    }
-                    else if (currentCentreHitObject != tempCentreObject)
-                    {
-                        lastCentreHitObject = tempCentreObject;
-                    }
-                }
-                else
-                {
-                    if (currentCentreHitObject != null)
-                    {
-                        lastCentreHitObject = currentCentreHitObject;
-                    }
-
-                    currentCentreHitObject = null;
-
-                    //Disable/Hides reticle mesh/material.
-                    if (doesReticleHideOnNoHit)
-                    {
-                        reticleObject.GetComponent<MeshRenderer>().enabled = false;
-                    }
-                }
             }
             else
             {
@@ -596,6 +506,45 @@ namespace GLEAMoscopeVR.RaycastingSystem
                     reticleObject.GetComponent<MeshRenderer>().enabled = false;
                 }
 
+            }
+
+            //Centre cast of proximity cast.
+            if (Physics.Raycast(ray, out hit, localRaycastDistance + proxCastRadius))
+            {
+                currentCentreRay = ray;
+                currentCentreHit = hit;
+                currentCentreRayDistance = hit.distance;
+
+                Debug.DrawRay(activeCamera.transform.position, -activeCamera.transform.position + hit.point,
+                    Color.magenta, 0.5f);
+
+                currentCentreHitObject = hit.transform.gameObject;
+
+                GameObject tempCentreObject = currentCentreHitObject;
+
+                if (lastCentreHitObject == null)
+                {
+                    lastCentreHitObject = currentCentreHitObject;
+                }
+                else if (currentCentreHitObject != tempCentreObject)
+                {
+                    lastCentreHitObject = tempCentreObject;
+                }
+            }
+            else
+            {
+                if (currentCentreHitObject != null)
+                {
+                    lastCentreHitObject = currentCentreHitObject;
+                }
+
+                currentCentreHitObject = null;
+
+                //Disable/Hides reticle mesh/material.
+                if (doesReticleHideOnNoHit)
+                {
+                    reticleObject.GetComponent<MeshRenderer>().enabled = false;
+                }
             }
         }
     }
