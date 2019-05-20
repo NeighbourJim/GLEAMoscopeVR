@@ -8370,6 +8370,7 @@ MonoBehaviour:
   - {fileID: 8903038542024649925}
   - {fileID: 8903038542024649924}
   - {fileID: 8903038542024649979}
+  fadeTime: 2
   initialSphereIndex: 2
   wavelengthSlider: {fileID: 1888315870}
   wavelengthLabel: {fileID: 2015367216}

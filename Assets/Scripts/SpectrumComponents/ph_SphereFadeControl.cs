@@ -20,6 +20,11 @@ namespace GLEAMoscopeVR.Spectrum
         [Tooltip("Array of game objects for the wavelength spheres. Length should be 6.")]
         GameObject[] spheres = null;
 
+        [Header("Fade")]
+        [SerializeField]
+        [Tooltip("The duration of the fade between spheres.")]
+        float fadeTime = 1f;
+
         [SerializeField, Tooltip("Index of the spectrum sphere that is opaque when the app starts.")]
         private int initialSphereIndex = 2;
 
@@ -252,11 +257,14 @@ namespace GLEAMoscopeVR.Spectrum
         {
             ToggleRendererState(sphere, false);//MM - sets renderer active
             fadingUp = true;
-            
-            for (float i = 0; i < 1.05f; i += 0.025f)
+            float elapsed = 0;
+            Material fadeMaterial = sphere.GetComponent<Renderer>().material;
+
+            while (elapsed < fadeTime)
             {
-                sphere.GetComponent<Renderer>().material.SetFloat("_Transparency", i);
-                yield return new WaitForSeconds(0.05f);
+                fadeMaterial.SetFloat("_Transparency", Mathf.Lerp(0f, 1f, (elapsed / fadeTime)));
+                elapsed += Time.deltaTime;
+                yield return null;
             }
 
             fadingUp = false;
@@ -270,15 +278,21 @@ namespace GLEAMoscopeVR.Spectrum
         IEnumerator FadeDown(GameObject sphere)
         {
             fadingDown = true;
-            for (float i = 0; i < 1.05f; i += 0.025f)
+            float elapsed = 0;
+            Material fadeMaterial = sphere.GetComponent<Renderer>().material;
+
+            while (elapsed < fadeTime)
             {
-                sphere.GetComponent<Renderer>().material.SetFloat("_Transparency", 1f - i);
-                yield return new WaitForSeconds(0.05f);
-            }
+                fadeMaterial.SetFloat("_Transparency", Mathf.Lerp(1f, 0f, (elapsed / fadeTime)));
+                elapsed += Time.deltaTime;
+                yield return null;
+            }        
 
             ToggleRendererState(sphere, true);//MM - sets renderer inactive
             fadingDown = false;
         }
+
+
 
         #endregion
 
