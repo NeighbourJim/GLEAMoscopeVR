@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1347985855474461457}
   - component: {fileID: 1347985855474461459}
   m_Layer: 0
-  m_Name: FadeSphere
+  m_Name: BlinkSphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,5 +92,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Increment: 0.066
   IncrementWait: 0.01
-  SecondsToStayBlack: 0.3
-  EyeClosed: 0
+  SecondsToStayBlack: 0.5
+  BlinkStart:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  EyeClosed:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  BlinkEnded:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  changeRenderQueue: []

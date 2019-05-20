@@ -4,6 +4,7 @@ using GLEAMoscopeVR.Utility.Management;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 namespace GLEAMoscopeVR.Spectrum
 {
@@ -31,6 +32,9 @@ namespace GLEAMoscopeVR.Spectrum
         [Tooltip("The TextMesh object that displays the current wavelength.")]
         TextMeshProUGUI wavelengthLabel = null;
 
+        CameraBlink cameraBlink = null;
+        UnityAction eyeClosedAction = null;
+
         /// <summary>
         /// Flag to prevent input when actively fading a sphere up
         /// </summary>
@@ -51,6 +55,7 @@ namespace GLEAMoscopeVR.Spectrum
         #region Unity Methods
         void Start()
         {
+            cameraBlink = FindObjectOfType<CameraBlink>();
             SetInitialRendererState();
             UpdateWavelengthLabel(currentWavelength);
         }
@@ -109,6 +114,20 @@ namespace GLEAMoscopeVR.Spectrum
         }
 
         /// <summary>
+        /// Quickly transition to a wavelength state with a blink effect.
+        /// </summary>
+        /// <param name="destinationState">The state to transition to quickly.</param>
+        public void StateQuick(int destinationState)
+        {
+            if (!fadingUp && !fadingDown && destinationState != (int)currentWavelength)
+            {
+                eyeClosedAction = () => ChangeStateQuick((Wavelengths)destinationState);
+                cameraBlink.EyeClosed.AddListener(eyeClosedAction);
+                cameraBlink.Blink();
+            }
+        }
+
+        /// <summary>
         /// Transition to a new state.
         /// Calls FadeSpheres(), AnimateSlider() and UpdateWavelengthLabel()
         /// </summary>
@@ -123,6 +142,64 @@ namespace GLEAMoscopeVR.Spectrum
         }
 
         /// <summary>
+        /// Quickly change to a specific wavelength with a blink.
+        /// Selects which wavelength to be fading 'from' based on the direction the user would be moving.
+        /// </summary>
+        /// <param name="destinationState"></param>
+        void ChangeStateQuick(Wavelengths destinationState)
+        {
+            if (destinationState != currentWavelength)
+            {
+                // which direction the destination is relative to current state. true = left, false = right
+                bool direction = (currentWavelength > destinationState); 
+
+                cameraBlink.EyeClosed.RemoveListener(eyeClosedAction);
+
+                switch (destinationState)
+                {
+                    case Wavelengths.Gamma:
+                        wavelengthSlider.value = 0;
+                        FadeSpecificSpheres(Wavelengths.Gamma, Wavelengths.XRay);
+                        break;
+                    case Wavelengths.XRay:
+                        wavelengthSlider.value = 20;
+                        if (direction)
+                            FadeSpecificSpheres(Wavelengths.XRay, Wavelengths.Visible);
+                        else
+                            FadeSpecificSpheres(Wavelengths.XRay, Wavelengths.Gamma);
+                        break;
+                    case Wavelengths.Visible:
+                        wavelengthSlider.value = 40;
+                        if (direction)
+                            FadeSpecificSpheres(Wavelengths.Visible, Wavelengths.Infrared);
+                        else
+                            FadeSpecificSpheres(Wavelengths.Visible, Wavelengths.XRay);
+                        break;
+                    case Wavelengths.Infrared:
+                        wavelengthSlider.value = 60;
+                        if (direction)
+                            FadeSpecificSpheres(Wavelengths.Infrared, Wavelengths.Microwave);
+                        else
+                            FadeSpecificSpheres(Wavelengths.Infrared, Wavelengths.Visible);
+                        break;
+                    case Wavelengths.Microwave:
+                        wavelengthSlider.value = 80;
+                        if (direction)
+                            FadeSpecificSpheres(Wavelengths.Microwave, Wavelengths.Radio);
+                        else
+                            FadeSpecificSpheres(Wavelengths.Microwave, Wavelengths.Infrared);
+                        break;
+                    case Wavelengths.Radio:
+                        wavelengthSlider.value = 100;
+                        FadeSpecificSpheres(Wavelengths.Radio, Wavelengths.Microwave);
+                        break;
+                }
+                UpdateWavelengthLabel(destinationState);
+                currentWavelength = destinationState;
+            }
+        }
+
+        /// <summary>
         /// Starts the coroutines for fading the sky sphere alpha
         /// </summary>
         /// <param name="state">The state being transitioned towards.</param>
@@ -130,6 +207,17 @@ namespace GLEAMoscopeVR.Spectrum
         {
             StartCoroutine(FadeDown(spheres[(int)currentWavelength]));
             StartCoroutine(FadeUp(spheres[(int)state]));
+        }
+
+        void FadeSpecificSpheres(Wavelengths fadeUp, Wavelengths fadeDown)
+        {
+            foreach(GameObject sphere in spheres)
+            {
+                sphere.GetComponent<Renderer>().material.SetFloat("_Transparency", 0f);
+            }
+            spheres[(int)fadeDown].GetComponent<Renderer>().material.SetFloat("_Transparency", 1f);
+            StartCoroutine(FadeDown(spheres[(int)fadeDown]));
+            StartCoroutine(FadeUp(spheres[(int)fadeUp]));
         }
 
         /// <summary>
@@ -147,6 +235,7 @@ namespace GLEAMoscopeVR.Spectrum
                 StartCoroutine(SliderDown());
             }
         }
+
 
         #endregion
 
