@@ -14,6 +14,7 @@ public class IntroManager : MonoBehaviour
     public void Awake()
     {
         cameraBlink.EyeClosed.AddListener(TeleportToScene);
+        
     }
 
     public void StartTeleport()
