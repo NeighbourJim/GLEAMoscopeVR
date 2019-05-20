@@ -3645,10 +3645,100 @@ MonoBehaviour:
   - name: Start
     clip: {fileID: 8300000, guid: 44522f75e7dd0424f9f7f780b9f3c34f, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 0.114
     source: {fileID: 0}
   - name: Click
     clip: {fileID: 8300000, guid: df87a7c21234fa846b4687ad31e0b903, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleAntennaPOI
+    clip: {fileID: 8300000, guid: dbe47cb6b36363141b083869bf64d9a7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleAntennaPOI
+    clip: {fileID: 8300000, guid: 95fc3782a79a16347a9d29e8097f68e4, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleCentaurus
+    clip: {fileID: 8300000, guid: 0cc1a0a193f4d25429f105a15135ef4a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleCentaurus
+    clip: {fileID: 8300000, guid: 0dbc858466a938f41a8568eef4cdcb66, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleChangeWavelength
+    clip: {fileID: 8300000, guid: ca56edb84bf200a458c684bb74b63035, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleChangeWavelength
+    clip: {fileID: 8300000, guid: 723621b315488fb4298b595cea82415a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleGreeting
+    clip: {fileID: 8300000, guid: f1926f614f17613459f2a4c5e59f496d, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleGreeting
+    clip: {fileID: 8300000, guid: c60a39a9f82c7ba48ae05a53c8441d5a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Male_LMC
+    clip: {fileID: 8300000, guid: 02e004a58f1561541bd0a334de5efeab, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: Female_LMC
+    clip: {fileID: 8300000, guid: 47f7bbb9edb16e948b55bb0768ef4194, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleRadioIntro
+    clip: {fileID: 8300000, guid: f94e6ae898a61404a9b96fbcb3755b20, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleRadioIntro
+    clip: {fileID: 8300000, guid: b58afbfcc0a473247bfa539aec145287, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleSupernova
+    clip: {fileID: 8300000, guid: 4aeb1756ecce81445b7d1fc6c337630b, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleSupernova
+    clip: {fileID: 8300000, guid: ac6531c53d0859c4d9cf98524780884a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleVelaNebula
+    clip: {fileID: 8300000, guid: 0e3c606ff353f39438ab72f854700797, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleVelaNebula
+    clip: {fileID: 8300000, guid: 24dec2f672130a1448a6c055a7195444, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: MaleVelaPulsar
+    clip: {fileID: 8300000, guid: b5f82320422ee26468c85a9cfde681c7, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+  - name: FemaleVelaPulsar
+    clip: {fileID: 8300000, guid: 7f03531f83234a2449c5c0dc48a27af9, type: 3}
     volume: 1
     pitch: 1
     source: {fileID: 0}
