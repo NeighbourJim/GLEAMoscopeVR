@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class SetRenderQueueValue : MonoBehaviour
 {
-    public int RenderQueueValue = 2000;
+    public int RenderQueueValue = 2500;
+
     void Start()
     {
         gameObject.GetComponent<Renderer>().material.renderQueue = RenderQueueValue;
