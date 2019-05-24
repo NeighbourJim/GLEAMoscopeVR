@@ -1,4 +1,5 @@
 ﻿using GLEAMoscopeVR.Settings;
+using GLEAMoscopeVR.Spectrum;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -7,7 +8,10 @@ using UnityEngine.UI;
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
+    /// MM: Updated 21/05/19 Default sprite set to Radio. (will only ever start at Visible or Radio)
+    /// Todo: Add method for swapping out sprites when buttons are activated.
     /// Base class for <see cref="POIObject"/> data display panels.
+    /// /// When a POI is activated, the sprite will always start at either Visible or Radio.
     /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
     public class InfoPanelBase : MonoBehaviour
@@ -52,7 +56,8 @@ namespace GLEAMoscopeVR.POIs
             TitleText.text = poi.Name;
             DistanceText.text = $"Distance: {poi.Distance}";
             DescriptionText.text = poi.Description;
-            PointImage.sprite = poi.Sprite;
+            // Todo: get current wavelength (Visible or Radio) and allow for swapping out sprites (separately)
+            PointImage.sprite = poi.Sprites[(int)Wavelengths.Radio]; 
 
             SetCanvasGroupState(true);
         }

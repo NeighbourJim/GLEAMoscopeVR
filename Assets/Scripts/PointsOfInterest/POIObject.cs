@@ -3,10 +3,9 @@
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
-    /// Updated 12/04/19 - MM
-    /// Converts a <see cref="POIData"/> ScriptableObject .asset file into an object using the data entered in the editor.
+    /// MM: Updated 21/05/19 Added array that stores POI sprites for each wavelength, male and female voice-over audio clips.
+    /// Converts a <see cref="POIData"/> ScriptableObject .asset file into an object.
     /// Allows for the data to be sent between scripts and components without the need for additional, explicit data entry.
-    /// NOTE: this class will change, but the way in which it is interacted with should not.
     /// </summary>
     [System.Serializable]
     public class POIObject
@@ -37,13 +36,15 @@ namespace GLEAMoscopeVR.POIs
 
         /// <summary>
         /// The Point of Interest's approximate distance from Earth (units to be confirmed).
+        /// Todo: determine whether this is required (descriptions and scripts provided by ICRAR contain this info (where applicable). May not be necessary to display in UI.
         /// </summary>
         public string Distance => Data.Distance;
 
         /// <summary>
-        /// Sprite used to display the Point of Interest in the user interface panel.
+        /// The Point of Interest's sprites in each of the 6 wavelengths.
+        /// Todo: determine whether sprites or textures / materials are more appropriate.
         /// </summary>
-        public Sprite Sprite => Data.Sprite;
+        public Sprite[] Sprites => Data.Sprites;
 
         /// <summary>
         /// The Transform used to rotate the Point of Interest into the user's original, forward-facing viewport.
@@ -51,19 +52,33 @@ namespace GLEAMoscopeVR.POIs
         public Transform SkyTransform => Data.SkyTransform;
 
         /// <summary>
-        /// Voice over to be played on Point of Interest activation.
+        /// Voice over to be played on Point of Interest activation (Male variant).
         /// </summary>
-        public AudioClip Voiceover => Data.Voiceover;
+        public AudioClip VoiceoverMale => Data.VoiceoverMale;
+
+        /// <summary>
+        /// Voice over to be played on Point of Interest activation (Female variant).
+        /// </summary>
+        public AudioClip VoiceoverFemale => Data.VoiceoverFemale;
 
         #endregion
 
-        #region Constructors
+        #region Constructor
 
         public POIObject(POIData data)
         {
             _data = data;
         }
 
+        #endregion
+
+        #region Currently Excluded
+        //public Sprite GammaSprite => Data.GammaSprite;
+        //public Sprite XRaySprite => Data.XRaySprite;
+        //public Sprite VisibleSprite => Data.VisibleSprite;
+        //public Sprite FarInfraredSprite => Data.FarInfraredSprite;
+        //public Sprite MicrowaveSprite => Data.MicrowaveSprite;
+        //public Sprite RadioSprite => Data.RadioSprite;
         #endregion
     }
 }
