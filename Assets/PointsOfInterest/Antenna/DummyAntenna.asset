@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
+  m_Name: DummyAntenna
+  m_EditorClassIdentifier: 
+  ID: -20702
+  Name: Antenna
+  ShortDescription: "This is an artist\u2019s representation of what one of the SKA-low
+    frequency antennas might look like. SKA-low will be made up of over 100,000 of
+    these, broken up into stations of 256 antennas each. When the signal from each
+    of these antennas is joined together using powerful supercomputers, it will allow
+    us to search the Universe with radio-eyes at a resolution never before possible.
+    \r\n\r\nYou can change the wavelength your eyes can see, allowing you to see the
+    Universe like never before. "
+  Distance: 2 metres
+  Sprites: []
+  SkyTransform: {fileID: 0}
+  VoiceoverMale: {fileID: 0}
+  VoiceoverFemale: {fileID: 0}
