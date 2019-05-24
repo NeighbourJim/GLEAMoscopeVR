@@ -6,15 +6,14 @@ using UnityEngine.Events;
 public class IntroManager : MonoBehaviour
 {
     public CameraBlink cameraBlink = null;
-    public Camera main_camera = null;
+    public GameObject main_camera_parent = null;
     public GameObject introArea = null;
 
     public UnityEvent introFinished;
 
     public void Awake()
     {
-        cameraBlink.EyeClosed.AddListener(TeleportToScene);
-        
+        cameraBlink.EyeClosed.AddListener(TeleportToScene);        
     }
 
     public void StartTeleport()
@@ -24,7 +23,7 @@ public class IntroManager : MonoBehaviour
 
     public void TeleportToScene()
     {
-        main_camera.transform.position = new Vector3(0, 1.7f, 0);
+        main_camera_parent.transform.position = new Vector3(0, main_camera_parent.transform.position.y, main_camera_parent.transform.position.z);
         introArea.SetActive(false);
         
         introFinished.Invoke();
