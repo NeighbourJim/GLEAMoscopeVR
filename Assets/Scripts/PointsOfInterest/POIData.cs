@@ -48,6 +48,24 @@ namespace GLEAMoscopeVR.POIs
         public Transform SkyTransform;
 
         /// <summary>
+        /// The X-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// </summary>
+        [Header("Info-Panel (Sky) Offset Values")]
+        [Tooltip("The X-axis offset used to position the InfoPanelBase for a Point of Interest activated in the sky.")]
+        public float XOffset = 0;
+        /// <summary>
+        /// The Y-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// </summary>
+        [Tooltip("The Y-axis offset used to position the InfoPanelBase for a Point of Interest activated in the sky.")]
+        public float YOffset = 0;
+        /// <summary>
+        /// The Z-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// </summary>
+        [Tooltip("The Z-axis offset used to position the InfoPanelBase for a Point of Interest activated in the sky.")]
+        public float ZOffset = 0;
+
+
+        /// <summary>
         /// Voice over to be played on Point of Interest activation (Male variant).
         /// </summary>
         [Tooltip("Voice over to be played when the Point of Interest is activated.")]
