@@ -18,6 +18,11 @@ public class SpriteTintChanger : MonoBehaviour
         currentTint = startTint;
     }
 
+    private void OnDisable()
+    {
+        ResetTint();
+    }
+
     public void StartChangeTint()
     {
         if(!HasSunSet)
