@@ -29,6 +29,10 @@ namespace GLEAMoscopeVR.POIs
         [SerializeField]
         [Tooltip("Point of Interest Image object.")]
         protected Image PointImage;
+        [Tooltip("Current Point of Interest")]
+        POIObject currentPOI = null;
+        [Tooltip("Current POI Sprite Index")]
+        Wavelengths currentSpriteWavelength;
 
         #region References
         /// <summary>
@@ -53,13 +57,53 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="point">The Point of Interest object whose parameters will be displayed on the panel.</param>
         public virtual void UpdateDisplay(POIObject poi)
         {
-            TitleText.text = poi.Name;
-            DistanceText.text = $"Distance: {poi.Distance}";
-            DescriptionText.text = poi.Description;
-            // Todo: get current wavelength (Visible or Radio) and allow for swapping out sprites (separately)
-            PointImage.sprite = poi.Sprites[(int)Wavelengths.Radio]; 
+            currentPOI = poi;
+            currentSpriteWavelength = Wavelengths.Radio;
+
+            TitleText.text = currentPOI.Name;
+            DistanceText.text = $"Distance: {currentPOI.Distance}";
+            DescriptionText.text = currentPOI.Description;
+            UpdateSprite(currentSpriteWavelength);
 
             SetCanvasGroupState(true);
+        }
+
+        public virtual void CycleSpriteRight()
+        {
+            if(currentSpriteWavelength != Wavelengths.Radio)
+            {
+                currentSpriteWavelength++;
+            }
+            else
+            {
+                currentSpriteWavelength = Wavelengths.Gamma;
+            }
+            UpdateSprite(currentSpriteWavelength);
+        }
+
+        public virtual void CycleSpriteLeft()
+        {
+            if (currentSpriteWavelength != Wavelengths.Gamma)
+            {
+                currentSpriteWavelength++;
+            }
+            else
+            {
+                currentSpriteWavelength = Wavelengths.Radio;
+            }
+            UpdateSprite(currentSpriteWavelength);
+        }
+
+        private void UpdateSprite(Wavelengths wavelength)
+        {
+            if (currentPOI != null)
+            {
+                PointImage.sprite = currentPOI.Sprites[(int)wavelength];
+            }
+            else
+            {
+                Debug.LogError("The point of interest is not set for this info panel! This should never happen.");
+            }
         }
 
         /// <summary>

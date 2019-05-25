@@ -36,7 +36,6 @@ namespace GLEAMoscopeVR.POIs
             UpdateDisplay(point);
             SetLocation(targetTransform, xOffset, yOffset, zOffset);
             SetCanvasGroupState(true); // MM 13/04/19
-
         }
     }
 }

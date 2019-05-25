@@ -31,7 +31,7 @@ public class InfoPanel_FaceCamera : MonoBehaviour
     {
         if (LookAtCamera)
         {
-            transform.LookAt(2 * transform.position - ToLookAt.transform.position);
+            transform.LookAt(2 * transform.position - ToLookAt.transform.position, ToLookAt.transform.up);
         }
     }
 
