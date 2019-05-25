@@ -68,7 +68,7 @@ namespace GLEAMoscopeVR.POIs
             SetCanvasGroupState(true);
         }
 
-        public virtual void CycleSpriteRight()
+        public void CycleSpriteRight()
         {
             if(currentSpriteWavelength != Wavelengths.Radio)
             {
@@ -81,7 +81,7 @@ namespace GLEAMoscopeVR.POIs
             UpdateSprite(currentSpriteWavelength);
         }
 
-        public virtual void CycleSpriteLeft()
+        public void CycleSpriteLeft()
         {
             if (currentSpriteWavelength != Wavelengths.Gamma)
             {
