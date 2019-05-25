@@ -27,12 +27,12 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5464009045035700147}
-  - {fileID: 5464009045035700151}
+  - {fileID: 8813651501520395497}
+  - {fileID: 8813651501520395501}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &5464009045035209619
+--- !u!1 &8813651501520093385
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,9 +40,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5464009045035700147}
-  - component: {fileID: 5464009045036470163}
-  - component: {fileID: 5464009045037469011}
+  - component: {fileID: 8813651501520395497}
+  - component: {fileID: 8813651501517003977}
+  - component: {fileID: 8813651501518102025}
   m_Layer: 0
   m_Name: SKA_ANTENNA_Base
   m_TagString: Untagged
@@ -50,35 +50,35 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
   m_IsActive: 1
---- !u!4 &5464009045035700147
+--- !u!4 &8813651501520395497
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464009045035209619}
-  m_LocalRotation: {x: 0.000000059604645, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.00000009689331}
+  m_GameObject: {fileID: 8813651501520093385}
+  m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5464009045035700145}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5464009045036470163
+--- !u!33 &8813651501517003977
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464009045035209619}
-  m_Mesh: {fileID: 4300000, guid: 4e8d720d0d5b49b4b9420da0115f033b, type: 3}
---- !u!23 &5464009045037469011
+  m_GameObject: {fileID: 8813651501520093385}
+  m_Mesh: {fileID: 4300000, guid: b9045ea106739324ea80ff0eb44f40af, type: 3}
+--- !u!23 &8813651501518102025
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464009045035209619}
+  m_GameObject: {fileID: 8813651501520093385}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -109,7 +109,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &5464009045035209623
+--- !u!1 &8813651501520093389
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,9 +117,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5464009045035700151}
-  - component: {fileID: 5464009045036470161}
-  - component: {fileID: 5464009045037469009}
+  - component: {fileID: 8813651501520395501}
+  - component: {fileID: 8813651501517003979}
+  - component: {fileID: 8813651501518102027}
   m_Layer: 0
   m_Name: SKA_ANTENNA_Tree
   m_TagString: Untagged
@@ -127,38 +127,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 1
   m_IsActive: 1
---- !u!4 &5464009045035700151
+--- !u!4 &8813651501520395501
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464009045035209623}
-  m_LocalRotation: {x: 0.000000059604645, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: -0.00000009689331}
+  m_GameObject: {fileID: 8813651501520093389}
+  m_LocalRotation: {x: 0.00000008146034, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5464009045035700145}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5464009045036470161
+--- !u!33 &8813651501517003979
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464009045035209623}
-  m_Mesh: {fileID: 4300002, guid: 4e8d720d0d5b49b4b9420da0115f033b, type: 3}
---- !u!23 &5464009045037469009
+  m_GameObject: {fileID: 8813651501520093389}
+  m_Mesh: {fileID: 4300002, guid: b9045ea106739324ea80ff0eb44f40af, type: 3}
+--- !u!23 &8813651501518102027
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464009045035209623}
+  m_GameObject: {fileID: 8813651501520093389}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 0
+  m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
