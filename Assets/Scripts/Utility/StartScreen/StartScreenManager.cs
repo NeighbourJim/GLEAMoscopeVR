@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class IntroManager : MonoBehaviour
+public class StartScreenManager : MonoBehaviour
 {
     public CameraBlink cameraBlink = null;
     public GameObject main_camera_parent = null;
-    public GameObject introArea = null;
+    public GameObject startArea = null;
 
-    public UnityEvent introFinished;
+    public UnityEvent startFinished;
 
     public void Awake()
     {
@@ -24,9 +24,9 @@ public class IntroManager : MonoBehaviour
     public void TeleportToScene()
     {
         main_camera_parent.transform.position = new Vector3(0, main_camera_parent.transform.position.y, main_camera_parent.transform.position.z);
-        introArea.SetActive(false);
+        startArea.SetActive(false);
         
-        introFinished.Invoke();
+        startFinished.Invoke();
 
         cameraBlink.EyeClosed.RemoveListener(TeleportToScene);
     }

@@ -9,7 +9,7 @@ public class InfoPanel_FaceCamera : MonoBehaviour
     GameObject ToLookAt;
     [SerializeField]
     [Tooltip("Whether the panel should face the camera. Toggle this programmatically with SetLookAtCamera()")]
-    bool LookAtCamera = false;
+    bool LookAtCamera = true;
 
     /// <summary>
     /// On Awake, check to see if ToLookAt has been assigned in the editor. 
