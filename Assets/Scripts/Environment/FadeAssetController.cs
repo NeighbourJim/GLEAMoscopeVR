@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
+using System.Linq;
 using GLEAMoscopeVR.Settings;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -14,78 +16,88 @@ public class FadeAssetController : MonoBehaviour
     [SerializeField]
     GameObject[] meshObjects = null;
 
-    [Header("User Platform")]
-    [SerializeField] private Renderer platformRenderer = null;
-    [SerializeField] private Renderer logoRenderer = null;
+    public Renderer[] renderers = { };
 
+    [Header("User Platform")]
+    [SerializeField]
+    private Renderer platformRenderer = null;
+    [SerializeField]
+    private Renderer logoRenderer = null;
+
+    [Header("Debugging")]
+    [SerializeField] private ExperienceMode previousMode = ExperienceMode.Exploration;
+    [SerializeField] private ExperienceMode currentMode = ExperienceMode.Introduction;
+
+    private CameraBlink cameraBlink;
+
+    #region References
     ExperienceModeController _modeController;
+    #endregion
+
 
     void Start()
     {
         SetAndCheckReferences();
+
+        GetRenderers();
     }
 
-    // Added so that the environment doesn't fade back in when the mode doesn't change
-    private void HandleExperienceModeChanged()
+    private void GetRenderers()
     {
-        print("Handle mode changed");
-        //StartFade();  CP 13/05 - Commented out for now since fading the ground/trees away is not currently necessary
+        renderers = GetComponentsInChildren<Renderer>();
     }
 
-    public void StartFade()
+    private void HandleExperienceModeChanged()//todo: check logic
     {
-        explorationMode = !explorationMode;
+        currentMode = _modeController.CurrentMode;
+
+        if (currentMode == previousMode) return;
+
+        switch (currentMode)
+        {
+            case ExperienceMode.Exploration when previousMode == ExperienceMode.Introduction:
+            case ExperienceMode.Introduction when previousMode == ExperienceMode.Exploration:
+                return;
+            default:
+                break;
+        }
         
-        if(explorationMode)
-        {
-            if (meshObjects != null)
-            {
-                foreach (GameObject mesh in meshObjects)
-                {
-                    StartCoroutine(FadeUp(mesh));
-                }
-            }
-        }
-        else
-        {
-            platformRenderer.enabled = true;
-            //print("Fade down");
-            if (meshObjects != null)
-            {
-                foreach (GameObject mesh in meshObjects)
-                {
-                    StartCoroutine(FadeDown(mesh));
-                }
-            }
-        }
+        cameraBlink.EyeClosed.AddListener(UpdateEnvironmentRenderers);
+        cameraBlink.Blink();
     }
 
-    IEnumerator FadeUp(GameObject pObject)
+    private void UpdateEnvironmentRenderers()
     {
-        for(float i = 0; i < 1f; i += 0.023809f)
-        {
-            pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, i);
-            yield return new WaitForSeconds(0.05f);
-        }
-        platformRenderer.enabled = false;
+        var enableEnvironment = _modeController.CurrentMode != ExperienceMode.Passive;
+
+        SetEnvironmentRendererState(enableEnvironment);
+        SetPlatformAndLogoRendererState(!enableEnvironment);
+
+        previousMode = currentMode;
+        cameraBlink.EyeClosed.RemoveListener(UpdateEnvironmentRenderers);
     }
 
-    IEnumerator FadeDown(GameObject pObject)
+    private void SetPlatformAndLogoRendererState(bool enable)
     {
-        for (float i = 0f; i <= 1f; i += 0.023809f)
-        {
-            //print("into Fade down");
-            pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, 1-i);
-            yield return new WaitForSeconds(0.05f);
-        }
+        platformRenderer.enabled = enable;
+        logoRenderer.enabled = enable;
+    }
+
+    private void SetEnvironmentRendererState(bool enable)
+    {
+        renderers.ToList().ForEach(r => r.enabled = enable);
     }
 
     private void SetAndCheckReferences()
     {
         _modeController = FindObjectOfType<ExperienceModeController>().Instance;
         Assert.IsNotNull(_modeController, $"[FadeAssetController] does not have a reference to the experience mode controller.");
+        previousMode = _modeController.CurrentMode;
         _modeController.OnExperienceModeChanged += HandleExperienceModeChanged;
         Assert.IsNotNull(platformRenderer, $"[FadeAssetController] does not have a reference to the platform renderer.");
+
+        cameraBlink = Camera.main.GetComponentInChildren<CameraBlink>();
+        Assert.IsNotNull(cameraBlink, $"[FadeAssetController] cannot find CameraBlink component in main camera children.");
     }
 }
 
@@ -142,4 +154,54 @@ void UpdateProxReticleObjAlpha()
             ToggleRendererState(sphere, true);//MM - sets renderer inactive
             fadingDown = false;
         }
+*/
+
+/* Removed 27/05/19 (MM)
+public void StartFade()
+{
+    explorationMode = !explorationMode;
+
+    if(explorationMode)
+    {
+        if (meshObjects != null)
+        {
+            foreach (GameObject mesh in meshObjects)
+            {
+                StartCoroutine(FadeUp(mesh));
+            }
+        }
+    }
+    else
+    {
+        platformRenderer.enabled = true;
+        //print("Fade down");
+        if (meshObjects != null)
+        {
+            foreach (GameObject mesh in meshObjects)
+            {
+                StartCoroutine(FadeDown(mesh));
+            }
+        }
+    }
+}
+
+IEnumerator FadeUp(GameObject pObject)
+{
+    for(float i = 0; i < 1f; i += 0.023809f)
+    {
+        pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, i);
+        yield return new WaitForSeconds(0.05f);
+    }
+    platformRenderer.enabled = false;
+}
+
+IEnumerator FadeDown(GameObject pObject)
+{
+    for (float i = 0f; i <= 1f; i += 0.023809f)
+    {
+        //print("into Fade down");
+        pObject.GetComponent<MeshRenderer>().material.color = new Color(1f, 1f, 1f, 1-i);
+        yield return new WaitForSeconds(0.05f);
+    }
+}
 */

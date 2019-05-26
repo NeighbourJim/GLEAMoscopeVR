@@ -25,6 +25,9 @@ namespace GLEAMoscopeVR.Settings
 
         public PassiveModeRotator Rotator;
         public SunsetController SunsetController;
+        private CameraBlink cameraBlink;
+
+
 
         [Header("State")]
         [SerializeField]
@@ -100,6 +103,7 @@ namespace GLEAMoscopeVR.Settings
 
         void IActivatable.Activate()
         {
+            cameraBlink.Blink();
             ToggleExperienceMode();
         }
 
@@ -135,6 +139,9 @@ namespace GLEAMoscopeVR.Settings
             Assert.IsNotNull(ModeText, $"[ExperienceModeController] does not have reference to the Mode Text component.");
             Assert.IsNotNull(ModeButton, $"[ExperienceModeController] does not have reference to the Mode Button component.");
             Assert.IsNotNull(SunsetController, $"[ExperienceModeController] does not have reference to the SunsetController");
+
+            cameraBlink = Camera.main.GetComponentInChildren<CameraBlink>();
+            Assert.IsNotNull(cameraBlink, $"{gameObject.name} cannot find CameraBlink component in main camera children.");
 
             POIManager.Instance.OnAntennaPOIActivated += HandleAntennaPOIActivated;
         }

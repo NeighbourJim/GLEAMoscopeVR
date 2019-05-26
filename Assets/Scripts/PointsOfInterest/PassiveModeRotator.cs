@@ -5,9 +5,8 @@ using UnityEngine.Assertions;
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
-    /// todo: MM fix once interaction functionality is decided and comment
-    /// 20190416 MM - removed ability to interrupt rotation to set new transform. Will rectify when feedback on "modes" is provided.
     /// Handles rotating Points of Interest into the user's original, forward-facing direction when operating in Passive <see cref="ExperienceMode"/>.
+    /// Todo: handle passive to intro behaviour once implemented.
     /// </summary>
     public class PassiveModeRotator : MonoBehaviour
     {
@@ -28,12 +27,16 @@ namespace GLEAMoscopeVR.POIs
         private float retargetTolerance = 1f;
 
         [Header("Debugging")]
+        [SerializeField] private ExperienceMode previousMode = ExperienceMode.Exploration;
+        [SerializeField] private ExperienceMode currentMode = ExperienceMode.Introduction;
         [SerializeField]
         private float remainingAngle = 0;
         bool shouldRotate = false;
         
         Transform current = null;
         Transform target = null;
+
+        private CameraBlink cameraBlink;
 
         #region References
         ExperienceModeController _modeController;
@@ -54,15 +57,27 @@ namespace GLEAMoscopeVR.POIs
         
         private void HandleModeChanged()
         {
-            if (_modeController.CurrentMode == ExperienceMode.Exploration)
+            currentMode = _modeController.CurrentMode;
+
+            if (currentMode == previousMode) return;
+
+            if (previousMode == ExperienceMode.Passive && currentMode == ExperienceMode.Exploration)// || currentMode == ExperienceMode.Introduction))
+            {
+                ListenForBlinkAndReturnToOrigin();
+                return;
+            }
+
+            if (_modeController.CurrentMode == ExperienceMode.Exploration && remainingAngle > 0)
             {
                 if(remainingAngle > 0)
                 {
                     ResetState();
                 }
-                
+
                 SetTargetTransformAndRotate(OriginTransform);
             }
+
+            previousMode = currentMode;
         }
 
         void Update()
@@ -141,6 +156,19 @@ namespace GLEAMoscopeVR.POIs
             shouldRotate = true;
         }
 
+        private void ListenForBlinkAndReturnToOrigin()
+        {
+            cameraBlink.EyeClosed.AddListener(ReturnToOrigin);
+            previousMode = currentMode;
+            ResetState();
+        }
+
+        private void ReturnToOrigin()
+        {
+            transform.rotation = OriginTransform.rotation;
+            cameraBlink.EyeClosed.RemoveListener(ReturnToOrigin);
+        }
+
         private void ResetState()
         {
             target = transform;
@@ -153,6 +181,9 @@ namespace GLEAMoscopeVR.POIs
             _modeController = FindObjectOfType<ExperienceModeController>().Instance;
             Assert.IsNotNull(_modeController, "$[PassiveModeRotator] Cannot find a reference to ExperienceModeController.");
             _modeController.OnExperienceModeChanged += HandleModeChanged;
+
+            cameraBlink = Camera.main.GetComponentInChildren<CameraBlink>();
+            Assert.IsNotNull(cameraBlink, $"[PassiveModeRotator] cannot find CameraBlink component in main camera children.");
         }
     }
 }
