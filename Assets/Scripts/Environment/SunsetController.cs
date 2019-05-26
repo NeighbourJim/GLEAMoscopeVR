@@ -9,19 +9,23 @@ public class SunsetController : MonoBehaviour
 
     [SerializeField] private Transform fullSkyImagery;
     [SerializeField] private Transform visibleSpectrum;
+    [SerializeField] private Material[] billboardMaterials;
     [SerializeField] private Light sun;
     [SerializeField] private Material sunsetSkyboxMat;
     [SerializeField] private float fadeTime = 6;
     [SerializeField] private float fadeInPoint = 0.2f;
     [SerializeField] private float exposureStart = 3f;
-    [SerializeField] private Color sunColorStart = new Color(0.274f, 0.055f, 0.000f, 1.000f);
-    [SerializeField] private Color sunColorEnd = new Color(0.039f, 0.039f, 0.078f, 1.000f);
+    [SerializeField] private Color sunColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
+    [SerializeField] private Color billboardsColorStart = new Color(0.274f, 0.129f, 0.086f, 1.000f);
+    [SerializeField] private Color billboardsColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
     [SerializeField] private int sunRotationXStart = 150;
     [SerializeField] private int sunRotationXEnd = 180;
     [SerializeField] private int moonRotationXStart = 0;
     [SerializeField] private int moonRotationXEnd = 90;
+    private Color sunColorStart;
     private Material sphereMaterial;
-    private Color currentColor;
+    private Color sunColorCurrent;
+    private Color billboardsColorCurrent;
     private float exposureEnd;
     private float sunRotationXCurrent;
     private float moonRotationXCurrent;
@@ -47,7 +51,11 @@ public class SunsetController : MonoBehaviour
         currentTransparency = 0;
         exposureCurrent = exposureStart;
         exposureCurrent = RenderSettings.skybox.GetFloat("_Exposure");
-        sun.color = sunColorStart;
+        sunColorStart = sun.color;
+        foreach (Material mat in billboardMaterials)
+        {
+            mat.color = billboardsColorStart;
+        }
         sun.transform.eulerAngles = new Vector3(sunRotationXStart, 0, 0);
     }
 
@@ -94,10 +102,18 @@ public class SunsetController : MonoBehaviour
 
             elapsedTime += Time.deltaTime;
             exposureCurrent = Mathf.Lerp(expStart, expEnd, Mathf.Clamp01(elapsedTime / fadeTime));
-            currentColor = Color.Lerp(sunColorStart, sunColorEnd, Mathf.Clamp01(elapsedTime / fadeTime));
-            sunRotationXCurrent = Mathf.Lerp(sunRotationXStart, sunRotationXEnd, elapsedTime / fadeTime);
-            sun.transform.eulerAngles = new Vector3(sunRotationXCurrent, transform.eulerAngles.y, transform.eulerAngles.z);
+            sunColorCurrent = Color.Lerp(sunColorStart, sunColorEnd, Mathf.Clamp01(elapsedTime / fadeTime * 0.5f));
+            billboardsColorCurrent = Color.Lerp(billboardsColorStart, billboardsColorEnd, Mathf.Clamp01(elapsedTime / fadeTime * 1.2f));
+            sunRotationXCurrent = Mathf.Lerp(sunRotationXStart, sunRotationXEnd, elapsedTime / fadeTime * 0.5f);
+            if (exposureCurrent > fadeInPoint)
+            {
+                sun.transform.eulerAngles = new Vector3(sunRotationXCurrent, transform.eulerAngles.y, transform.eulerAngles.z);
+            }
             sun.color = Color.Lerp(sunColorStart, sunColorEnd, elapsedTime / fadeTime);
+            foreach (Material mat in billboardMaterials)
+            {
+                mat.color = billboardsColorCurrent;
+            }
             RenderSettings.skybox.SetFloat("_Exposure", exposureCurrent);
             yield return new WaitForEndOfFrame();
         }
@@ -143,9 +159,18 @@ public class SunsetController : MonoBehaviour
         RenderSettings.skybox.SetFloat("_Exposure", exposureStart);
     }
 
+    private void SetBillboardColor()
+    {
+        foreach (Material mat in billboardMaterials)
+        {
+            mat.color = billboardsColorStart;
+        }
+    }
+
     private void OnApplicationQuit()
     {
         SetSkyboxExposure();
+        SetBillboardColor();
         ZeroSpectrumTransparency();
     }
 

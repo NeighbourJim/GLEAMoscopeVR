@@ -51,7 +51,7 @@ LightmapSettings:
     m_IndirectOutputScale: 1
     m_AlbedoBoost: 1
     m_EnvironmentLightingMode: 1
-    m_EnableBakedLightmaps: 1
+    m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
     serializedVersion: 10
@@ -844,7 +844,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 0.5372549, g: 0.15686275, b: 0, a: 1}
+  m_Color: {r: 0.77254903, g: 0.39215687, b: 0.25882354, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -2610,16 +2610,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557225447}
     m_Modifications:
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_Name
-      value: Brush_10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6303431062747708001, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2689,6 +2679,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.43872046
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_Name
+      value: Brush_10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6303431062747707999, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
@@ -2960,16 +2960,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557225447}
     m_Modifications:
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_Name
-      value: Brush_10 (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6303431062747708001, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3039,6 +3029,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.3288558
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_Name
+      value: Brush_10 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6303431062747707999, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
@@ -3820,7 +3820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &653611889
 Transform:
   m_ObjectHideFlags: 0
@@ -5336,11 +5336,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1426566050}
     m_Modifications:
-    - target: {fileID: 3496217293995435875, guid: f1430e8176ee8084ba0c7bc51764b0a5,
-        type: 3}
-      propertyPath: m_Name
-      value: Canvas_InfoPanel_Sky
-      objectReference: {fileID: 0}
     - target: {fileID: 3496217293995435874, guid: f1430e8176ee8084ba0c7bc51764b0a5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5445,6 +5440,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496217293995435875, guid: f1430e8176ee8084ba0c7bc51764b0a5,
+        type: 3}
+      propertyPath: m_Name
+      value: Canvas_InfoPanel_Sky
       objectReference: {fileID: 0}
     - target: {fileID: 3496217293995435884, guid: f1430e8176ee8084ba0c7bc51764b0a5,
         type: 3}
@@ -8244,16 +8244,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557225447}
     m_Modifications:
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_Name
-      value: Brush_10 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6303431062747708001, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8323,6 +8313,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.88117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_Name
+      value: Brush_10 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6303431062747707999, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
@@ -8457,7 +8457,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1863014226680984998}
+      - m_Target: {fileID: 0}
         m_MethodName: StartResetTint
         m_Mode: 1
         m_Arguments:
@@ -9307,7 +9307,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1863014226680984998}
+      - m_Target: {fileID: 0}
         m_MethodName: StartChangeTint
         m_Mode: 1
         m_Arguments:
@@ -9846,6 +9846,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 91362135, guid: 111ff4760e405a443ac26d9b6ddb3d5a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 91362135, guid: 111ff4760e405a443ac26d9b6ddb3d5a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 215062202, guid: 111ff4760e405a443ac26d9b6ddb3d5a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b424924ddc7266a429953620869df1d1, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 111ff4760e405a443ac26d9b6ddb3d5a, type: 3}
 --- !u!4 &1428453356 stripped
@@ -10631,16 +10643,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557225447}
     m_Modifications:
-    - target: {fileID: 1141656442025772551, guid: 4978096b75c1244449e1a82d7b9182e5,
-        type: 3}
-      propertyPath: m_Name
-      value: Brush_11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1141656442025772551, guid: 4978096b75c1244449e1a82d7b9182e5,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1141656442025772548, guid: 4978096b75c1244449e1a82d7b9182e5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10710,6 +10712,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.97870797
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141656442025772551, guid: 4978096b75c1244449e1a82d7b9182e5,
+        type: 3}
+      propertyPath: m_Name
+      value: Brush_11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1141656442025772551, guid: 4978096b75c1244449e1a82d7b9182e5,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1141656442025772550, guid: 4978096b75c1244449e1a82d7b9182e5,
         type: 3}
@@ -12246,16 +12258,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557225447}
     m_Modifications:
-    - target: {fileID: 1232051672007314702, guid: 4efcd5c1d48ab99438feb0bb5d937379,
-        type: 3}
-      propertyPath: m_Name
-      value: Brush_07
-      objectReference: {fileID: 0}
-    - target: {fileID: 1232051672007314702, guid: 4efcd5c1d48ab99438feb0bb5d937379,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12274,22 +12276,22 @@ PrefabInstance:
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.6860215
+      value: -0.63383985
       objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.17139
+      value: -0.31344387
       objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.17139
+      value: -0.31344387
       objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.6860215
+      value: 0.63383985
       objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
@@ -12309,7 +12311,7 @@ PrefabInstance:
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -28.054
+      value: -52.626003
       objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314699, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
@@ -12325,6 +12327,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.41936064
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232051672007314702, guid: 4efcd5c1d48ab99438feb0bb5d937379,
+        type: 3}
+      propertyPath: m_Name
+      value: Brush_07
+      objectReference: {fileID: 0}
+    - target: {fileID: 1232051672007314702, guid: 4efcd5c1d48ab99438feb0bb5d937379,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1232051672007314697, guid: 4efcd5c1d48ab99438feb0bb5d937379,
         type: 3}
@@ -12355,11 +12367,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6237064248982446291}
     m_Modifications:
-    - target: {fileID: 1347985855474461471, guid: 2079d012c85b3664c8aa29add8dd3a9b,
-        type: 3}
-      propertyPath: m_Name
-      value: BlinkSphere
-      objectReference: {fileID: 0}
     - target: {fileID: 1347985855474461459, guid: 2079d012c85b3664c8aa29add8dd3a9b,
         type: 3}
       propertyPath: changeRenderQueue.Array.size
@@ -12379,6 +12386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: blinkTime
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1347985855474461471, guid: 2079d012c85b3664c8aa29add8dd3a9b,
+        type: 3}
+      propertyPath: m_Name
+      value: BlinkSphere
       objectReference: {fileID: 0}
     - target: {fileID: 1347985855474461456, guid: 2079d012c85b3664c8aa29add8dd3a9b,
         type: 3}
@@ -13122,11 +13134,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 557225447}
     m_Modifications:
-    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
-        type: 3}
-      propertyPath: m_Name
-      value: Brush_10 (3)
-      objectReference: {fileID: 0}
     - target: {fileID: 6303431062747708001, guid: f8062cf5b26121f4493b8af627125688,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13196,6 +13203,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.3288558
+      objectReference: {fileID: 0}
+    - target: {fileID: 6303431062747707996, guid: f8062cf5b26121f4493b8af627125688,
+        type: 3}
+      propertyPath: m_Name
+      value: Brush_10 (3)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8062cf5b26121f4493b8af627125688, type: 3}
@@ -16902,7 +16914,6 @@ GameObject:
   - component: {fileID: 1863014226680984992}
   - component: {fileID: 1863014226680984996}
   - component: {fileID: 1863014226680984997}
-  - component: {fileID: 1863014226680984998}
   m_Layer: 0
   m_Name: Environment
   m_TagString: Untagged
@@ -16942,39 +16953,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fullSkyImagery: {fileID: 2463310366075196362}
   visibleSpectrum: {fileID: 977958365849626935}
+  billboardMaterials:
+  - {fileID: 2100000, guid: 950c158b3e8fab5479fe0ebe2713bfcc, type: 2}
+  - {fileID: 2100000, guid: d0fac74c2e0b30141b71327cf0529dce, type: 2}
+  - {fileID: 2100000, guid: 3defd8dc58a997e46a3f35ced587d0ca, type: 2}
+  - {fileID: 2100000, guid: 8d447382bf156ca40b1812ccbbb595ee, type: 2}
   sun: {fileID: 123949535}
   sunsetSkyboxMat: {fileID: 2100000, guid: 85668a723d1344cb297517b6d815a634, type: 2}
   fadeTime: 6
   fadeInPoint: 0.2
   exposureStart: 3
-  sunColorStart: {r: 0.274, g: 0.055, b: 0, a: 1}
-  sunColorEnd: {r: 0.009522955, g: 0.009522955, b: 0.01886791, a: 1}
+  sunColorEnd: {r: 0.07450981, g: 0.07450981, b: 0.09803922, a: 1}
+  billboardsColorStart: {r: 0.27450982, g: 0.12941177, b: 0.08627451, a: 1}
+  billboardsColorEnd: {r: 0.07450981, g: 0.07450981, b: 0.09803922, a: 1}
   sunRotationXStart: 150
   sunRotationXEnd: 180
   moonRotationXStart: 0
   moonRotationXEnd: 90
---- !u!114 &1863014226680984998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1863014226680984995}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1557a09a3f8b02741844e7fb57b366c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HasSunSet: 0
-  fadeTime: 6
-  startTint: {r: 0.0754717, g: 0.03248487, b: 0.018155927, a: 1}
-  currentTint: {r: 1, g: 1, b: 1, a: 1}
-  targetTint: {r: 0.007843138, g: 0.007843138, b: 0.007843138, a: 0}
-  materialsToChange:
-  - {fileID: 2100000, guid: 950c158b3e8fab5479fe0ebe2713bfcc, type: 2}
-  - {fileID: 2100000, guid: d0fac74c2e0b30141b71327cf0529dce, type: 2}
-  - {fileID: 2100000, guid: 3defd8dc58a997e46a3f35ced587d0ca, type: 2}
-  - {fileID: 2100000, guid: 8d447382bf156ca40b1812ccbbb595ee, type: 2}
 --- !u!23 &2262305153048582160
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18047,7 +18042,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.1
   far clip plane: 2000
   field of view: 60
   orthographic: 0
@@ -18169,7 +18164,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7593566070892799780}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.86, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 60, y: 60, z: 60}
   m_Children: []
   m_Father: {fileID: 1863014226680984992}
