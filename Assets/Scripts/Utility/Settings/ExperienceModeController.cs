@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using GLEAMoscopeVR.Interaction;
 using GLEAMoscopeVR.POIs;
 using GLEAMoscopeVR.Utility.Extensions;
@@ -20,27 +21,31 @@ namespace GLEAMoscopeVR.Settings
     public class ExperienceModeController : MonoBehaviour, IActivatable
     {
         public ExperienceModeController Instance { get; private set; }
-        private const ExperienceMode DEFAULT_MODE = ExperienceMode.Exploration;
+        private const ExperienceMode DEFAULT_MODE = ExperienceMode.Introduction;
 
-        [Header("Settings Components")]
+        public PassiveModeRotator Rotator;
+        public SunsetController SunsetController;
+
+        [Header("State")]
+        [SerializeField]
+        private ExperienceMode currentMode = ExperienceMode.Introduction;
+        
+        [SerializeField] private bool tutorialComplete = false;
+
+        [Header("Settings UI")] 
         public TextMeshProUGUI ModeText;
         public Button ModeButton;
 
-        [Header("Display Components")]
+        [Header("POI UI")]
         public InfoPanel_WarTable WarTablePanel;
         public InfoPanel_Manager SkyPanel;
 
-        public PassiveModeRotator Rotator;
-
+        [Header("IActivatable")]
         [SerializeField]
         private float activationTime = 1f;
 
-        [SerializeField]
-        private ExperienceMode currentMode = ExperienceMode.Exploration;
         public ExperienceMode CurrentMode => currentMode;
-
         bool IActivatable.IsActivated => false;
-
         float IActivatable.ActivationTime => activationTime;
 
         /// <summary>
@@ -51,7 +56,7 @@ namespace GLEAMoscopeVR.Settings
         void Awake()
         {
             LazySingleton();
-            GetComponentReferences();
+            SetAndCheckReferences();
         }
 
         private void ToggleExperienceMode()
@@ -66,6 +71,9 @@ namespace GLEAMoscopeVR.Settings
                     currentMode = ExperienceMode.Exploration;
                     FindObjectOfType<SoundEffects>().Play("Switch");
                     break;
+                case ExperienceMode.Introduction:
+                    currentMode = ExperienceMode.Introduction;
+                    break;
                 default:
                     throw new ArgumentOutOfRangeException(
                         $"[ExperienceModeController] is trying to switch to an unsupported mode.");
@@ -73,8 +81,16 @@ namespace GLEAMoscopeVR.Settings
 
             ModeText.text = currentMode.GetDescription();
             ResetInfoPanels();
+            //SaveUserSettings();
             OnExperienceModeChanged?.Invoke();
         }
+
+        public void SetIntroductionSequenceComplete()//placeholder until persist data setup
+        {
+            currentMode = ExperienceMode.Exploration;
+            OnExperienceModeChanged?.Invoke();
+        }
+
 
         #region IActivatable Implementation
         bool IActivatable.CanActivate()
@@ -108,13 +124,63 @@ namespace GLEAMoscopeVR.Settings
             }
         }
 
-        private void GetComponentReferences()
+        
+        
+        
+        private void SetAndCheckReferences()
         {
             Assert.IsNotNull(Rotator, $"[ExperienceModeController] does not have reference to the PassiveSkyRotator");
             Assert.IsNotNull(SkyPanel, $"[ExperienceModeController] does not have reference to the SkyInfoPanel");
             Assert.IsNotNull(WarTablePanel, $"[ExperienceModeController] does not have reference to the WarTablePanel");
             Assert.IsNotNull(ModeText, $"[ExperienceModeController] does not have reference to the Mode Text component.");
             Assert.IsNotNull(ModeButton, $"[ExperienceModeController] does not have reference to the Mode Button component.");
+            Assert.IsNotNull(SunsetController, $"[ExperienceModeController] does not have reference to the SunsetController");
+
+            POIManager.Instance.OnAntennaPOIActivated += HandleAntennaPOIActivated;
         }
+
+        private void HandleAntennaPOIActivated()
+        {
+            SunsetController.StartSunset();
+        }
+
+        #region Persist
+
+        //private const string filename = "/settings.json";
+        //[SerializeField]private UserSettings userSettings;
+
+        //private void ApplySavedSettings()
+        //{
+        //    LoadUserSettings();
+
+        //    currentMode = (ExperienceMode) userSettings.ExperienceMode;
+        //    tutorialComplete = userSettings.TutorialComplete;
+        //    ToggleExperienceMode();
+        //    //todo: if not tutorial -> straight into appropriate mode
+        //}
+
+        //public void SaveUserSettings()
+        //{
+        //    string jsonSettings = JsonUtility.ToJson(userSettings);
+        //    print($"SaveUserSettings - {jsonSettings}");
+        //    File.WriteAllText(Application.persistentDataPath + "/user_settings.json", jsonSettings);
+        //    Debug.Log(jsonSettings);
+        //}
+
+        //private UserSettings LoadUserSettings()
+        //{
+        //    if (File.Exists(Application.persistentDataPath + filename))
+        //    {
+        //        userSettings = JsonUtility.FromJson<UserSettings>(Application.persistentDataPath + filename);
+        //    }
+        //    else
+        //    {
+        //        userSettings = new UserSettings();
+        //    }
+        //    print($"LoadUserSettings - {userSettings}");
+        //    return userSettings;
+        //}
+
+        #endregion
     }
 }

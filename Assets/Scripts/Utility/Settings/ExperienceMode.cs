@@ -4,13 +4,18 @@ namespace GLEAMoscopeVR.Settings
 {
     /// <summary>
     /// Defines the interaction modes available to the user.
-    /// When set, functionality specific to the interaction mode will be enabled
-    /// and functionality specific to other modes will be disabled.
-    /// Currently, mixed interaction is excluded.
+    /// When set, functionality specific to the interaction mode will be enabled and functionality specific to other modes will be disabled.
     /// </summary>
     [System.Serializable]
     public enum ExperienceMode
     {
+        /// <summary>
+        /// Forces the introduction sequence.
+        /// The user can only interact with the Antenna POI.
+        /// </summary>
+        [Description("Introduction")]
+        Introduction,
+
         /// <summary>
         /// The user can interact with the POI nodes in the SKY ONLY.
         /// POI nodes will be displayed on the map, but will not activate.
@@ -24,9 +29,5 @@ namespace GLEAMoscopeVR.Settings
         /// </summary>
         [Description("Passive Mode")]
         Passive,
-
-        // Todo: to be decided.
-        //[Description("Mixed Mode")]
-        //Mixed 
     }
 }
