@@ -1,4 +1,5 @@
-﻿using GLEAMoscopeVR.Spectrum;
+﻿using GLEAMoscopeVR.Interaction;
+using GLEAMoscopeVR.Spectrum;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -13,38 +14,33 @@ namespace GLEAMoscopeVR.POIs
     /// /// When a POI is activated, the sprite will always start at either Visible or Radio.
     /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
-    public class InfoPanelBase : MonoBehaviour
+    public class InfoPanel : MonoBehaviour
     {
         private const string antennaPOIName = "Antenna";
 
         [Header("UI Components")]
         [SerializeField]
         [Tooltip("Title text object.")]
-        protected TextMeshProUGUI TitleText;
+        protected TextMeshProUGUI titleText;
         [SerializeField]
         [Tooltip("Distance text object.")]
-        protected TextMeshProUGUI DistanceText;
+        protected TextMeshProUGUI distanceText;
         [SerializeField]
         [Tooltip("Description text object.")]
-        protected TextMeshProUGUI DescriptionText;
+        protected TextMeshProUGUI descriptionText;
         [SerializeField]
         [Tooltip("Point of Interest Image object.")]
-        protected Image PointImage;
-        [Tooltip("Current Point of Interest")]
-        [SerializeField]
+        protected Image poiImage;
         protected POIObject currentPOI;
-        [SerializeField]
-        protected  POIData currentPOIData;
+        //public POIData currentPOIData => currentPOI.Data;
         [Tooltip("Current POI Sprite Index")]
         protected Wavelengths currentSpriteWavelength;
         protected bool canCycleSprites = false;
-        
+        public bool CanCycleSprites => canCycleSprites;
+
         #region References
-        /// <summary>
-        /// Used to toggle display panel.
-        /// </summary>
+        /// <summary> Used to toggle panel visibility. </summary>
         protected CanvasGroup _canvasGroup;
-        //protected GameObject[] _buttons = {};
         #endregion
 
         #region Unity Methods
@@ -64,21 +60,19 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="point">The Point of Interest object whose parameters will be displayed on the panel.</param>
         public virtual void UpdateDisplay(POIObject poi)
         {
+            print(poi.Name);
             currentPOI = poi;
-            canCycleSprites = poi.Data.Name != antennaPOIName;
-            currentSpriteWavelength = Wavelengths.Radio;
             
-            TitleText.text = currentPOI.Name;
-            DistanceText.text = $"Distance: {currentPOI.Distance}";
-            DescriptionText.text = currentPOI.Description;
-
-            //SetButtonState(poi);
+            canCycleSprites = poi.Data.Name != antennaPOIName;
+            
+            
+            titleText.text = currentPOI.Name;
+            distanceText.text = $"Distance: {currentPOI.Distance}";
+            descriptionText.text = currentPOI.Description;
 
             UpdateSprite(currentSpriteWavelength);
             SetCanvasGroupState(true);
         }
-
-        
 
         public void CycleSpriteRight()
         {
@@ -103,7 +97,7 @@ namespace GLEAMoscopeVR.POIs
             {
                 if (currentSpriteWavelength != Wavelengths.Gamma)
                 {
-                    currentSpriteWavelength++;
+                    currentSpriteWavelength--;
                 }
                 else
                 {
@@ -119,14 +113,7 @@ namespace GLEAMoscopeVR.POIs
         {
             if (currentPOI != null)
             {
-                if (currentPOI.Name == antennaPOIName)
-                {
-                    PointImage.sprite = currentPOI.Sprites[0];
-                }
-                else
-                {
-                    PointImage.sprite = currentPOI.Sprites[(int) wavelength];
-                }
+                poiImage.sprite = currentPOI.Name == antennaPOIName ? currentPOI.Sprites[0] : currentPOI.Sprites[(int) wavelength];
             }
             else
             {
@@ -147,32 +134,10 @@ namespace GLEAMoscopeVR.POIs
             _canvasGroup.blocksRaycasts = blocksRaycast;
         }
 
-        //protected virtual void SetButtonState(POIObject poi)
-        //{
-        //    foreach (var button in _buttons)
-        //    {
-        //        button.SetActive(poi.Name == antennaPOIName);
-        //    }
-        //}
-
-        //protected void GetButtonGameObjects()
-        //{
-        //    var buttons = GetComponentsInChildren<Button>();
-        //    Assert.IsNotNull(buttons, $"{gameObject.name} has no button components in child game objects.");
-        //    buttons
-        //        .ToList()
-        //        .ForEach(b =>
-        //        {
-        //            _buttons.Append(b.gameObject);
-        //        });
-        //}
-
         protected virtual void SetAndCheckReferences()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             Assert.IsNotNull(_canvasGroup, $"{gameObject.name} does not have a canvas group attached.");
-
-            //GetButtonGameObjects();
         }
     }
 }

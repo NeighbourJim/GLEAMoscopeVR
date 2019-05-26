@@ -37,17 +37,17 @@ namespace GLEAMoscopeVR.POIs
         public GameObject AntennaNodeParent;
 
         /// <summary>
-        /// InfoPanel_Manager script reference used to update the data displayed for Point of Interest nodes in the sky.
+        /// InfoPanel_Tooltip script reference used to update the data displayed for Point of Interest nodes in the sky.
         /// </summary>
         [Header("UI")]
-        [Tooltip("GameObject with the InfoPanel_Manager script attached.")]
-        public InfoPanel_Manager InfoPanelSky;
+        [Tooltip("GameObject with the InfoPanel_Tooltip script attached.")]
+        public InfoPanel_Tooltip InfoPanelSky;
 
         /// <summary>
         /// InfoPanel_WarTable script reference used to update the data displayed for Point of Interest above the War Table.
         /// </summary>
-        [Tooltip("GameObject with the InfoPanel_Manager script attached.")]
-        public InfoPanel_WarTable InfoPanelWarTable;
+        [Tooltip("GameObject with the InfoPanel_Tooltip script attached.")]
+        public InfoPanel InfoPanelWarTable;
 
         /// <summary>
         /// List of POIMapNodes retrieved from the MapNodesParent GameObject
@@ -280,15 +280,6 @@ namespace GLEAMoscopeVR.POIs
         {
             if (activatedNode == null || activatedNode == currentltyActiveNode) return;
 
-            var poi = new POIObject(activatedNode.Data);
-            
-            if (activatedNode == antennaNode)
-            {
-                OnAntennaPOIActivated?.Invoke();
-                
-                _modeController.SetIntroductionSequenceComplete();
-            }
-
             if (currentltyActiveNode == null)
             {
                 currentltyActiveNode = activatedNode;
@@ -300,7 +291,14 @@ namespace GLEAMoscopeVR.POIs
             }
 
             UpdateInfoPanels(activatedNode);
+            print(activatedNode.Data.name);
             TriggerVoiceOverClip(activatedNode);
+
+            if (activatedNode == antennaNode)
+            {
+                OnAntennaPOIActivated?.Invoke();
+                _modeController.SetIntroductionSequenceComplete();
+            }
         }
 
         private void TriggerVoiceOverClip(POINode activatedNode)
@@ -343,7 +341,7 @@ namespace GLEAMoscopeVR.POIs
             _wavelengthStateController = WavelengthStateController.Instance;
             Assert.IsNotNull(_wavelengthStateController, $"[POIManager] cannot find SphereFadeControl in scene.");
             Assert.IsNotNull(_modeController, $"[POIManager] can not find reference to ExperienceModeController.");
-            Assert.IsNotNull(InfoPanelSky, $"[POIManager] InfoPanel_Manager has not been assigned.");
+            Assert.IsNotNull(InfoPanelSky, $"[POIManager] InfoPanel_Tooltip has not been assigned.");
             Assert.IsNotNull(InfoPanelWarTable, $"[POIManager] InfoPanel_WarTable has not been assigned assigned.");
             Assert.IsNotNull(MapNodesParent, $"[POIManager] MapNodesParent has not been assigned.");
             Assert.IsNotNull(SkyNodesParent, $"[POIManager] SkyNodesParent has not been assigned.");

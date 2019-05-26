@@ -18,10 +18,8 @@ MonoBehaviour:
     frequency antennas might look like. SKA-low will be made up of over 100,000 of
     these, broken up into stations of 256 antennas each. When the signal from each
     of these antennas is joined together using powerful supercomputers, it will allow
-    us to search the Universe with radio-eyes at a resolution never before possible.
-    \r\n\r\nYou can change the wavelength your eyes can see, allowing you to see the
-    Universe like never before. "
-  Distance: 2 metres
+    us to search the Universe with radio-eyes at a resolution never before possible."
+  Distance: 4 metres
   Sprites:
   - {fileID: 21300000, guid: ccc4f0fa02913c545a08c5aaf9b0b23c, type: 3}
   SkyTransform: {fileID: 0}

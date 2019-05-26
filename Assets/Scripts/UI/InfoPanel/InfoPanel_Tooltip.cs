@@ -1,13 +1,15 @@
-﻿using UnityEngine;
+﻿using GLEAMoscopeVR.Spectrum;
+using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
-    /// 13/04/19 MM - Updated to inherit from base <see cref="InfoPanelBase"/> which defines how the war table info panel behaves.
-    /// This script behaves the same but has additional methods.
     /// Script that manages the data displayed on the InfoPanel as well as its location in worldspace.
+    /// Inherits from <see cref="InfoPanel"/> which defines how the war table info panel behaves.
+    /// This script behaves the same but has additional methods. 
     /// </summary>
-    public class InfoPanel_Manager : InfoPanelBase// MM 13/04/19 - Updated to inherit from base
+    public class InfoPanel_Tooltip : InfoPanel
     {
         /// <summary>
         /// Sets the location of the tooltip in worldspace, offset from a transform.
@@ -33,6 +35,12 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="zOffset">The offset value on the Z-axis.</param>
         public void CreateToolTip(POIObject point, Transform targetTransform, float xOffset, float yOffset, float zOffset)
         {
+            #region Assertion
+            currentSpriteWavelength = WavelengthStateController.Instance.CurrentWavelength;
+            Assert.IsTrue(currentSpriteWavelength == Wavelengths.Visible || currentSpriteWavelength == Wavelengths.Radio, 
+                $"{gameObject.name} attempting to display sky POI data when wavelength is not Visible or Radio.");
+            #endregion
+            
             UpdateDisplay(point);
             SetLocation(targetTransform, xOffset, yOffset, zOffset);
             SetCanvasGroupState(true);

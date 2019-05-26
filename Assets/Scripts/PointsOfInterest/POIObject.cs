@@ -52,17 +52,17 @@ namespace GLEAMoscopeVR.POIs
         public Transform SkyTransform => Data.SkyTransform;
 
         /// <summary>
-        /// The X-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// The X-axis offset used to position the <see cref="InfoPanel"/> for a Point of Interest activated in the sky.
         /// </summary>
         public float XOffset => Data.XOffset;
 
         /// <summary>
-        /// The Y-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// The Y-axis offset used to position the <see cref="InfoPanel"/> for a Point of Interest activated in the sky.
         /// </summary>
         public float YOffset => Data.YOffset;
 
         /// <summary>
-        /// The Z-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// The Z-axis offset used to position the <see cref="InfoPanel"/> for a Point of Interest activated in the sky.
         /// </summary>
         public float ZOffset => Data.ZOffset;
 

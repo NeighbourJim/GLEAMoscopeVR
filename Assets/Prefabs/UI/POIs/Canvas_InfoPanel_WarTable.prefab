@@ -879,7 +879,7 @@ GameObject:
   - component: {fileID: 3496217293995435876}
   - component: {fileID: 3496217293995435877}
   - component: {fileID: 3496217293995435884}
-  - component: {fileID: 710990615261767101}
+  - component: {fileID: 8376774109577437919}
   m_Layer: 0
   m_Name: Canvas_InfoPanel_WarTable
   m_TagString: Untagged
@@ -894,9 +894,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3496217293995435875}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
+  m_LocalScale: {x: 0.005, y: 0.005, z: 0.01}
   m_Children:
   - {fileID: 3496217292783884076}
   - {fileID: 3496217292465393744}
@@ -932,7 +932,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &3496217293995435876
 MonoBehaviour:
@@ -981,11 +981,11 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3496217293995435875}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
---- !u!114 &710990615261767101
+--- !u!114 &8376774109577437919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -994,13 +994,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3496217293995435875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9bc2544a79c0d84ca7c07ddb83f5650, type: 3}
+  m_Script: {fileID: 11500000, guid: 41d64545d4f4e404fbadc5ffcb7a7150, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleText: {fileID: 3496217292465393747}
-  DistanceText: {fileID: 3496217293476920139}
-  DescriptionText: {fileID: 3496217293433578558}
-  PointImage: {fileID: 3496217292896359948}
+  titleText: {fileID: 3496217292465393747}
+  distanceText: {fileID: 3496217293476920139}
+  descriptionText: {fileID: 3496217293433578558}
+  poiImage: {fileID: 3496217292896359948}
 --- !u!1 &3496217294265695680
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,7 +1088,7 @@ GameObject:
   - component: {fileID: 591902917906192963}
   - component: {fileID: 372486491427043721}
   - component: {fileID: 3697295765799970816}
-  - component: {fileID: 3591360123465521923}
+  - component: {fileID: 629625337733950540}
   m_Layer: 5
   m_Name: Longer Button
   m_TagString: Untagged
@@ -1193,15 +1193,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 710990615261767101}
-        m_MethodName: CycleSpriteRight
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: switch
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1219,7 +1219,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 18, y: 100, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3591360123465521923
+--- !u!114 &629625337733950540
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1228,10 +1228,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4140652425541279195}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed8434c535dcfc47aa8cf418dab4150, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f637a8bfb09ed4f8a820b663aeb52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationTime: 1
+  direction: 1
+  activationTime: 0.5
+  isActivated: 0
 --- !u!1 &5100427829542461065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,7 +1247,7 @@ GameObject:
   - component: {fileID: 5325278442845880853}
   - component: {fileID: 3106631846249167450}
   - component: {fileID: 3101742806905989816}
-  - component: {fileID: 7122622159898201910}
+  - component: {fileID: 4968846138110561698}
   m_Layer: 5
   m_Name: Shorter Button
   m_TagString: Untagged
@@ -1350,15 +1352,15 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 710990615261767101}
-        m_MethodName: CycleSpriteLeft
-        m_Mode: 1
+      - m_Target: {fileID: 0}
+        m_MethodName: Play
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: switch
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1376,7 +1378,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 18, y: 100, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7122622159898201910
+--- !u!114 &4968846138110561698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1385,10 +1387,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5100427829542461065}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aed8434c535dcfc47aa8cf418dab4150, type: 3}
+  m_Script: {fileID: 11500000, guid: 70f637a8bfb09ed4f8a820b663aeb52e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  activationTime: 1
+  direction: 0
+  activationTime: 0.5
+  isActivated: 0
 --- !u!1 &7771605127326416099
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,8 +37,8 @@ namespace GLEAMoscopeVR.Settings
         public Button ModeButton;
 
         [Header("POI UI")]
-        public InfoPanel_WarTable WarTablePanel;
-        public InfoPanel_Manager SkyPanel;
+        public InfoPanel WarTablePanel;
+        public InfoPanel_Tooltip SkyPanel;
 
         [Header("IActivatable")]
         [SerializeField]

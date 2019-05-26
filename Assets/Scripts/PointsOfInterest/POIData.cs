@@ -48,20 +48,20 @@ namespace GLEAMoscopeVR.POIs
         public Transform SkyTransform;
 
         /// <summary>
-        /// The X-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// The X-axis offset used to position the <see cref="InfoPanel"/> for a Point of Interest activated in the sky.
         /// </summary>
         [Header("Info-Panel (Sky) Offset Values")]
-        [Tooltip("The X-axis offset used to position the InfoPanelBase for a Point of Interest activated in the sky.")]
+        [Tooltip("The X-axis offset used to position the InfoPanel for a Point of Interest activated in the sky.")]
         public float XOffset = 0;
         /// <summary>
-        /// The Y-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// The Y-axis offset used to position the <see cref="InfoPanel"/> for a Point of Interest activated in the sky.
         /// </summary>
-        [Tooltip("The Y-axis offset used to position the InfoPanelBase for a Point of Interest activated in the sky.")]
+        [Tooltip("The Y-axis offset used to position the InfoPanel for a Point of Interest activated in the sky.")]
         public float YOffset = 0;
         /// <summary>
-        /// The Z-axis offset used to position the <see cref="InfoPanelBase"/> for a Point of Interest activated in the sky.
+        /// The Z-axis offset used to position the <see cref="InfoPanel"/> for a Point of Interest activated in the sky.
         /// </summary>
-        [Tooltip("The Z-axis offset used to position the InfoPanelBase for a Point of Interest activated in the sky.")]
+        [Tooltip("The Z-axis offset used to position the InfoPanel for a Point of Interest activated in the sky.")]
         public float ZOffset = 0;
 
 
