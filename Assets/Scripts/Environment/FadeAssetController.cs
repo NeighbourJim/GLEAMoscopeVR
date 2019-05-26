@@ -8,20 +8,21 @@ public class FadeAssetController : MonoBehaviour
     //TEMP SCRIPT THIS NEEDS TO BE RE IMPLEMENTED PROPERLY
 
     [SerializeField]
-    bool explortationMode = true;
+    bool explorationMode = true;
 
     [Header("GameObjects [Meshes]")]
     [SerializeField]
     GameObject[] meshObjects = null;
 
-    [Header("User Platform"), SerializeField]
-    private Renderer platformRenderer = null;
-    
+    [Header("User Platform")]
+    [SerializeField] private Renderer platformRenderer = null;
+    [SerializeField] private Renderer logoRenderer = null;
+
     ExperienceModeController _modeController;
 
     void Start()
     {
-        GetComponentReferences();
+        SetAndCheckReferences();
     }
 
     // Added so that the environment doesn't fade back in when the mode doesn't change
@@ -33,9 +34,9 @@ public class FadeAssetController : MonoBehaviour
 
     public void StartFade()
     {
-        explortationMode = !explortationMode;
+        explorationMode = !explorationMode;
         
-        if(explortationMode)
+        if(explorationMode)
         {
             if (meshObjects != null)
             {
@@ -79,7 +80,7 @@ public class FadeAssetController : MonoBehaviour
         }
     }
 
-    private void GetComponentReferences()
+    private void SetAndCheckReferences()
     {
         _modeController = FindObjectOfType<ExperienceModeController>().Instance;
         Assert.IsNotNull(_modeController, $"[FadeAssetController] does not have a reference to the experience mode controller.");
