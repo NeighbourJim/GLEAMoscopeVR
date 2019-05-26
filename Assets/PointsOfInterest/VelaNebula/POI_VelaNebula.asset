@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_VelaNebula
   m_EditorClassIdentifier: 
-  ID: 3044
+  ID: 10418
   Name: Vela Nebula
   ShortDescription: "11,000 thousand years ago a star exploded in a supernova leaving
     behind this nebula. At only 800 light-years away it is one of the closest known
@@ -25,7 +25,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 22d02569e507781488ac4201b4931d30, type: 3}
   - {fileID: 21300000, guid: 821468bf8902e1d40a3cd6dbb12f8adb, type: 3}
   - {fileID: 21300000, guid: c77c78eb0eb1b3048b1da0a6d72a4dc1, type: 3}
-  SkyTransform: {fileID: 1097816716889374446, guid: 08725b961c4277e40b3ed7e9f00cd54f,
+  SkyTransform: {fileID: 1097816716889374446, guid: 7ca0f40cd57a85747aec8cd99062e356,
     type: 3}
+  XOffset: 0
+  YOffset: 0
+  ZOffset: 0
   VoiceoverMale: {fileID: 8300000, guid: 0e3c606ff353f39438ab72f854700797, type: 3}
   VoiceoverFemale: {fileID: 8300000, guid: 24dec2f672130a1448a6c055a7195444, type: 3}
