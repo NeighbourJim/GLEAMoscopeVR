@@ -1,4 +1,6 @@
-﻿using GLEAMoscopeVR.Utility.Management;
+﻿using System;
+using System.Collections;
+using GLEAMoscopeVR.Utility.Management;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -18,6 +20,13 @@ namespace GLEAMoscopeVR.Audio
             FadingOut,
             FadingIn
         }
+
+        public AudioClip GreetingClip;
+        public AudioClip ChangeWavelength;
+        public AudioClip RadioIntroduction;
+
+        [SerializeField]
+        private float greetingClipDelay = 2f;
 
         /// <summary> Volume to end the previous clip at. </summary>
         [Tooltip("Volume to end the previous clip at.")]
@@ -45,15 +54,24 @@ namespace GLEAMoscopeVR.Audio
         /// <summary> Current volume of the audio source. </summary>
         public float Volume => _audioSource.volume;
 
+        public event Action OnGreetingComplete;         
+
         #region References
         private AudioSource _audioSource;
+        StartScreenManager _startManager;
         #endregion
 
         #region Unity Methods
         protected override void Awake()
         {
             base.Awake();
-            CheckAndSetReferences();
+            SetAndCheckReferences();
+        }
+
+        void Start()
+        {
+            targetVolume = _audioSource.volume;
+            _startManager.startFinished.AddListener(TriggerIntroAudio);
         }
 
         private void Update()
@@ -128,12 +146,29 @@ namespace GLEAMoscopeVR.Audio
             }
         }
 
+        private void TriggerIntroAudio()//todo: refactor out
+        {
+            RequestClipPlay(GreetingClip, greetingClipDelay);
+            _startManager.startFinished.RemoveListener(TriggerIntroAudio);
+            StartCoroutine(WaitUntilGreetingComplete());
+        }
+
+        private IEnumerator WaitUntilGreetingComplete()//todo: abstract to wait for any, currently playing clip
+        {
+            yield return new WaitUntil(() => !_audioSource.isPlaying);
+            OnGreetingComplete?.Invoke();
+            yield break;
+        }
+
         #region Debugging
-        private void CheckAndSetReferences()
+        private void SetAndCheckReferences()
         {
             _audioSource = GetComponent<AudioSource>();
+            _startManager = FindObjectOfType<StartScreenManager>();
+            Assert.IsNotNull(_startManager, $"[[VoiceOverController] cannot find StartScreenManager in scene.");
             Assert.IsNotNull(_audioSource, $"[VoiceOverController] has no AudioSource component.");
-            targetVolume = _audioSource.volume;
+            Assert.IsNotNull(GreetingClip, $"[VoiceOverController] GreetingClip has not been assigned.");
+            
         }
         #endregion
     }
