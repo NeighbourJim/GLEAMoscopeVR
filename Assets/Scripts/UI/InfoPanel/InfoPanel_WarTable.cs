@@ -1,5 +1,8 @@
-﻿using GLEAMoscopeVR.POIs;
+﻿using System.Linq;
+using GLEAMoscopeVR.POIs;
+using GLEAMoscopeVR.Spectrum;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace GLEAMoscopeVR.POIs
 {

@@ -1,5 +1,4 @@
-﻿using GLEAMoscopeVR.Settings;
-using GLEAMoscopeVR.Spectrum;
+﻿using GLEAMoscopeVR.Spectrum;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -16,6 +15,8 @@ namespace GLEAMoscopeVR.POIs
     [RequireComponent(typeof(CanvasGroup))]
     public class InfoPanelBase : MonoBehaviour
     {
+        private const string antennaPOIName = "Antenna";
+
         [Header("UI Components")]
         [SerializeField]
         [Tooltip("Title text object.")]
@@ -30,24 +31,30 @@ namespace GLEAMoscopeVR.POIs
         [Tooltip("Point of Interest Image object.")]
         protected Image PointImage;
         [Tooltip("Current Point of Interest")]
-        POIObject currentPOI = null;
+        [SerializeField]
+        protected POIObject currentPOI;
+        [SerializeField]
+        protected  POIData currentPOIData;
         [Tooltip("Current POI Sprite Index")]
-        Wavelengths currentSpriteWavelength;
-
+        protected Wavelengths currentSpriteWavelength;
+        protected bool canCycleSprites = false;
+        
         #region References
         /// <summary>
         /// Used to toggle display panel.
         /// </summary>
         protected CanvasGroup _canvasGroup;
-        protected ExperienceModeController _modeController;
+        //protected GameObject[] _buttons = {};
         #endregion
 
         #region Unity Methods
         protected virtual void Awake()
         {
-            GetComponentReferences();
+            SetAndCheckReferences();
             SetCanvasGroupState(false);
         }
+
+        
         #endregion
 
         /// <summary>
@@ -58,47 +65,68 @@ namespace GLEAMoscopeVR.POIs
         public virtual void UpdateDisplay(POIObject poi)
         {
             currentPOI = poi;
+            canCycleSprites = poi.Data.Name != antennaPOIName;
             currentSpriteWavelength = Wavelengths.Radio;
-
+            
             TitleText.text = currentPOI.Name;
             DistanceText.text = $"Distance: {currentPOI.Distance}";
             DescriptionText.text = currentPOI.Description;
-            UpdateSprite(currentSpriteWavelength);
 
+            //SetButtonState(poi);
+
+            UpdateSprite(currentSpriteWavelength);
             SetCanvasGroupState(true);
         }
 
+        
+
         public void CycleSpriteRight()
         {
-            if(currentSpriteWavelength != Wavelengths.Radio)
+            if(canCycleSprites)//todo: replace use of Script_RayReceiverButton to stop sprite change when shouldn't be possible
             {
-                currentSpriteWavelength++;
+                if (currentSpriteWavelength != Wavelengths.Radio)
+                {
+                    currentSpriteWavelength++;
+                }
+                else
+                {
+                    currentSpriteWavelength = Wavelengths.Gamma;
+                }
+
+                UpdateSprite(currentSpriteWavelength);
             }
-            else
-            {
-                currentSpriteWavelength = Wavelengths.Gamma;
-            }
-            UpdateSprite(currentSpriteWavelength);
         }
 
         public void CycleSpriteLeft()
         {
-            if (currentSpriteWavelength != Wavelengths.Gamma)
+            if(canCycleSprites)
             {
-                currentSpriteWavelength++;
-            }
-            else
-            {
-                currentSpriteWavelength = Wavelengths.Radio;
-            }
-            UpdateSprite(currentSpriteWavelength);
-        }
+                if (currentSpriteWavelength != Wavelengths.Gamma)
+                {
+                    currentSpriteWavelength++;
+                }
+                else
+                {
+                    currentSpriteWavelength = Wavelengths.Radio;
+                }
 
-        private void UpdateSprite(Wavelengths wavelength)
+                UpdateSprite(currentSpriteWavelength);
+            }
+        }
+        
+
+        protected void UpdateSprite(Wavelengths wavelength)
         {
             if (currentPOI != null)
             {
-                PointImage.sprite = currentPOI.Sprites[(int)wavelength];
+                if (currentPOI.Name == antennaPOIName)
+                {
+                    PointImage.sprite = currentPOI.Sprites[0];
+                }
+                else
+                {
+                    PointImage.sprite = currentPOI.Sprites[(int) wavelength];
+                }
             }
             else
             {
@@ -119,10 +147,32 @@ namespace GLEAMoscopeVR.POIs
             _canvasGroup.blocksRaycasts = blocksRaycast;
         }
 
-        protected virtual void GetComponentReferences()
+        //protected virtual void SetButtonState(POIObject poi)
+        //{
+        //    foreach (var button in _buttons)
+        //    {
+        //        button.SetActive(poi.Name == antennaPOIName);
+        //    }
+        //}
+
+        //protected void GetButtonGameObjects()
+        //{
+        //    var buttons = GetComponentsInChildren<Button>();
+        //    Assert.IsNotNull(buttons, $"{gameObject.name} has no button components in child game objects.");
+        //    buttons
+        //        .ToList()
+        //        .ForEach(b =>
+        //        {
+        //            _buttons.Append(b.gameObject);
+        //        });
+        //}
+
+        protected virtual void SetAndCheckReferences()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
             Assert.IsNotNull(_canvasGroup, $"{gameObject.name} does not have a canvas group attached.");
+
+            //GetButtonGameObjects();
         }
     }
 }
