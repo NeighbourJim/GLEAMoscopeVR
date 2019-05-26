@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using GLEAMoscopeVR.Audio;
 using GLEAMoscopeVR.Settings;
+using GLEAMoscopeVR.Spectrum;
 using GLEAMoscopeVR.Utility.Management;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -10,6 +13,7 @@ namespace GLEAMoscopeVR.POIs
     /// <summary>
     /// Oversees Point of Interest behaviour based on <see cref="ExperienceMode"/>,
     /// updates the user interface, deactivates the previously active node when a new one is activated.
+    /// Todo: make antenna available only in tutorial
     /// </summary>
     public class POIManager : GenericSingleton<POIManager>
     {
@@ -19,6 +23,7 @@ namespace GLEAMoscopeVR.POIs
         [Header("Node Parent Objects")]
         [Tooltip("Parent GameObject for all POIMapNode's.")]
         public GameObject MapNodesParent;
+
         /// <summary>
         /// Parent GameObject for all <see cref="POISkyNode"/>'s.
         /// </summary>
@@ -26,12 +31,18 @@ namespace GLEAMoscopeVR.POIs
         public GameObject SkyNodesParent;
 
         /// <summary>
+        /// Parent GameObject for the SKA-LFAA antenna node.
+        /// </summary>
+        [Tooltip("Parent GameObject for all POISkyNode's.")]
+        public GameObject AntennaNodeParent;
+
+        /// <summary>
         /// InfoPanel_Manager script reference used to update the data displayed for Point of Interest nodes in the sky.
         /// </summary>
         [Header("UI")]
         [Tooltip("GameObject with the InfoPanel_Manager script attached.")]
         public InfoPanel_Manager InfoPanelSky;
-        
+
         /// <summary>
         /// InfoPanel_WarTable script reference used to update the data displayed for Point of Interest above the War Table.
         /// </summary>
@@ -41,7 +52,7 @@ namespace GLEAMoscopeVR.POIs
         /// <summary>
         /// List of POIMapNodes retrieved from the MapNodesParent GameObject
         /// </summary>
-        [Header("Nodes (Debugging)")]
+        [Header("Nodes (Serialised for debugging)")]
         [SerializeField, Tooltip("Stores the POIMapNodes within the MapNodesParent GameObject.")]
         private List<POIMapNode> mapNodes;
 
@@ -50,6 +61,9 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         [SerializeField, Tooltip("Stores the POISkyNodes within the SkyNodesParent GameObject.")]
         private List<POISkyNode> skyNodes;
+
+        [SerializeField]
+        private POIAntennaNode antennaNode;
 
         /// <summary>
         /// The currently active (or most recently activated) POINode. For debugging purposes only.
@@ -60,64 +74,130 @@ namespace GLEAMoscopeVR.POIs
         /// <summary>
         /// Reference to the current <see cref="ExperienceMode"/> set in the <see cref="ExperienceModeController"/>
         /// </summary>
-        private ExperienceMode currentMode = ExperienceMode.Exploration;
+        private ExperienceMode currentMode;
+
+        public event Action OnAntennaPOIActivated;
 
         #region References
         ExperienceModeController _modeController;
+        WavelengthStateController _wavelengthStateController;
         #endregion
 
         #region Unity Methods
         void Start()
         {
-            GetComponentReferences();
+            SetAndCheckReferences();
+            
+            _wavelengthStateController.OnWavelengthChanged += HandleWavelengthChanged;
             _modeController.OnExperienceModeChanged += HandleExperienceModeChanged;
 
             RetrievePOINodesInScene();
             ResetNodeEventSubscriptions();
+            SetMapNodeStates();
+            SetSkyNodeStates();
+            //SetAntennaNodeState();
         }
+
+        private void SetAntennaNodeState()
+        {
+            var mode = _modeController.CurrentMode;
+            var enable = mode == ExperienceMode.Introduction;
+            antennaNode.gameObject.GetComponentInChildren<MeshRenderer>().enabled = enable;
+            antennaNode.ActivateAnimation();
+            antennaNode.SetActivatable();
+        }
+
+        /// <summary> Updates sky nodes state when the wavelength changes. </summary>
+        private void HandleWavelengthChanged()
+        {
+            SetSkyNodeStates();
+        }
+
         #endregion
 
         #region Experience Mode
         /// <summary>
-        /// Resets subscriptions to node events based on the new <see cref="ExperienceMode"/>,
-        /// hides info panels and resets the <see cref="currentltyActiveNode"/>.
+        /// Resets subscriptions to node events based on the new <see cref="ExperienceMode"/>, hides info panels,
+        /// resets the <see cref="currentltyActiveNode"/> and updates sky node state.
         /// </summary>
         private void HandleExperienceModeChanged()
         {
-            if (_modeController.CurrentMode == currentMode) return;
+            if (_modeController.CurrentMode == currentMode)
+            {
+                print($"[POIManager] Mode changed {_modeController.CurrentMode}");
+                return;
+            }
 
             ResetNodeEventSubscriptions();
             ResetCurrentlyActiveNode();
+            SetSkyNodeStates();
+            SetMapNodeStates();
+            SetAntennaNodeState();
         }
+
+        private void SetMapNodeStates()
+        {
+            //var wavelength = WavelengthStateController.Instance.CurrentWavelength;
+            var mode = _modeController.CurrentMode;
+            var enable = mode == ExperienceMode.Exploration || mode == ExperienceMode.Passive;
+
+            mapNodes
+                .ForEach(n =>
+                {
+                    n.gameObject.SetActive(enable);
+                    n.gameObject.GetComponentInChildren<MeshRenderer>().enabled = enable;
+                });
+        }
+
         #endregion
 
         #region Node Lists
-        /// <summary>
-        /// Adds the <see cref="POINode"/>'s in the <see cref="SkyNodesParent"/> and <see cref="MapNodesParent"/> GameObjects to the appropriate lists.
-        /// </summary>
+        /// <summary> Adds the <see cref="POINode"/>'s in the <see cref="SkyNodesParent"/> and <see cref="MapNodesParent"/> GameObjects to the appropriate lists. </summary>
         private void RetrievePOINodesInScene()
         {
             AddMapNodesToList();
             AddSkyNodesToList();
+            antennaNode = AntennaNodeParent.GetComponentInChildren<POIAntennaNode>();
         }
+
         /// <summary> Retrieves <see cref="POISkyNode"/>'s from the <see cref="SkyNodesParent"/> and adds them to the <see cref="skyNodes"/> list. </summary>
         private void AddSkyNodesToList()
         {
             skyNodes = new List<POISkyNode>();
-            foreach (var skyNode in SkyNodesParent.GetComponentsInChildren<POISkyNode>())
-            {
-                skyNodes.Add(skyNode);
-            }
+
+            SkyNodesParent.GetComponentsInChildren<POISkyNode>()
+                .ToList()
+                .ForEach(n => skyNodes.Add(n));
         }
+
         /// <summary> Retrieves <see cref="POIMapNode"/>'s from the <see cref="MapNodesParent"/> and adds them to the <see cref="mapNodes"/> list. </summary>
         private void AddMapNodesToList()
         {
             mapNodes = new List<POIMapNode>();
-            foreach (var mapNode in MapNodesParent.GetComponentsInChildren<POIMapNode>())
-            {
-                mapNodes.Add(mapNode);
-            }
+
+            MapNodesParent.GetComponentsInChildren<POIMapNode>()
+                .ToList()
+                .ForEach(n => mapNodes.Add(n));
         }
+
+        /// <summary>
+        /// Iterates over <see cref="skyNodes"/> and enables / disables the mesh renderer and game object based on the current <see cref="Wavelengths"/> and <see cref="ExperienceMode"/>.
+        /// Sky nodes should only be set active when in <see cref="ExperienceMode.Exploration"/> and wavelength is <see cref="Wavelengths.Visible"/> or <see cref="Wavelengths.Radio"/>.
+        /// </summary>
+        private void SetSkyNodeStates()
+        {
+            var wavelength = WavelengthStateController.Instance.CurrentWavelength;
+            var mode = _modeController.CurrentMode;
+            var enable = (wavelength == Wavelengths.Radio || wavelength == Wavelengths.Visible) && mode == ExperienceMode.Exploration;
+
+            skyNodes
+                .ForEach(n =>
+                {
+                    n.gameObject.SetActive(enable);
+                    n.gameObject.GetComponentInChildren<MeshRenderer>().enabled = enable;
+                });
+        }
+
         #endregion
 
         #region Node Event Subscription
@@ -128,21 +208,34 @@ namespace GLEAMoscopeVR.POIs
         {
             switch (_modeController.CurrentMode)
             {
+                case ExperienceMode.Introduction:
+                    UnsubscribeFromMapNodesEvents();
+                    UnsubscribeFromSkyNodeEvents();
+                    SubscribeToAntennaNodeEvents();
+                    break;
                 case ExperienceMode.Exploration:
+                    UnsubscribeFromAntennaNodeEvents();
                     UnsubscribeFromMapNodesEvents();
                     SubscribeToSkyNodeEvents();
                     break;
                 case ExperienceMode.Passive:
+                    UnsubscribeFromAntennaNodeEvents();
                     UnsubscribeFromSkyNodeEvents();
                     SubscribeToMapNodeEvents();
                     break;
-                //case ExperienceMode.Mixed: Todo: uncomment if required.
-                //    Debug.LogError($"[POIManager] Cannot handle {_modeController.CurrentMode} mode.");
-                //    break;
                 default:
-                    throw new ArgumentOutOfRangeException(nameof(_modeController.CurrentMode), _modeController.CurrentMode,
-                        null);
+                    throw new ArgumentOutOfRangeException(nameof(_modeController.CurrentMode), _modeController.CurrentMode, null);
             }
+        }
+
+        private void SubscribeToAntennaNodeEvents()
+        {
+            AntennaNodeParent.GetComponentInChildren<POIAntennaNode>().OnPOINodeActivated += HandleNodeActivation;
+        }
+
+        private void UnsubscribeFromAntennaNodeEvents()
+        {
+            AntennaNodeParent.GetComponentInChildren<POIAntennaNode>().OnPOINodeActivated -= HandleNodeActivation;
         }
 
         private void SubscribeToSkyNodeEvents()
@@ -180,19 +273,25 @@ namespace GLEAMoscopeVR.POIs
 
         #region Node State
         /// <summary>
-        /// Updates the <see cref="currentltyActiveNode"/>, deactivates the previously activated node
-        /// and updates the <see cref="InfoPanelSky"/> and <see cref="InfoPanelWarTable"/>s.
+        /// Updates the <see cref="currentltyActiveNode"/>, deactivates the previously activated node and updates the <see cref="InfoPanelSky"/> and <see cref="InfoPanelWarTable"/>s.
         /// </summary>
         /// <param name="activatedNode">POINode from which the OnPOINodeActivated event was invoked.</param>
         private void HandleNodeActivation(POINode activatedNode)
         {
             if (activatedNode == null || activatedNode == currentltyActiveNode) return;
 
-            POIObject poi = new POIObject(activatedNode.Data);
+            var poi = new POIObject(activatedNode.Data);
+            
+            if (activatedNode == antennaNode)
+            {
+                OnAntennaPOIActivated?.Invoke();
+                
+                _modeController.SetIntroductionSequenceComplete();
+            }
 
             if (currentltyActiveNode == null)
             {
-                currentltyActiveNode = activatedNode;                
+                currentltyActiveNode = activatedNode;
             }
             else if (activatedNode != currentltyActiveNode)
             {
@@ -201,6 +300,12 @@ namespace GLEAMoscopeVR.POIs
             }
 
             UpdateInfoPanels(activatedNode);
+            TriggerVoiceOverClip(activatedNode);
+        }
+
+        private void TriggerVoiceOverClip(POINode activatedNode)
+        {
+            VoiceOverController.Instance.RequestClipPlay(activatedNode.Data.VoiceoverFemale);//todo: determine when to use male vs female
         }
 
         /// <summary>
@@ -223,23 +328,36 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="activatedNode">The node containing the <see cref="POIData"/> to be displayed.</param>
         private void UpdateInfoPanels(POINode activatedNode)
         {
-            POIObject poi = new POIObject(activatedNode.Data);
+            var poi = new POIObject(activatedNode.Data);
             if (activatedNode is POISkyNode)
             {
-                InfoPanelSky.CreateToolTip(poi, activatedNode.transform, 0, 0, 0);
+                InfoPanelSky.CreateToolTip(poi, activatedNode.transform, poi.XOffset, poi.YOffset, poi.ZOffset);
             }
             InfoPanelWarTable.UpdateDisplay(poi);
         }
         #endregion
-        
-        private void GetComponentReferences()
+
+        private void SetAndCheckReferences()
         {
             _modeController = FindObjectOfType<ExperienceModeController>().Instance;
+            _wavelengthStateController = WavelengthStateController.Instance;
+            Assert.IsNotNull(_wavelengthStateController, $"[POIManager] cannot find SphereFadeControl in scene.");
             Assert.IsNotNull(_modeController, $"[POIManager] can not find reference to ExperienceModeController.");
             Assert.IsNotNull(InfoPanelSky, $"[POIManager] InfoPanel_Manager has not been assigned.");
             Assert.IsNotNull(InfoPanelWarTable, $"[POIManager] InfoPanel_WarTable has not been assigned assigned.");
             Assert.IsNotNull(MapNodesParent, $"[POIManager] MapNodesParent has not been assigned.");
             Assert.IsNotNull(SkyNodesParent, $"[POIManager] SkyNodesParent has not been assigned.");
+            Assert.IsNotNull(AntennaNodeParent, $"[POIManager] AntennaNodeParent has not been assigned.");
+            antennaNode = AntennaNodeParent.GetComponentInChildren<POIAntennaNode>();
+            Assert.IsNotNull(antennaNode, $"[POIManager] antennaNode was not found as a child of the AntennaNodeParent.");
+
+            VoiceOverController.Instance.OnGreetingComplete += HandleGreetingComplete;
         }
+
+        private void HandleGreetingComplete()
+        {
+            SetAntennaNodeState();
+        }
+
     }
 }

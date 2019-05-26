@@ -39,7 +39,7 @@ namespace GLEAMoscopeVR.POIs
         /// The Point of Interest's sprites in each of the 6 wavelengths.
         /// Todo: determine whether sprites or textures / materials are more appropriate.
         /// </summary>
-        public Sprite[] Sprites = new Sprite[6];
+        public Sprite[] Sprites = {};
 
         /// <summary>
         /// The Transform used to rotate the Point of Interest into the user's original, forward-facing viewport.

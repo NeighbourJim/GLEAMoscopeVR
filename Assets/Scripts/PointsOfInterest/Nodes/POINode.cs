@@ -19,6 +19,7 @@ namespace GLEAMoscopeVR.POIs
         [Header("Data"), SerializeField]
         protected POIData data;
 
+        [Header("IActivatable")]
         [SerializeField]
         protected float activationTime = 1f;
 
@@ -44,7 +45,7 @@ namespace GLEAMoscopeVR.POIs
         #region Unity Methods
         protected virtual void Start()
         {
-            GetComponentReferences();
+            SetAndCheckReferences();
         }
         #endregion
 
@@ -54,7 +55,7 @@ namespace GLEAMoscopeVR.POIs
         public abstract void Deactivate();
         #endregion
 
-        protected virtual void GetComponentReferences()
+        protected virtual void SetAndCheckReferences()
         {
             _modeController = FindObjectOfType<ExperienceModeController>().Instance;
             Assert.IsNotNull(_modeController, $"{gameObject.name} cannot find ExperienceModeController.");

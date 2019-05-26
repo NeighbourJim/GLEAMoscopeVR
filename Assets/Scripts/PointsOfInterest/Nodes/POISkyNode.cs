@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace GLEAMoscopeVR.POIs
 {
-    /// <summary>
-    /// Specifies behaviour for Point of Interest nodes in the sky.
-    /// Todo: OnNodeDeactivated
-    /// </summary>
+    /// <summary> Specifies behaviour for Point of Interest nodes in the sky. </summary>
+    [SelectionBase]
     public class POISkyNode : POINode
     {
         #region Constants
@@ -22,9 +20,7 @@ namespace GLEAMoscopeVR.POIs
         #endregion
 
         #region Events
-        /// <summary>
-        /// Invoked when a node is activated.
-        /// </summary>
+        /// <summary> Invoked when a node is activated. </summary>
         public override event Action<POINode> OnPOINodeActivated;
         #endregion
 
@@ -35,9 +31,8 @@ namespace GLEAMoscopeVR.POIs
             return activatableMode == _modeController.CurrentMode && !isActivated;
         }
 
-        /// <summary>
-        /// Invoked by the <see cref="Script_CameraRayCaster"/> when the reticle loading process is complete.
-        /// Notifies the <see cref="POIManager"/> that it has been activated.
+        /// <summary> 
+        /// Invoked by the <see cref="Script_CameraRayCaster"/> when the reticle loading process is complete. Notifies the <see cref="POIManager"/> that it has been activated.
         /// </summary>
         public override void Activate()
         {
@@ -52,9 +47,7 @@ namespace GLEAMoscopeVR.POIs
             OnPOINodeActivated?.Invoke(this);
         }
 
-        /// <summary>
-        /// Invoked by the <see cref="POIManager"/> when another node is activated.
-        /// </summary>
+        /// <summary> Invoked by the <see cref="POIManager"/> when another node is activated. </summary>
         public override void Deactivate()
         {
             if (!isActivated)

@@ -83,9 +83,9 @@ namespace GLEAMoscopeVR.POIs
         }
         #endregion
         
-        protected override void GetComponentReferences()
+        protected override void SetAndCheckReferences()
         {
-            base.GetComponentReferences();
+            base.SetAndCheckReferences();
             _rotator = FindObjectOfType<PassiveModeRotator>();
             Assert.IsNotNull(_rotator, $"{gameObject.name} cannot find PassiveModeRotator in scene.");
         }
