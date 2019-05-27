@@ -17027,7 +17027,7 @@ MonoBehaviour:
   sunRotationXStart: 150
   sunRotationXEnd: 180
   moonRotationXStart: 0
-  moonRotationXEnd: 90
+  moonRotationXEnd: 40
 --- !u!23 &2262305153048582160
 MeshRenderer:
   m_ObjectHideFlags: 0

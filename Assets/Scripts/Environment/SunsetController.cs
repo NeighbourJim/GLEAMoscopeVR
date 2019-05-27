@@ -20,7 +20,7 @@ public class SunsetController : MonoBehaviour
     [SerializeField] private Color billboardsColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
     [SerializeField] private int sunRotationXStart = 150;
     [SerializeField] private int sunRotationXEnd = 180;
-    [SerializeField] private int moonRotationXStart = 0;
+    [SerializeField] private int moonRotationXStart = 40;
     [SerializeField] private int moonRotationXEnd = 90;
     private Color sunColorStart;
     private Material sphereMaterial;
@@ -35,8 +35,9 @@ public class SunsetController : MonoBehaviour
     private bool sunHasSet;
     private bool cycleHasCompleted;
 
-    private void Awake()
+    private void Start()
     {
+        sunColorStart = sun.color;
         ResetSky();
     }
 
@@ -51,7 +52,7 @@ public class SunsetController : MonoBehaviour
         currentTransparency = 0;
         exposureCurrent = exposureStart;
         exposureCurrent = RenderSettings.skybox.GetFloat("_Exposure");
-        sunColorStart = sun.color;
+        sun.color = sunColorStart;
         foreach (Material mat in billboardMaterials)
         {
             mat.color = billboardsColorStart;
@@ -146,6 +147,7 @@ public class SunsetController : MonoBehaviour
         {
             if (spectrum.GetComponent<Renderer>() != null)
             {
+                spectrum.GetComponent<Renderer>().enabled = true;
                 sphereMaterial = spectrum.GetComponent<Renderer>().material;
                 sphereMaterial.SetFloat("_Transparency", 0);
             }
