@@ -4398,6 +4398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ToLookAt: {fileID: 0}
   LookAtCamera: 1
+  SlerpRotate: 0
+  SlerpRotateSpeed: 0.5
 --- !u!114 &706317911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5080,6 +5082,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Alpha
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496217293995435878, guid: f1430e8176ee8084ba0c7bc51764b0a5,
+        type: 3}
+      propertyPath: SlerpRotate
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1430e8176ee8084ba0c7bc51764b0a5, type: 3}

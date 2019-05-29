@@ -11,6 +11,11 @@ public class InfoPanel_FaceCamera : MonoBehaviour
     [Tooltip("Whether the panel should face the camera. Toggle this programmatically with SetLookAtCamera()")]
     bool LookAtCamera = true;
 
+    public bool SlerpRotate = false;
+    public float SlerpRotateSpeed = 0.5f;
+
+    Vector3 previousPos = new Vector3();
+
     /// <summary>
     /// On Awake, check to see if ToLookAt has been assigned in the editor. 
     /// If it hasn't default to the scene's main camera.
@@ -31,7 +36,20 @@ public class InfoPanel_FaceCamera : MonoBehaviour
     {
         if (LookAtCamera)
         {
-            transform.LookAt(2 * transform.position - ToLookAt.transform.position, ToLookAt.transform.up);
+            if(transform.position != previousPos)
+            {
+                previousPos = transform.position;
+                transform.LookAt(2 * transform.position - ToLookAt.transform.position, ToLookAt.transform.up);
+            }
+            if (SlerpRotate)
+            {
+                Quaternion q = Quaternion.LookRotation(2 * transform.position - ToLookAt.transform.position, ToLookAt.transform.up);
+                transform.rotation = Quaternion.Slerp(transform.rotation, q, SlerpRotateSpeed * Time.deltaTime);
+            }
+            else
+            {
+                transform.LookAt(2 * transform.position - ToLookAt.transform.position, ToLookAt.transform.up);
+            }
         }
     }
 
