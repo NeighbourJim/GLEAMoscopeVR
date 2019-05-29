@@ -130,11 +130,15 @@ namespace GLEAMoscopeVR.Spectrum
         {
             if (!fadingUp && !fadingDown && destinationState != (int)currentWavelength)
             {
-                eyeClosedAction = () => ChangeStateQuick((Wavelengths)destinationState);
-                cameraBlink.EyeClosed.AddListener(eyeClosedAction);
-                cameraBlink.Blink();
+                ChangeStateQuick((Wavelengths)destinationState);
             }
         }
+
+        /// <summary>
+        /// Return whether or not a fade is currently happening.
+        /// </summary>
+        /// <returns>Boolean flag representing if a transition is in effect.</returns>
+        public bool IsFading() => fadingDown || fadingUp;
 
         /// <summary>
         /// Transition to a new state.
@@ -155,55 +159,14 @@ namespace GLEAMoscopeVR.Spectrum
         /// Quickly change to a specific wavelength with a blink.
         /// Selects which wavelength to be fading 'from' based on the direction the user would be moving.
         /// </summary>
-        /// <param name="destinationState"></param>
+        /// <param name="destinationState">The target state to transition to.</param>
         void ChangeStateQuick(Wavelengths destinationState)
         {
             if (destinationState != currentWavelength)
             {
-                // which direction the destination is relative to current state. true = left, false = right
-                bool direction = (currentWavelength > destinationState); 
-
-                cameraBlink.EyeClosed.RemoveListener(eyeClosedAction);
-
-                switch (destinationState)
-                {
-                    case Wavelengths.Gamma:
-                        wavelengthSlider.value = 0;
-                        FadeSpecificSpheres(Wavelengths.Gamma, Wavelengths.XRay);
-                        break;
-                    case Wavelengths.XRay:
-                        wavelengthSlider.value = 20;
-                        if (direction)
-                            FadeSpecificSpheres(Wavelengths.XRay, Wavelengths.Visible);
-                        else
-                            FadeSpecificSpheres(Wavelengths.XRay, Wavelengths.Gamma);
-                        break;
-                    case Wavelengths.Visible:
-                        wavelengthSlider.value = 40;
-                        if (direction)
-                            FadeSpecificSpheres(Wavelengths.Visible, Wavelengths.Infrared);
-                        else
-                            FadeSpecificSpheres(Wavelengths.Visible, Wavelengths.XRay);
-                        break;
-                    case Wavelengths.Infrared:
-                        wavelengthSlider.value = 60;
-                        if (direction)
-                            FadeSpecificSpheres(Wavelengths.Infrared, Wavelengths.Microwave);
-                        else
-                            FadeSpecificSpheres(Wavelengths.Infrared, Wavelengths.Visible);
-                        break;
-                    case Wavelengths.Microwave:
-                        wavelengthSlider.value = 80;
-                        if (direction)
-                            FadeSpecificSpheres(Wavelengths.Microwave, Wavelengths.Radio);
-                        else
-                            FadeSpecificSpheres(Wavelengths.Microwave, Wavelengths.Infrared);
-                        break;
-                    case Wavelengths.Radio:
-                        wavelengthSlider.value = 100;
-                        FadeSpecificSpheres(Wavelengths.Radio, Wavelengths.Microwave);
-                        break;
-                }
+                StartCoroutine(FadeDown(spheres[(int)currentWavelength]));
+                StartCoroutine(FadeUp(spheres[(int)destinationState]));
+                
                 UpdateWavelengthLabel(destinationState);
                 currentWavelength = destinationState;
                 OnWavelengthChanged?.Invoke();
