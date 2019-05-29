@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using GLEAMoscopeVR.RaycastingSystem;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Video;
@@ -21,6 +22,7 @@ namespace GLEAMoscopeVR.Menu
         AudioSource _audioSource;
         Renderer _renderer;
         VideoPlayer _videoPlayer;
+        Script_CameraRayCaster _rayCastScript;
         #endregion
 
         #region Unity Methods
@@ -31,7 +33,6 @@ namespace GLEAMoscopeVR.Menu
             SetVideoPlayerSettings();
             SetAudioSourceSettings();
             ShowMenuCanvasGroup(false);
-
             StartCoroutine(PlayRoutine());
         }
         #endregion
@@ -55,13 +56,15 @@ namespace GLEAMoscopeVR.Menu
         {
             _videoPlayer.Prepare();
             yield return new WaitUntil(() => _videoPlayer.isPrepared);
-
+            
             _renderer.enabled = true;
+            _rayCastScript.reticleAlpha = 0;
 
             Play();
 
             yield return new WaitUntil(() => !_videoPlayer.isPlaying);
 
+            _rayCastScript.reticleAlpha = _rayCastScript.reticleStartingAlpha;
             _renderer.enabled = false;
             gameObject.SetActive(false);
             ShowMenuCanvasGroup(true);
@@ -108,6 +111,9 @@ namespace GLEAMoscopeVR.Menu
 
             _renderer = GetComponent<Renderer>();
             Assert.IsNotNull(_renderer, $"[PlayVideo] {gameObject.name} does not have a Renderer component.");
+
+            _rayCastScript = GetComponentInParent<Script_CameraRayCaster>();
+            Assert.IsNotNull(_renderer, $"[PlayVideo] {gameObject.name} does not have a Script_CameraRayCaster component.");
 
             Assert.IsNotNull(videoClip, $"[PlayVideo] {gameObject.name} video clip has not been assigned.");
             Assert.IsNotNull(MenuCanvasGroup, $"[PlayVideo] {gameObject.name} Start Screen UI Canvas group not assigned.");

@@ -26,8 +26,10 @@ namespace GLEAMoscopeVR.RaycastingSystem
         [Range(0f, 1f)] public float reticleScale = 0.01f;
         [Range(0.001f, 1f)] public float reticleStartScale = 1f;
 
-        [Header("Reticle Alpha/Shader Options.")] [Range(0, 255)]
+        [Header("Reticle Alpha/Shader Options.")]
+        [Range(0, 255)]
         public int reticleAlpha = 255;
+        public int reticleStartingAlpha;
 
         [Header("Proximity (Spherecast) Scaling Options/Info")]
         [Tooltip("Set to <=0 for infinite raycast distance.")]
@@ -59,11 +61,17 @@ namespace GLEAMoscopeVR.RaycastingSystem
 
         void Start()
         {
+            SetStartingFields();
             //Camera not set? Use main camera.
             if (activeCamera == null)
             {
                 activeCamera = Camera.main;
             }
+        }
+
+        void SetStartingFields()
+        {
+            reticleStartingAlpha = reticleAlpha;
         }
 
         // Update is called once per frame
