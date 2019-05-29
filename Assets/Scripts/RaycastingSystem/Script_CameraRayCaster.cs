@@ -109,6 +109,12 @@ namespace GLEAMoscopeVR.RaycastingSystem
                 {
                     HandleClickableObjectTimer(clickable);
                 }
+                //Please don't hurt me Meg, I'm going to give you that Single Malt Scotch. Don't you worry ^^
+                else if(currentAnimationState == (int)AnimationStates.Activated
+                        && lastActivatedObject != currentCentreHitObject)
+                {
+                    SetDefaultReticleState();
+                }
                 else if (currentAnimationState == (int)AnimationStates.Activated)
                 {
                     //Meant to be empty

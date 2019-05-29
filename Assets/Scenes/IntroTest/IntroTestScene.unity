@@ -12004,8 +12004,8 @@ GameObject:
   - component: {fileID: 1849276839}
   - component: {fileID: 1849276838}
   - component: {fileID: 1849276837}
-  - component: {fileID: 1849276836}
   - component: {fileID: 1849276835}
+  - component: {fileID: 1849276836}
   m_Layer: 5
   m_Name: Shorter Button
   m_TagString: Untagged
