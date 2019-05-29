@@ -32,7 +32,10 @@ namespace GLEAMoscopeVR.POIs
         [SerializeField]
         private float remainingAngle = 0;
         bool shouldRotate = false;
-        
+        bool isRotating = false;
+
+        public bool IsRotating => isRotating;
+
         Transform current = null;
         Transform target = null;
 
@@ -154,6 +157,7 @@ namespace GLEAMoscopeVR.POIs
 
             target = targetTransform;
             shouldRotate = true;
+            isRotating = true;
         }
 
         private void ListenForBlinkAndReturnToOrigin()
@@ -173,6 +177,7 @@ namespace GLEAMoscopeVR.POIs
         {
             target = transform;
             shouldRotate = false;
+            isRotating = false;
             remainingAngle = 0;
         }
 

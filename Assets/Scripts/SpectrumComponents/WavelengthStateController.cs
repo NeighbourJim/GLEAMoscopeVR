@@ -35,6 +35,8 @@ namespace GLEAMoscopeVR.Spectrum
         [Tooltip("The TextMesh object that displays the current wavelength.")]
         TextMeshProUGUI wavelengthLabel = null;
 
+        
+
         CameraBlink cameraBlink = null;
         UnityAction eyeClosedAction = null;
 
@@ -51,9 +53,10 @@ namespace GLEAMoscopeVR.Spectrum
         /// <summary>
         /// State variable holding which wavelength is currently enabled - Defaults to Wavelengths.Visible
         /// </summary>
+        [SerializeField]
         Wavelengths currentWavelength = Wavelengths.Visible;
-
         public Wavelengths CurrentWavelength => currentWavelength;
+        
         #endregion
 
         public event Action OnWavelengthChanged;

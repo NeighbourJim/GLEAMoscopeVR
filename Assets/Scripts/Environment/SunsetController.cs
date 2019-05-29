@@ -34,6 +34,8 @@ public class SunsetController : MonoBehaviour
     private float elapsedTime;
     private bool sunHasSet;
     private bool cycleHasCompleted;
+    public bool SunsetCompleted => cycleHasCompleted;
+    
 
     private void Start()
     {
@@ -135,6 +137,7 @@ public class SunsetController : MonoBehaviour
         else
         {
             Debug.Log("Day/Night Cycle Complete");
+            
             cycleHasCompleted = true;
         }
     }
