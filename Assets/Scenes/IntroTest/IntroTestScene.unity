@@ -4414,6 +4414,7 @@ MonoBehaviour:
   zOffset: 5
   yOffset: 0.5
   rotateSpeed: 0.5
+  tetherRange: 0.5
 --- !u!225 &706317912
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -16290,6 +16291,7 @@ MonoBehaviour:
   reticleScale: 0.01
   reticleStartScale: 1
   reticleAlpha: 255
+  reticleStartingAlpha: 0
   maxProxCastDistance: 0
   proxCastRadius: 0.5
   currentProxRayDistance: 0
