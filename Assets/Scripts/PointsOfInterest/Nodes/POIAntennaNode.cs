@@ -20,7 +20,8 @@ namespace GLEAMoscopeVR.POIs
 
         [Header("Debugging"), SerializeField]
         private bool activatable = false;
-
+        private bool isDisabled = false;
+        
         #region Public Accessors
         public override ExperienceMode ActivatableMode => activatableMode;
         public override bool IsActivated => isActivated;
@@ -54,6 +55,13 @@ namespace GLEAMoscopeVR.POIs
             _nodeRenderer.enabled = true;
             _animator.enabled = true;
             _animator.SetTrigger(rotateAnimation);
+        }
+
+        public void SetInactive()
+        {
+            activatable = false;
+            _nodeRenderer.enabled = false;
+            _animator.enabled = false;
         }
 
         #region IActivatable Implentation

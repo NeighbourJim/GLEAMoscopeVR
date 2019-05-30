@@ -103,6 +103,10 @@ namespace GLEAMoscopeVR.POIs
             {
                 antennaNode.SetActivatable();
             }
+            else
+            {
+                antennaNode.SetInactive();
+            }
         }
 
         /// <summary> Updates sky nodes state when the wavelength changes. </summary>
