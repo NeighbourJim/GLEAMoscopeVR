@@ -4052,7 +4052,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766467562}
   m_LocalRotation: {x: 0.45097306, y: 0.4129267, z: -0.24780609, w: 0.75146997}
-  m_LocalPosition: {x: -30, y: 140.8, z: -35.3}
+  m_LocalPosition: {x: -29.64, y: 140.01, z: -35.07}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 1645490532}
@@ -4435,6 +4435,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3496217293995435881, guid: f1430e8176ee8084ba0c7bc51764b0a5,
+        type: 3}
+      propertyPath: BaseSize
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1430e8176ee8084ba0c7bc51764b0a5, type: 3}
@@ -10596,6 +10601,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spectrum Slider
       objectReference: {fileID: 0}
+    - target: {fileID: 2792422011837296278, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Value
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2792422011837296277, guid: 830074763cf8f094c964396af449bf7a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -10716,6 +10726,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651543, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2792422011565417852, guid: 830074763cf8f094c964396af449bf7a,
         type: 3}
       propertyPath: m_AnchorMin.y
@@ -10835,6 +10850,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.07667971
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2792422010300651560, guid: 830074763cf8f094c964396af449bf7a,
+        type: 3}
+      propertyPath: m_Material
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 830074763cf8f094c964396af449bf7a, type: 3}
@@ -13704,14 +13759,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4998661918482978940}
-  m_LocalRotation: {x: 0.45097303, y: 0.41292658, z: -0.24780603, w: 0.7514699}
-  m_LocalPosition: {x: -52.2, y: 128.9, z: -52.2}
+  m_LocalRotation: {x: 0.35219672, y: 0.3909983, z: -0.22105055, w: 0.82110566}
+  m_LocalPosition: {x: -50.3, y: 124.98, z: -50.86}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children:
   - {fileID: 4998661918563796827}
   m_Father: {fileID: 4998661917705518106}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 71, y: 70, z: 111}
+  m_LocalEulerAnglesHint: {x: 48.698, y: 47.471, z: -7.6260004}
 --- !u!114 &4998661918482978943
 MonoBehaviour:
   m_ObjectHideFlags: 0

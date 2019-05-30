@@ -1164,7 +1164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b74ce975f8d4004e966ce9b1f60b87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BaseSize: 3
+  BaseSize: 2
   ScaleCamera: {fileID: 0}
 --- !u!225 &3496217293995435884
 CanvasGroup:
