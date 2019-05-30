@@ -76,6 +76,8 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         private ExperienceMode currentMode;
 
+        private bool hasShownAntenna = false;
+
         public event Action OnAntennaPOIActivated;
 
         #region References
@@ -99,13 +101,10 @@ namespace GLEAMoscopeVR.POIs
 
         private void SetAntennaNodeState()
         {
+            if (hasShownAntenna) return;
             if (_modeController.CurrentMode == ExperienceMode.Introduction)
             {
                 antennaNode.SetActivatable();
-            }
-            else
-            {
-                antennaNode.SetInactive();
             }
         }
 
@@ -295,6 +294,7 @@ namespace GLEAMoscopeVR.POIs
             {
                 OnAntennaPOIActivated?.Invoke();
                 _modeController.SetIntroductionSequenceComplete();
+                hasShownAntenna = true;
             }
         }
 
@@ -326,7 +326,6 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="activatedNode">The node containing the <see cref="POIData"/> to be displayed.</param>
         private void UpdateInfoPanels(POINode activatedNode)
         {
-            print($"Update info panels for activated: {activatedNode.Data.Name}");
             var poi = new POIObject(activatedNode.Data);
             if (activatedNode is POISkyNode)
             {

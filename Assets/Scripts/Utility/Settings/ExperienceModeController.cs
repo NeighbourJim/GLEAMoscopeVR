@@ -88,6 +88,7 @@ namespace GLEAMoscopeVR.Settings
 
         public void SetIntroductionSequenceComplete()//placeholder until persist data setup
         {
+            introductionComplete = true;
             currentMode = ExperienceMode.Exploration;
             OnExperienceModeChanged?.Invoke();
         }

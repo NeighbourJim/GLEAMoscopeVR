@@ -19,6 +19,8 @@ public class FadeAssetController : MonoBehaviour
     [SerializeField]
     private Renderer logoRenderer = null;
 
+    [Header("Hack")] [SerializeField] private Renderer antennaNodeRenderer;
+
     [Header("Debugging")]
     [SerializeField] private ExperienceMode previousMode = ExperienceMode.Exploration;
     [SerializeField] private ExperienceMode currentMode = ExperienceMode.Introduction;
@@ -77,6 +79,8 @@ public class FadeAssetController : MonoBehaviour
 
         previousMode = currentMode;
         cameraBlink.EyeClosed.RemoveListener(UpdateEnvironmentRenderers);
+
+        
     }
 
     private void SetPlatformAndLogoRendererState(bool enable)
@@ -85,9 +89,9 @@ public class FadeAssetController : MonoBehaviour
         logoRenderer.enabled = enable;
     }
 
-    private void SetEnvironmentRendererState(bool enable)
+    private void SetEnvironmentRendererState(bool enable)//todo: remove the hack
     {
-        renderers.ToList().ForEach(r => r.enabled = enable);
+        renderers.ToList().ForEach(r => { r.enabled = r != antennaNodeRenderer && enable; });
     }
 
     private void SetAndCheckReferences()
@@ -97,7 +101,7 @@ public class FadeAssetController : MonoBehaviour
         previousMode = _modeController.CurrentMode;
         _modeController.OnExperienceModeChanged += HandleExperienceModeChanged;
         Assert.IsNotNull(platformRenderer, $"[FadeAssetController] does not have a reference to the platform renderer.");
-
+        Assert.IsNotNull(antennaNodeRenderer, $"[FadeAssetController] does not have a reference to the antenna node renderer.");
         cameraBlink = Camera.main.GetComponentInChildren<CameraBlink>();
         Assert.IsNotNull(cameraBlink, $"[FadeAssetController] cannot find CameraBlink component in main camera children.");
     }

@@ -40,14 +40,6 @@ namespace GLEAMoscopeVR.POIs
         VoiceOverController _voiceController;
         #endregion
 
-        #region Unity Methods
-        protected override void Start()
-        {
-            base.Start();
-            Deactivate();
-        }
-
-        #endregion
 
         public void SetActivatable()
         {
@@ -56,14 +48,7 @@ namespace GLEAMoscopeVR.POIs
             _animator.enabled = true;
             _animator.SetTrigger(rotateAnimation);
         }
-
-        public void SetInactive()
-        {
-            activatable = false;
-            _nodeRenderer.enabled = false;
-            _animator.enabled = false;
-        }
-
+        
         #region IActivatable Implentation
 
         /// <summary> Specifies whether this GameObject can be activated. </summary>
@@ -93,12 +78,13 @@ namespace GLEAMoscopeVR.POIs
 
         public override void Deactivate()
         {
+            if (!activatable) return;
             activatable = false;
             isActivated = false;
+            _animator.enabled = false;
             _nodeRenderer.enabled = false;
-            //_animator.SetTrigger(idleAnimation);
+            
         }
-
         #endregion
 
         IEnumerator WaitUntilSunsetComplete()
