@@ -11,7 +11,7 @@ using UnityEngine.UI;
 namespace GLEAMoscopeVR.Settings
 {
     /// <summary>
-    /// todo: MM fix once interaction functionality is decided and comment
+    /// todo: replace with settings and persist
     /// Added to assist with enabling and disabling functionality until a decision is made as to whether there will be separate modes
     /// or mixed functionality.
     /// For the sake of simplicity, the first iteration 02 prototype will separate Exploration and Passive modes.
@@ -27,21 +27,19 @@ namespace GLEAMoscopeVR.Settings
         public SunsetController SunsetController;
         private CameraBlink cameraBlink;
 
-
-
         [Header("State")]
         [SerializeField]
         private ExperienceMode currentMode = ExperienceMode.Introduction;
         
-        [SerializeField] private bool tutorialComplete = false;
+        [SerializeField] private bool introductionComplete = false;
 
         [Header("Settings UI")] 
         public TextMeshProUGUI ModeText;
-        public Button ModeButton;
+        public GameObject ModeButton;
 
         [Header("POI UI")]
         public InfoPanel WarTablePanel;
-        public InfoPanel_Tooltip SkyPanel;
+        public InfoPanel SkyPanel;
 
         [Header("IActivatable")]
         [SerializeField]
@@ -62,7 +60,7 @@ namespace GLEAMoscopeVR.Settings
             SetAndCheckReferences();
         }
 
-        private void ToggleExperienceMode()
+        private void ToggleExperienceMode()//todo: hide canvas when unable to change mode
         {
             switch (currentMode)
             {
@@ -85,7 +83,6 @@ namespace GLEAMoscopeVR.Settings
 
             ModeText.text = currentMode.GetDescription();
             ResetInfoPanels();
-            //SaveUserSettings();
             OnExperienceModeChanged?.Invoke();
         }
 
@@ -99,7 +96,9 @@ namespace GLEAMoscopeVR.Settings
         #region IActivatable Implementation
         bool IActivatable.CanActivate()
         {
-            return Rotator.CanSetRotationTarget();
+            return CurrentMode != ExperienceMode.Introduction
+                   && SunsetController.SunsetCompleted
+                   && Rotator.CanSetRotationTarget();
         }
 
         void IActivatable.Activate()
@@ -128,9 +127,6 @@ namespace GLEAMoscopeVR.Settings
                 Destroy(gameObject);
             }
         }
-
-        
-        
         
         private void SetAndCheckReferences()
         {
@@ -151,44 +147,5 @@ namespace GLEAMoscopeVR.Settings
         {
             SunsetController.StartSunset();
         }
-
-        #region Persist
-
-        //private const string filename = "/settings.json";
-        //[SerializeField]private UserSettings userSettings;
-
-        //private void ApplySavedSettings()
-        //{
-        //    LoadUserSettings();
-
-        //    currentMode = (ExperienceMode) userSettings.ExperienceMode;
-        //    tutorialComplete = userSettings.TutorialComplete;
-        //    ToggleExperienceMode();
-        //    //todo: if not tutorial -> straight into appropriate mode
-        //}
-
-        //public void SaveUserSettings()
-        //{
-        //    string jsonSettings = JsonUtility.ToJson(userSettings);
-        //    print($"SaveUserSettings - {jsonSettings}");
-        //    File.WriteAllText(Application.persistentDataPath + "/user_settings.json", jsonSettings);
-        //    Debug.Log(jsonSettings);
-        //}
-
-        //private UserSettings LoadUserSettings()
-        //{
-        //    if (File.Exists(Application.persistentDataPath + filename))
-        //    {
-        //        userSettings = JsonUtility.FromJson<UserSettings>(Application.persistentDataPath + filename);
-        //    }
-        //    else
-        //    {
-        //        userSettings = new UserSettings();
-        //    }
-        //    print($"LoadUserSettings - {userSettings}");
-        //    return userSettings;
-        //}
-
-        #endregion
     }
 }
