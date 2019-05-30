@@ -15,7 +15,7 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         [Tooltip("Transform to return to when Passive Experience Mode is de-activated.")]
         public Transform OriginTransform = null;
-        
+
         [Header("Options")]
         [Tooltip("If true, spherical interpolation is used.\nIf false, linear interpolation is used.")]
         public bool ShouldSlerp = false;
@@ -46,7 +46,7 @@ namespace GLEAMoscopeVR.POIs
         #endregion
 
         public bool CanSetRotationTarget() => remainingAngle < retargetTolerance;
-        
+
         void Awake()
         {
             current = transform;
@@ -57,7 +57,7 @@ namespace GLEAMoscopeVR.POIs
         {
             SubscribeToExperienceModeEvents();
         }
-        
+
         private void HandleModeChanged()
         {
             currentMode = _modeController.CurrentMode;
@@ -72,7 +72,7 @@ namespace GLEAMoscopeVR.POIs
 
             if (_modeController.CurrentMode == ExperienceMode.Exploration && remainingAngle > 0)
             {
-                if(remainingAngle > 0)
+                if (remainingAngle > 0)
                 {
                     ResetState();
                 }
@@ -104,13 +104,13 @@ namespace GLEAMoscopeVR.POIs
             }
 
             remainingAngle = Quaternion.Angle(transform.rotation, target.rotation);
-            
+
             if (transform.rotation == target.rotation)
             {
                 ResetState();
             }
         }
-        
+
         private void Lerp()
         {
             if (IsClamped)
