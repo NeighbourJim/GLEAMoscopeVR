@@ -1,4 +1,4 @@
-﻿using GLEAMoscopeVR.Interaction;
+﻿using GLEAMoscopeVR.Settings;
 using GLEAMoscopeVR.Spectrum;
 using TMPro;
 using UnityEngine;
@@ -8,10 +8,8 @@ using UnityEngine.UI;
 namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
-    /// MM: Updated 21/05/19 Default sprite set to Radio. (will only ever start at Visible or Radio)
-    /// Todo: Add method for swapping out sprites when buttons are activated.
     /// Base class for <see cref="POIObject"/> data display panels.
-    /// /// When a POI is activated, the sprite will always start at either Visible or Radio.
+    /// When a POI is activated, the sprite will always start at either Visible or Radio.
     /// </summary>
     [RequireComponent(typeof(CanvasGroup))]
     public class InfoPanel : MonoBehaviour
@@ -32,7 +30,7 @@ namespace GLEAMoscopeVR.POIs
         [Tooltip("Point of Interest Image object.")]
         protected Image poiImage;
         protected POIObject currentPOI;
-        //public POIData currentPOIData => currentPOI.Data;
+        
         [Tooltip("Current POI Sprite Index")]
         protected Wavelengths currentSpriteWavelength;
         protected bool canCycleSprites = false;
@@ -60,23 +58,20 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="point">The Point of Interest object whose parameters will be displayed on the panel.</param>
         public virtual void UpdateDisplay(POIObject poi)
         {
-            print(poi.Name);
             currentPOI = poi;
-            
             canCycleSprites = poi.Data.Name != antennaPOIName;
-            
             
             titleText.text = currentPOI.Name;
             distanceText.text = $"Distance: {currentPOI.Distance}";
             descriptionText.text = currentPOI.Description;
 
-            UpdateSprite(currentSpriteWavelength);
+            UpdateSprite(WavelengthStateController.Instance.CurrentWavelength);//currentSpriteWavelength);
             SetCanvasGroupState(true);
         }
 
         public void CycleSpriteRight()
         {
-            if(canCycleSprites)//todo: replace use of Script_RayReceiverButton to stop sprite change when shouldn't be possible
+            if(canCycleSprites)
             {
                 if (currentSpriteWavelength != Wavelengths.Radio)
                 {
@@ -137,7 +132,7 @@ namespace GLEAMoscopeVR.POIs
         protected virtual void SetAndCheckReferences()
         {
             _canvasGroup = GetComponent<CanvasGroup>();
-            Assert.IsNotNull(_canvasGroup, $"{gameObject.name} does not have a canvas group attached.");
+            Assert.IsNotNull(_canvasGroup, $"{gameObject.name} does not have a canvas group component.");
         }
     }
 }
