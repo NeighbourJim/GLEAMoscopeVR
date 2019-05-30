@@ -87,7 +87,7 @@ namespace GLEAMoscopeVR.POIs
         void Start()
         {
             SetAndCheckReferences();
-            
+
             _wavelengthStateController.OnWavelengthChanged += HandleWavelengthChanged;
             _modeController.OnExperienceModeChanged += HandleExperienceModeChanged;
 
@@ -95,16 +95,14 @@ namespace GLEAMoscopeVR.POIs
             ResetNodeEventSubscriptions();
             SetMapNodeStates();
             SetSkyNodeStates();
-            //SetAntennaNodeState();
         }
 
         private void SetAntennaNodeState()
         {
-            var mode = _modeController.CurrentMode;
-            var enable = mode == ExperienceMode.Introduction;
-            antennaNode.gameObject.GetComponentInChildren<MeshRenderer>().enabled = enable;
-            antennaNode.ActivateAnimation();
-            antennaNode.SetActivatable();
+            if (_modeController.CurrentMode == ExperienceMode.Introduction)
+            {
+                antennaNode.SetActivatable();
+            }
         }
 
         /// <summary> Updates sky nodes state when the wavelength changes. </summary>
@@ -122,12 +120,8 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         private void HandleExperienceModeChanged()
         {
-            if (_modeController.CurrentMode == currentMode)
-            {
-                print($"[POIManager] Mode changed {_modeController.CurrentMode}");
-                return;
-            }
-
+            if (_modeController.CurrentMode == currentMode) return;
+            
             ResetNodeEventSubscriptions();
             ResetCurrentlyActiveNode();
             SetSkyNodeStates();
@@ -291,7 +285,6 @@ namespace GLEAMoscopeVR.POIs
             }
 
             UpdateInfoPanels(activatedNode);
-            print(activatedNode.Data.name);
             TriggerVoiceOverClip(activatedNode);
 
             if (activatedNode == antennaNode)
@@ -313,7 +306,10 @@ namespace GLEAMoscopeVR.POIs
         {
             if (currentltyActiveNode != null)
             {
-                currentltyActiveNode.Deactivate();
+                if (currentltyActiveNode != antennaNode)
+                {
+                    currentltyActiveNode.Deactivate();
+                }
                 currentltyActiveNode = null;
             }
         }
@@ -326,6 +322,7 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="activatedNode">The node containing the <see cref="POIData"/> to be displayed.</param>
         private void UpdateInfoPanels(POINode activatedNode)
         {
+            print($"Update info panels for activated: {activatedNode.Data.Name}");
             var poi = new POIObject(activatedNode.Data);
             if (activatedNode is POISkyNode)
             {
@@ -348,14 +345,6 @@ namespace GLEAMoscopeVR.POIs
             Assert.IsNotNull(AntennaNodeParent, $"[POIManager] AntennaNodeParent has not been assigned.");
             antennaNode = AntennaNodeParent.GetComponentInChildren<POIAntennaNode>();
             Assert.IsNotNull(antennaNode, $"[POIManager] antennaNode was not found as a child of the AntennaNodeParent.");
-
-            VoiceOverController.Instance.OnGreetingComplete += HandleGreetingComplete;
         }
-
-        private void HandleGreetingComplete()
-        {
-            SetAntennaNodeState();
-        }
-
     }
 }

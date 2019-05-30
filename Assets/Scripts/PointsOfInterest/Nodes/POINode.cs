@@ -10,8 +10,7 @@ namespace GLEAMoscopeVR.POIs
 {
     /// <summary>
     /// Base class for Point of Interest nodes.
-    /// <see cref="POIMapNode"/> <see cref="POISkyNode"/>
-    
+    /// <see cref="POIMapNode"/> <see cref="POISkyNode"/> <see cref="POIAntennaNode"/>
     /// </summary>
     public abstract class POINode : MonoBehaviour, IActivatable
     {
@@ -21,7 +20,7 @@ namespace GLEAMoscopeVR.POIs
 
         [Header("IActivatable")]
         [SerializeField]
-        protected float activationTime = 1f;
+        protected float activationTime = 2f;
 
         /// <summary> Specifies whether the node is currently activated. </summary>
         [SerializeField]
