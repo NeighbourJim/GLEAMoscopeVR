@@ -35,8 +35,6 @@ namespace GLEAMoscopeVR.Spectrum
         [Tooltip("The TextMesh object that displays the current wavelength.")]
         TextMeshProUGUI wavelengthLabel = null;
 
-        
-
         CameraBlink cameraBlink = null;
         UnityAction eyeClosedAction = null;
 
@@ -166,7 +164,8 @@ namespace GLEAMoscopeVR.Spectrum
             {
                 StartCoroutine(FadeDown(spheres[(int)currentWavelength]));
                 StartCoroutine(FadeUp(spheres[(int)destinationState]));
-                
+
+                AnimateSlider(destinationState, true);
                 UpdateWavelengthLabel(destinationState);
                 currentWavelength = destinationState;
                 OnWavelengthChanged?.Invoke();
@@ -198,18 +197,25 @@ namespace GLEAMoscopeVR.Spectrum
         /// Starts the coroutines for animating the slider's handle.
         /// </summary>
         /// <param name="state">The state being transitioned towards.</param>
-        void AnimateSlider(Wavelengths state)
+        /// <param name="isStateQuick">Whether the transition was triggered by activating a Slider Pip (fast activation)</param>
+        void AnimateSlider(Wavelengths state, bool isStateQuick = false)
         {
-            if (state > currentWavelength)
+            if (isStateQuick)
+            {
+                var desiredSliderValue = ((int) state) * 20f;
+                StartCoroutine(SliderToValue(desiredSliderValue));
+                return;
+            }
+
+            if ((int)state > (int)currentWavelength)
             {
                 StartCoroutine(SliderUp());
             }
-            else if (state < currentWavelength)
+            else if ((int)state < (int)currentWavelength)
             {
                 StartCoroutine(SliderDown());
             }
         }
-
 
         #endregion
 
@@ -261,11 +267,21 @@ namespace GLEAMoscopeVR.Spectrum
             fadingDown = false;
         }
 
-
-
         #endregion
 
         #region Slider Manipulation
+
+        IEnumerator SliderToValue(float desiredValue)
+        {
+            float elapsed = 0;
+
+            while (elapsed < fadeTime)
+            {
+                wavelengthSlider.value = Mathf.Lerp(wavelengthSlider.value, desiredValue, (elapsed / fadeTime));
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
 
         IEnumerator SliderUp()
         {
