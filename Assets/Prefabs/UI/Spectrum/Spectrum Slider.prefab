@@ -176,7 +176,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavelength: 4
-  activationTime: 0.5
+  activationTime: 1
 --- !u!1 &2792422010378306911
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavelength: 3
-  activationTime: 0.5
+  activationTime: 1
 --- !u!1 &2792422011420515944
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavelength: 5
-  activationTime: 0.5
+  activationTime: 1
 --- !u!1 &2792422011565417851
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavelength: 0
-  activationTime: 0.5
+  activationTime: 1
 --- !u!1 &2792422011789310667
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavelength: 1
-  activationTime: 0.5
+  activationTime: 1
 --- !u!1 &2792422011808272919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,7 +1053,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wavelength: 2
-  activationTime: 0.5
+  activationTime: 1
 --- !u!1 &2792422012038058478
 GameObject:
   m_ObjectHideFlags: 0
