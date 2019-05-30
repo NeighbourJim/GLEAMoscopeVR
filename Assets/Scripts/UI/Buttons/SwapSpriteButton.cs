@@ -1,4 +1,5 @@
 ﻿using GLEAMoscopeVR.POIs;
+using GLEAMoscopeVR.Spectrum;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -7,21 +8,25 @@ namespace GLEAMoscopeVR.Interaction
     /// <summary>
     /// Provide more control over sprite cycling to assist with POIs that don't exist in more than one sprite (Antenna)
     /// </summary>
-    public class SwapSpriteButton : ActivatableButton
+    public class SwapSpriteButton : MonoBehaviour, IActivatable
     {
-        public enum Direction { Shorter, Longer }
+        private const string soundEffect = "switch";
 
-        [SerializeField] private Direction direction;
-        [SerializeField] private float activationTime = 0.5f;
-        [SerializeField] private bool isActivated = false;
+        [SerializeField]
+        private SpectrumDirection direction;
+        [SerializeField]
+        private float activationTime = 1f;
+        [SerializeField]
+        private bool isActivated = false;
 
-        public override float ActivationTime => activationTime;
+        float IActivatable.ActivationTime => activationTime;
 
-        public override bool IsActivated => isActivated;
+        bool IActivatable.IsActivated => isActivated;
 
         #region References
         InfoPanel _infoPanel;
         CanvasGroup _canvasGroup;
+        SoundEffects _soundEffects;
         #endregion
 
         #region Unity Methods
@@ -31,13 +36,13 @@ namespace GLEAMoscopeVR.Interaction
         }
         #endregion
 
-        public override bool CanActivate() => _infoPanel.CanCycleSprites;
+        bool IActivatable.CanActivate() => _infoPanel.CanCycleSprites;
 
-        public override void Activate()
+        void IActivatable.Activate()
         {
-            if (CanActivate())
+            if (this is IActivatable activatable && activatable.CanActivate())
             {
-                if (direction == Direction.Shorter)
+                if (direction == SpectrumDirection.Shorter)
                 {
                     _infoPanel.CycleSpriteLeft();
                 }
@@ -48,7 +53,7 @@ namespace GLEAMoscopeVR.Interaction
             }
         }
 
-        public override void Deactivate() { }
+        void IActivatable.Deactivate() { }
         
         #region Debugging
 
@@ -59,6 +64,9 @@ namespace GLEAMoscopeVR.Interaction
 
             _infoPanel = GetComponentInParent<InfoPanel>();
             Assert.IsNotNull(_infoPanel, $"{gameObject.name} cannot find InfoPanel component in parent game object");
+
+            _soundEffects = FindObjectOfType<SoundEffects>();
+            Assert.IsNotNull(_soundEffects, $"{gameObject.name} cannot find SoundEffects in scene.");
         }
         
         #endregion
