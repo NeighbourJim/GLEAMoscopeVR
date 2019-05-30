@@ -1,4 +1,5 @@
-﻿using GLEAMoscopeVR.RaycastingSystem;
+﻿using System;
+using GLEAMoscopeVR.RaycastingSystem;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -17,6 +18,8 @@ namespace GLEAMoscopeVR.Menu
         [SerializeField] private bool hasSeparateAudio = true;
 
         public CanvasGroup MenuCanvasGroup;
+
+        public event Action OnVideoFinished;
 
         #region References
         AudioSource _audioSource;
@@ -64,12 +67,19 @@ namespace GLEAMoscopeVR.Menu
 
             yield return new WaitUntil(() => !_videoPlayer.isPlaying);
 
+            UpdateComponentState();
+            OnVideoFinished?.Invoke();
+            yield break;
+        }
+
+        private void UpdateComponentState()
+        {
             _rayCastScript.reticleAlpha = _rayCastScript.reticleStartingAlpha;
             _renderer.enabled = false;
             gameObject.SetActive(false);
             ShowMenuCanvasGroup(true);
-            yield break;
         }
+
         #endregion
 
         #region Component Settings
@@ -113,7 +123,7 @@ namespace GLEAMoscopeVR.Menu
             Assert.IsNotNull(_renderer, $"[PlayVideo] {gameObject.name} does not have a Renderer component.");
 
             _rayCastScript = GetComponentInParent<Script_CameraRayCaster>();
-            Assert.IsNotNull(_renderer, $"[PlayVideo] {gameObject.name} does not have a Script_CameraRayCaster component.");
+            Assert.IsNotNull(_rayCastScript, $"[PlayVideo] {gameObject.name} cannot find Script_CameraRayCaster component in parent.");
 
             Assert.IsNotNull(videoClip, $"[PlayVideo] {gameObject.name} video clip has not been assigned.");
             Assert.IsNotNull(MenuCanvasGroup, $"[PlayVideo] {gameObject.name} Start Screen UI Canvas group not assigned.");
