@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Linq;
+﻿using System.Linq;
 using GLEAMoscopeVR.Settings;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -12,13 +10,10 @@ public class FadeAssetController : MonoBehaviour
     [SerializeField]
     bool explorationMode = true;
 
-    [Header("GameObjects [Meshes]")]
-    [SerializeField]
-    GameObject[] meshObjects = null;
-
+    [Header("Exploration")]
     public Renderer[] renderers = { };
 
-    [Header("User Platform")]
+    [Header("Passive")]
     [SerializeField]
     private Renderer platformRenderer = null;
     [SerializeField]
@@ -40,6 +35,13 @@ public class FadeAssetController : MonoBehaviour
         SetAndCheckReferences();
 
         GetRenderers();
+        SetInitialRendererState();
+    }
+
+    private void SetInitialRendererState()//todo replace once persisting mode
+    {
+        platformRenderer.enabled = false;
+        logoRenderer.enabled = false;
     }
 
     private void GetRenderers()
