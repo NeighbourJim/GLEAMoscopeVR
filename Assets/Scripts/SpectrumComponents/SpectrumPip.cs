@@ -46,7 +46,7 @@ namespace GLEAMoscopeVR.Interaction
             return wavelength != _wavelengthController.CurrentWavelength
                    && _modeController.CurrentMode != ExperienceMode.Introduction
                    && _sunsetController.SunsetCompleted
-                   && !_rotator.IsRotating;
+                   && _rotator.CanSetRotationTarget();
         }
 
         void IActivatable.Activate()
