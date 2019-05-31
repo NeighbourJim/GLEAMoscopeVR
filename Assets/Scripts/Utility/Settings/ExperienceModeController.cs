@@ -66,15 +66,15 @@ namespace GLEAMoscopeVR.Settings
             {
                 case ExperienceMode.Exploration:
                     currentMode = ExperienceMode.Passive;
-                    FindObjectOfType<SoundEffects>().Play("Switch");
+                    //FindObjectOfType<SoundEffects>().Play("Switch");
                     break;
                 case ExperienceMode.Passive:
                     currentMode = ExperienceMode.Exploration;
-                    FindObjectOfType<SoundEffects>().Play("Switch");
+                    //FindObjectOfType<SoundEffects>().Play("Switch");
                     break;
                 case ExperienceMode.Introduction:
                     currentMode = ExperienceMode.Introduction;
-                    FindObjectOfType<SoundEffects>().Play("Switch");
+                    //FindObjectOfType<SoundEffects>().Play("Switch");
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(

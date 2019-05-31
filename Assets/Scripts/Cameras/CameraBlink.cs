@@ -1,10 +1,12 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using UnityEngine.Events;
 
 public class CameraBlink : MonoBehaviour
 {
+    private const string soundEffect = "Blink";
+
     [Header("Eyelid Movement")]
     [Tooltip("How many seconds it takes for the eye to close.")]
     public float EyeCloseTime = 0.3f;
@@ -24,7 +26,8 @@ public class CameraBlink : MonoBehaviour
 
     Material fadeMaterial;
     Coroutine currentBlink = null;
-
+    
+    SoundEffects soundEffects = null;
 
     /// <summary>
     /// Get the material on the object to modify.
@@ -32,11 +35,11 @@ public class CameraBlink : MonoBehaviour
     /// </summary>
     private void OnEnable()
     {
+        SetupAudio();
         fadeMaterial = gameObject.GetComponent<Renderer>().material;
         BlinkStart.AddListener(() => ToggleRenderer(true));
         BlinkEnded.AddListener(() => ToggleRenderer(false));
     }
-
 
     /// <summary>
     /// Activates the blink effect using editor set values.
@@ -79,6 +82,9 @@ public class CameraBlink : MonoBehaviour
         float elapsed = 0;
 
         BlinkStart.Invoke();
+
+        soundEffects.Play("Blink");
+
         while (elapsed < EyeCloseTime)
         {
             fadeMaterial.SetFloat("_Transparency", Mathf.Lerp(0f, 1f, (elapsed / EyeCloseTime)));
@@ -111,7 +117,7 @@ public class CameraBlink : MonoBehaviour
         float elapsed = 0;
 
         BlinkStart.Invoke();
-
+       // _audioSource.Play();
         while (elapsed < EyeCloseTime)
         {
             fadeMaterial.SetFloat("_Transparency", Mathf.Lerp(0f, 1f, (elapsed / EyeCloseTime)));
@@ -130,5 +136,11 @@ public class CameraBlink : MonoBehaviour
         }
 
         BlinkEnded.Invoke();
+    }
+
+    private void SetupAudio()
+    {
+        soundEffects = FindObjectOfType<SoundEffects>();
+        Assert.IsNotNull(soundEffects, $"[CameraBlink] cannot find SoundEffects in scene.");
     }
 }

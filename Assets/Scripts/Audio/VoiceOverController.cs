@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using GLEAMoscopeVR.Settings;
 using GLEAMoscopeVR.Utility.Management;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -57,7 +58,7 @@ namespace GLEAMoscopeVR.Audio
         public event Action OnGreetingComplete;         
 
         #region References
-        private AudioSource _audioSource;
+        AudioSource _audioSource;
         StartScreenManager _startManager;
         #endregion
 

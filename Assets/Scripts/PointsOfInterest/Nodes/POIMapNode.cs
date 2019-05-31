@@ -55,13 +55,8 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         public override void Activate()
         {
-            if (!CanActivate())
-            {
-                Debug.LogWarning($"[POIMapNode] {gameObject.name} is trying to activate when it shouldn't be able to.");
-                Debug.Break();
-                return;
-            }
-
+            if (!CanActivate()) return;
+            
             isActivated = true;
             _rotator.SetTargetTransformAndRotate(Data.SkyTransform);
             OnPOINodeActivated?.Invoke(this);
@@ -72,12 +67,7 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         public override void Deactivate()
         {
-            if (!isActivated)
-            {
-                Debug.LogWarning($"[POIMapNode] {gameObject.name} is attempting to deactivate but it is not activated.");
-                Debug.Break();
-                return;
-            }
+            if (!isActivated) return;
 
             isActivated = false;
         }

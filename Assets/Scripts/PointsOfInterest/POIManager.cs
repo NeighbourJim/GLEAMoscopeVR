@@ -143,6 +143,7 @@ namespace GLEAMoscopeVR.POIs
                 {
                     n.gameObject.SetActive(enable);
                     n.gameObject.GetComponentInChildren<MeshRenderer>().enabled = enable;
+                    n.Deactivate();
                 });
         }
 
@@ -192,6 +193,7 @@ namespace GLEAMoscopeVR.POIs
                 {
                     n.gameObject.SetActive(enable);
                     n.gameObject.GetComponentInChildren<MeshRenderer>().enabled = enable;
+                    n.Deactivate();
                 });
         }
 

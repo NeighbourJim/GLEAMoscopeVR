@@ -90,9 +90,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d7394ece6dfbbf4bbf1c93d95f22646, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Increment: 0.066
-  IncrementWait: 0.01
-  SecondsToStayBlack: 0.5
+  EyeCloseTime: 0.3
+  EyeOpenTime: 0.3
+  EyeRemainClosedTime: 0.5
   BlinkStart:
     m_PersistentCalls:
       m_Calls: []
@@ -108,4 +108,3 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  changeRenderQueue: []

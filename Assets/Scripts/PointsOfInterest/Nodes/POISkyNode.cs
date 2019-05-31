@@ -36,13 +36,8 @@ namespace GLEAMoscopeVR.POIs
         /// </summary>
         public override void Activate()
         {
-            if (!CanActivate())
-            {
-                Debug.LogWarning($"[POISkyNode] {gameObject.name} is trying to activate when it shouldn't be able to.");
-                Debug.Break();
-                return;
-            }
-
+            if (!CanActivate()) return;
+            
             isActivated = true;
             OnPOINodeActivated?.Invoke(this);
         }
@@ -50,12 +45,8 @@ namespace GLEAMoscopeVR.POIs
         /// <summary> Invoked by the <see cref="POIManager"/> when another node is activated. </summary>
         public override void Deactivate()
         {
-            if (!isActivated)
-            {
-                Debug.Log($"[POISkyNode] {gameObject.name} is attempting to deactivate but it is not activated.");
-                return;
-            }
-
+            if (!isActivated) return;
+            
             isActivated = false;
         }
         #endregion

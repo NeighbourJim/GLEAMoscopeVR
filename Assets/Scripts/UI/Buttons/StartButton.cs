@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using GLEAMoscopeVR.Menu;
+﻿using GLEAMoscopeVR.Menu;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Video;
@@ -9,8 +8,6 @@ namespace GLEAMoscopeVR.Interaction
     /// <summary> PURPOSE OF SCRIPT GOES HERE </summary>
     public class StartButton : MonoBehaviour, IActivatable
     {
-        private const string soundEffect = "Start";
-
         [SerializeField] private float activationTime = 2f;
         [SerializeField] private bool canActivate = false;
 
@@ -26,11 +23,6 @@ namespace GLEAMoscopeVR.Interaction
         #endregion
 
         #region Unity Methods
-
-        void Awake()
-        {
-            
-        }
 
         void Start()
         {
@@ -53,7 +45,6 @@ namespace GLEAMoscopeVR.Interaction
         void IActivatable.Activate()
         {
             _startManager.StartTeleport();
-            _soundEffects.Play(soundEffect);
         }
 
         void IActivatable.Deactivate(){}
@@ -68,14 +59,10 @@ namespace GLEAMoscopeVR.Interaction
             _videoPlayer = FindObjectOfType<PlayVideo>().GetComponent<VideoPlayer>();
             Assert.IsNotNull(_videoPlayer, $"[StartButton] {gameObject.name} cannot find VideoPlayer component on PlayVideo script game object.");
             
-            _soundEffects = FindObjectOfType<SoundEffects>();
-            Assert.IsNotNull(_soundEffects, $"[StartButton] {gameObject.name} cannot find SoundEffects in the scene.");
-
             _startManager = FindObjectOfType<StartScreenManager>();
             Assert.IsNotNull(_startManager, $"[StartButton] {gameObject.name} cannot find StartScreenManager in the scene.");
         }
 
-        
         #endregion
     }
 }
