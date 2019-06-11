@@ -561,5 +561,27 @@ namespace GLEAMoscopeVR.RaycastingSystem
                 }
             }
         }
+
+        #region Hit Object Getters - CP 11/06/2019
+        public GameObject GetCurrentCentreHit()
+        {
+            return currentCentreHitObject;
+        }
+
+        public GameObject GetLastCentreHit()
+        {
+            return lastCentreHitObject;
+        }
+
+        public GameObject GetCurrentProximityHit()
+        {
+            return currentProxHitObject;
+        }
+
+        public GameObject GetLastProximityHit()
+        {
+            return lastProxHitObject;
+        }
+        #endregion
     }
 }

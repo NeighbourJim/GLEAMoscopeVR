@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_CentaurusA
   m_EditorClassIdentifier: 
-  ID: 3962
+  ID: 14448
   Name: Centaurus A
   ShortDescription: "Centaurus A is a galaxy more than 11 million light-years away.
     The two jets erupting from the supermassive black hole at the centre of the galaxy
@@ -28,5 +28,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: e972bd7fcd678a043be4e49771ec3607, type: 3}
   SkyTransform: {fileID: 78088650328451787, guid: e6ef557b0fe960d4597404902efc40a2,
     type: 3}
+  XOffset: 0
+  YOffset: 50
+  ZOffset: 0
   VoiceoverMale: {fileID: 8300000, guid: 0cc1a0a193f4d25429f105a15135ef4a, type: 3}
   VoiceoverFemale: {fileID: 8300000, guid: 0dbc858466a938f41a8568eef4cdcb66, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_LargeMagCloud
   m_EditorClassIdentifier: 
-  ID: 4298
+  ID: 14360
   Name: Large Magellanic Cloud
   ShortDescription: "The Large Magellanic Cloud is a dwarf galaxy orbiting around
     our own Milky Way. The LMC is one of the closest galaxies to us, and contains
@@ -27,5 +27,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9fd331ea781d6c142a16fdc84c132d1c, type: 3}
   SkyTransform: {fileID: 7419252101298141449, guid: 6e28495a5f9f6854a82019a753e33ff2,
     type: 3}
+  XOffset: 60
+  YOffset: 70
+  ZOffset: -53
   VoiceoverMale: {fileID: 8300000, guid: 02e004a58f1561541bd0a334de5efeab, type: 3}
   VoiceoverFemale: {fileID: 8300000, guid: 47f7bbb9edb16e948b55bb0768ef4194, type: 3}

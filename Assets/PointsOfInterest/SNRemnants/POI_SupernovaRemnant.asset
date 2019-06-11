@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_SupernovaRemnant
   m_EditorClassIdentifier: 
-  ID: 3722
+  ID: 14424
   Name: Supernova Remnant
   ShortDescription: "When a large star dies it erupts as a supernova explosion. Brighter
     than all the other stars in its galaxy, a supernova is so powerful it can be seen
@@ -29,5 +29,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4ec204a0ccfbb4e4ea7ca337bb85f0cb, type: 3}
   SkyTransform: {fileID: 8799717085090900104, guid: 49c43d16da8f8024882b769742a97267,
     type: 3}
+  XOffset: 0
+  YOffset: 60
+  ZOffset: 0
   VoiceoverMale: {fileID: 8300000, guid: 4aeb1756ecce81445b7d1fc6c337630b, type: 3}
   VoiceoverFemale: {fileID: 8300000, guid: ac6531c53d0859c4d9cf98524780884a, type: 3}

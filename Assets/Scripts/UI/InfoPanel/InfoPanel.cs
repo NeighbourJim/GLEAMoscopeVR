@@ -24,12 +24,16 @@ namespace GLEAMoscopeVR.POIs
         [Tooltip("Distance text object.")]
         protected TextMeshProUGUI distanceText;
         [SerializeField]
+        [Tooltip("Sprite Wavelength text object.")]
+        protected TextMeshProUGUI wavelengthText;
+        [SerializeField]
         [Tooltip("Description text object.")]
         protected TextMeshProUGUI descriptionText;
         [SerializeField]
         [Tooltip("Point of Interest Image object.")]
         protected Image poiImage;
         protected POIObject currentPOI;
+
         
         [Tooltip("Current POI Sprite Index")]
         protected Wavelengths currentSpriteWavelength;
@@ -65,7 +69,7 @@ namespace GLEAMoscopeVR.POIs
             distanceText.text = $"Distance: {currentPOI.Distance}";
             descriptionText.text = currentPOI.Description;
 
-            UpdateSprite(WavelengthStateController.Instance.CurrentWavelength);//currentSpriteWavelength);
+            UpdateSprite(WavelengthStateController.Instance.CurrentWavelength);//currentSpriteWavelength);            
             SetCanvasGroupState(true);
         }
 
@@ -109,6 +113,18 @@ namespace GLEAMoscopeVR.POIs
             if (currentPOI != null)
             {
                 poiImage.sprite = currentPOI.Name == antennaPOIName ? currentPOI.Sprites[0] : currentPOI.Sprites[(int) wavelength];
+                switch(wavelength)
+                {
+                    case Wavelengths.XRay:
+                        wavelengthText.text = "X-Ray";
+                        break;
+                    case Wavelengths.Infrared:
+                        wavelengthText.text = "Far-Infrared";
+                        break;
+                    default:
+                        wavelengthText.text = wavelength.ToString();
+                        break;
+                }
             }
             else
             {

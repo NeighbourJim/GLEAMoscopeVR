@@ -44,5 +44,10 @@ namespace GLEAMoscopeVR.POIs
             UpdateDisplay(point);
             SetLocation(targetTransform, xOffset, yOffset, zOffset);
         }
+
+        public void HideToolTip()
+        {
+            SetCanvasGroupState(false);
+        }
     }
 }
