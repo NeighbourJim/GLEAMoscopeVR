@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2104137198150015289}
   - component: {fileID: 2104137198150015290}
   - component: {fileID: 6866761399353424402}
+  - component: {fileID: 8306232458943404337}
   m_Layer: 0
   m_Name: Node
   m_TagString: Untagged
@@ -76,6 +77,23 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.03}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8306232458943404337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104137198150015295}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0929c89833901b045976859a9344b454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _subtitleDisplayer: {fileID: 0}
+  startDelay: 0
+  subtitle: []
+  delayLengthF: []
+  delayLengthM: []
 --- !u!1 &6262091338492137212
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,6 +208,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2104137198150015288}
     m_Modifications:
+    - target: {fileID: 335279071, guid: 54cf6618401a1744f97263a0a5c30d8c, type: 3}
+      propertyPath: m_Name
+      value: NodeRenderer_Animated
+      objectReference: {fileID: 0}
     - target: {fileID: 335279075, guid: 54cf6618401a1744f97263a0a5c30d8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -233,10 +255,6 @@ PrefabInstance:
     - target: {fileID: 335279075, guid: 54cf6618401a1744f97263a0a5c30d8c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 335279071, guid: 54cf6618401a1744f97263a0a5c30d8c, type: 3}
-      propertyPath: m_Name
-      value: NodeRenderer_Animated
       objectReference: {fileID: 0}
     - target: {fileID: 335279073, guid: 54cf6618401a1744f97263a0a5c30d8c, type: 3}
       propertyPath: m_Enabled

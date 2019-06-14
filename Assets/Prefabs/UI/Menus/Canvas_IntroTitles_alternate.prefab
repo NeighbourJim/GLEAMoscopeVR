@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 7793124476078991231}
   - component: {fileID: 7793124476078991229}
   - component: {fileID: 7793124476078991225}
+  - component: {fileID: 1507284742314099002}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -464,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.5801887, g: 0.91969275, b: 1, a: 0.60784316}
+  m_Color: {r: 0.5801887, g: 0.91969275, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -507,6 +508,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activationTime: 2
   canActivate: 0
+--- !u!114 &1507284742314099002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7793124476078991218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0929c89833901b045976859a9344b454, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  subtitle:
+  - 
+  - Already the site of the Australian SKA Pathfinder and the Murchison Wide Field
+    Array,
+  - two world-class radio telescopes,
+  - this outback location will soon be the home to the Square Kilometre Array,
+  - or SKA,
+  - "the world\u2019s most sensitive radio telescope. "
+  delayLengthM: []
+  delayLengthF: []
 --- !u!1 &7793124476306193020
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,8 +2,10 @@
 using System.Collections;
 using GLEAMoscopeVR.Audio;
 using GLEAMoscopeVR.Settings;
+using GLEAMoscopeVR.SubtitleSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
+
 
 namespace GLEAMoscopeVR.POIs
 {
@@ -38,6 +40,7 @@ namespace GLEAMoscopeVR.POIs
         Renderer _nodeRenderer;
         SunsetController _sunsetController;
         VoiceOverController _voiceController;
+        Subtitle _subtitle;
         #endregion
 
 
@@ -74,6 +77,7 @@ namespace GLEAMoscopeVR.POIs
             _animator.SetTrigger(idleAnimation);
             OnPOINodeActivated?.Invoke(this);
             StartCoroutine(WaitUntilSunsetComplete());
+            _subtitle.SendSubtitle();
         }
 
         public override void Deactivate()
@@ -101,10 +105,12 @@ namespace GLEAMoscopeVR.POIs
             _animator = GetComponentInChildren<Animator>();
             _nodeRenderer = GetComponentInChildren<Renderer>();
             _sunsetController = FindObjectOfType<SunsetController>();
+            _subtitle = gameObject.GetComponent<Subtitle>();
 
             Assert.IsNotNull(_animator, $"[POIAntennaNode] {gameObject.name} can't find Animator component not found in children.");
             Assert.IsNotNull(_nodeRenderer, $"[POIAntennaNode] {gameObject.name} can't find Mesh Renderer component not found in children.");
             Assert.IsNotNull(_sunsetController, $"[POIAntennaNode] {gameObject.name} can't find SunsetController in scene.");
+            Assert.IsNotNull(_subtitle, $"[StartButton] {gameObject.name} cannot find Subtitle component on POI script game object.");
 
             VoiceOverController.Instance.OnGreetingComplete += SetActivatable;
         }

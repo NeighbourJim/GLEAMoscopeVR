@@ -1,4 +1,5 @@
 ﻿using GLEAMoscopeVR.Menu;
+using GLEAMoscopeVR.SubtitleSystem;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Video;
@@ -20,6 +21,7 @@ namespace GLEAMoscopeVR.Interaction
         VideoPlayer _videoPlayer;
         StartScreenManager _startManager;
         SoundEffects _soundEffects;
+        Subtitle _subtitle;
         #endregion
 
         #region Unity Methods
@@ -45,6 +47,7 @@ namespace GLEAMoscopeVR.Interaction
         void IActivatable.Activate()
         {
             _startManager.StartTeleport();
+            _subtitle.SendSubtitle();
         }
 
         void IActivatable.Deactivate(){}
@@ -61,6 +64,9 @@ namespace GLEAMoscopeVR.Interaction
             
             _startManager = FindObjectOfType<StartScreenManager>();
             Assert.IsNotNull(_startManager, $"[StartButton] {gameObject.name} cannot find StartScreenManager in the scene.");
+
+            _subtitle = gameObject.GetComponent<Subtitle>();
+            Assert.IsNotNull(_subtitle, $"[StartButton] {gameObject.name} cannot find Subtitle component on StartButton script game object.");
         }
 
         #endregion

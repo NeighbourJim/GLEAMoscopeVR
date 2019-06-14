@@ -172,6 +172,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1814272661808081492}
     m_Modifications:
+    - target: {fileID: 1507284742314099002, guid: 34cb993755a92ca42b46f4e9083d54b1,
+        type: 3}
+      propertyPath: subtitle.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507284742314099002, guid: 34cb993755a92ca42b46f4e9083d54b1,
+        type: 3}
+      propertyPath: delayLengthM.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507284742314099002, guid: 34cb993755a92ca42b46f4e9083d54b1,
+        type: 3}
+      propertyPath: delayLengthF.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1507284742314099002, guid: 34cb993755a92ca42b46f4e9083d54b1,
+        type: 3}
+      propertyPath: subtitle.Array.data[0]
+      value: Welcome to GLEAMoscope VR.
+      objectReference: {fileID: 0}
     - target: {fileID: 7793124475604458949, guid: 34cb993755a92ca42b46f4e9083d54b1,
         type: 3}
       propertyPath: m_Name
