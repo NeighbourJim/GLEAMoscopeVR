@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Linq;
 using GLEAMoscopeVR.Audio;
 using GLEAMoscopeVR.Settings;
 using GLEAMoscopeVR.SubtitleSystem;
@@ -20,6 +21,10 @@ namespace GLEAMoscopeVR.POIs
         private string idleAnimation = "SetIdle";
         #endregion
 
+        [Header("Prompt Components")]
+        [SerializeField]
+        private GameObject promptComponentsParent = null;
+        
         [Header("Debugging"), SerializeField]
         private bool activatable = false;
         private bool isDisabled = false;
@@ -42,12 +47,14 @@ namespace GLEAMoscopeVR.POIs
         VoiceOverController _voiceController;
         Subtitle _subtitle;
         #endregion
-
-
+        
         public void SetActivatable()
         {
             activatable = true;
             _nodeRenderer.enabled = true;
+
+            promptComponentsParent.GetComponentsInChildren<Renderer>().ToList().ForEach(r => r.enabled = true);
+
             _animator.enabled = true;
             _animator.SetTrigger(rotateAnimation);
         }
@@ -75,6 +82,8 @@ namespace GLEAMoscopeVR.POIs
 
             isActivated = true;
             _animator.SetTrigger(idleAnimation);
+            promptComponentsParent.GetComponentsInChildren<Renderer>().ToList().ForEach(r => r.enabled = false);
+            promptComponentsParent.SetActive(false);
             OnPOINodeActivated?.Invoke(this);
             StartCoroutine(WaitUntilSunsetComplete());
             _subtitle.SendSubtitle();
@@ -106,6 +115,8 @@ namespace GLEAMoscopeVR.POIs
             _nodeRenderer = GetComponentInChildren<Renderer>();
             _sunsetController = FindObjectOfType<SunsetController>();
             _subtitle = gameObject.GetComponent<Subtitle>();
+
+            Assert.IsNotNull(promptComponentsParent, $"[POIAntennaNode] Prompt components parent has not been assigned.");
 
             Assert.IsNotNull(_animator, $"[POIAntennaNode] {gameObject.name} can't find Animator component not found in children.");
             Assert.IsNotNull(_nodeRenderer, $"[POIAntennaNode] {gameObject.name} can't find Mesh Renderer component not found in children.");
