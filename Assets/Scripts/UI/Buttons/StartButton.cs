@@ -1,22 +1,21 @@
 ﻿using GLEAMoscopeVR.Menu;
 using GLEAMoscopeVR.SubtitleSystem;
+using GLEAMoscopeVR.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Video;
 
 namespace GLEAMoscopeVR.Interaction
 {
-    /// <summary> PURPOSE OF SCRIPT GOES HERE </summary>
-    public class StartButton : MonoBehaviour, IActivatable
+    public class StartButton : MonoBehaviour, IActivatable, IHideableUI
     {
         [SerializeField] private float activationTime = 2f;
         [SerializeField] private bool canActivate = false;
-
-        float IActivatable.ActivationTime => activationTime;
-
-        bool IActivatable.IsActivated => false;
-
+        
         #region References
+        CanvasGroup _canvasGroup;
+        Collider _collider;
+
         PlayVideo _playVideoScript;
         VideoPlayer _videoPlayer;
         StartScreenManager _startManager;
@@ -24,11 +23,22 @@ namespace GLEAMoscopeVR.Interaction
         Subtitle _subtitle;
         #endregion
 
+        CanvasGroup IHideableUI.CanvasGroup => _canvasGroup;
+        Collider IHideableUI.Collider => _collider;
+
+        float IActivatable.ActivationTime => activationTime;
+        bool IActivatable.IsActivated => false;
+
         #region Unity Methods
+
+        void Awake()
+        {
+            SetAndCheckReferences();
+            SetVisibleAndInteractableState(false);
+        }
 
         void Start()
         {
-            SetAndCheckReferences();
             _playVideoScript.OnVideoFinished += HandleVideoFinished;
         }
 
@@ -37,6 +47,7 @@ namespace GLEAMoscopeVR.Interaction
         private void HandleVideoFinished()
         {
             canActivate = true;
+            SetVisibleAndInteractableState(true);
         }
 
         bool IActivatable.CanActivate()
@@ -48,14 +59,27 @@ namespace GLEAMoscopeVR.Interaction
         {
             _startManager.StartTeleport();
             _subtitle.SendSubtitle();
+            SetVisibleAndInteractableState(false);
+            _canvasGroup.gameObject.GetComponent<SmoothRotate>().enabled = false;
         }
 
         void IActivatable.Deactivate(){}
 
+        public void SetVisibleAndInteractableState(bool visible)
+        {
+            _canvasGroup.alpha = visible ? 1 : 0;
+            _collider.enabled = visible;
+        }
 
         #region Debugging
         private void SetAndCheckReferences()
         {
+            _canvasGroup = GetComponentInParent<CanvasGroup>();
+            Assert.IsNotNull(_canvasGroup, $"<b>[StartButton]</b> has no Canvas Group component in parent.");
+
+            _collider = GetComponentInParent<Collider>();
+            Assert.IsNotNull(_collider, $"<b>[StartButton]</b> has no collider component.");
+
             _playVideoScript = FindObjectOfType<PlayVideo>();
             Assert.IsNotNull(_playVideoScript, $"[StartButton] {gameObject.name} cannot find PlayVideo script in scene.");
 
@@ -68,7 +92,6 @@ namespace GLEAMoscopeVR.Interaction
             _subtitle = gameObject.GetComponent<Subtitle>();
             Assert.IsNotNull(_subtitle, $"[StartButton] {gameObject.name} cannot find Subtitle component on StartButton script game object.");
         }
-
         #endregion
     }
 }
