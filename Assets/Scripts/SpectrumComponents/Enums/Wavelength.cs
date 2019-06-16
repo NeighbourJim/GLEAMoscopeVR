@@ -2,7 +2,7 @@
 
 namespace GLEAMoscopeVR.Spectrum
 {
-    public enum Wavelengths
+    public enum Wavelength
     {
         [Description("Gamma Ray")] Gamma,
         [Description("X-Ray")] XRay,

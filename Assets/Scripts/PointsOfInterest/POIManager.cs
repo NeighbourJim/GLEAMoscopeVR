@@ -179,14 +179,14 @@ namespace GLEAMoscopeVR.POIs
         }
 
         /// <summary>
-        /// Iterates over <see cref="skyNodes"/> and enables / disables the mesh renderer and game object based on the current <see cref="Wavelengths"/> and <see cref="ExperienceMode"/>.
-        /// Sky nodes should only be set active when in <see cref="ExperienceMode.Exploration"/> and wavelength is <see cref="Wavelengths.Visible"/> or <see cref="Wavelengths.Radio"/>.
+        /// Iterates over <see cref="skyNodes"/> and enables / disables the mesh renderer and game object based on the current <see cref="Wavelength"/> and <see cref="ExperienceMode"/>.
+        /// Sky nodes should only be set active when in <see cref="ExperienceMode.Exploration"/> and wavelength is <see cref="Wavelength.Visible"/> or <see cref="Wavelength.Radio"/>.
         /// </summary>
         private void SetSkyNodeStates()
         {
             var wavelength = WavelengthStateController.Instance.CurrentWavelength;
             var mode = _modeController.CurrentMode;
-            var enable = (wavelength == Wavelengths.Radio || wavelength == Wavelengths.Visible) && mode == ExperienceMode.Exploration;
+            var enable = (wavelength == Wavelength.Radio || wavelength == Wavelength.Visible) && mode == ExperienceMode.Exploration;
 
             skyNodes
                 .ForEach(n =>

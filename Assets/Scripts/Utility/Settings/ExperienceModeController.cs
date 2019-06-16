@@ -113,8 +113,8 @@ namespace GLEAMoscopeVR.Settings
 
         private void ResetInfoPanels()
         {
-            SkyPanel.SetCanvasGroupState(false);
-            WarTablePanel.SetCanvasGroupState(false);
+            SkyPanel.SetCanvasGroupAndColliderState(false);
+            WarTablePanel.SetCanvasGroupAndColliderState(false);
         }
 
         private void LazySingleton()

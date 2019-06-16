@@ -13,7 +13,7 @@ namespace GLEAMoscopeVR.Interaction
         private const string soundEffectClip = "WaveLengthJump";
 
         [SerializeField]
-        private Wavelengths wavelength;
+        private Wavelength wavelength;
         public int WavelengthIndex => (int) wavelength;
 
         [SerializeField]

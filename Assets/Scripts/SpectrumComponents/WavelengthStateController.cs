@@ -52,8 +52,8 @@ namespace GLEAMoscopeVR.Spectrum
         /// State variable holding which wavelength is currently enabled - Defaults to Wavelengths.Visible
         /// </summary>
         [SerializeField]
-        Wavelengths currentWavelength = Wavelengths.Visible;
-        public Wavelengths CurrentWavelength => currentWavelength;
+        Wavelength currentWavelength = Wavelength.Visible;
+        public Wavelength CurrentWavelength => currentWavelength;
         
         #endregion
 
@@ -101,7 +101,7 @@ namespace GLEAMoscopeVR.Spectrum
         public void StateForward()
         {
             Debug.Log("Forward!");
-            if (!fadingUp && !fadingDown && currentWavelength != Wavelengths.Radio)
+            if (!fadingUp && !fadingDown && currentWavelength != Wavelength.Radio)
             {
                 ChangeState(currentWavelength + 1);
             }
@@ -114,7 +114,7 @@ namespace GLEAMoscopeVR.Spectrum
         public void StateBackward()
         {
             Debug.Log("Backward!");
-            if (!fadingUp && !fadingDown && currentWavelength != Wavelengths.Gamma)
+            if (!fadingUp && !fadingDown && currentWavelength != Wavelength.Gamma)
             {
                 ChangeState(currentWavelength - 1);
             }
@@ -128,7 +128,7 @@ namespace GLEAMoscopeVR.Spectrum
         {
             if (!fadingUp && !fadingDown && destinationState != (int)currentWavelength)
             {
-                ChangeStateQuick((Wavelengths)destinationState);
+                ChangeStateQuick((Wavelength)destinationState);
             }
         }
 
@@ -143,7 +143,7 @@ namespace GLEAMoscopeVR.Spectrum
         /// Calls FadeSpheres(), AnimateSlider() and UpdateWavelengthLabel()
         /// </summary>
         /// <param name="destinationState">The Wavelengths to transition to.</param>
-        void ChangeState(Wavelengths destinationState)
+        void ChangeState(Wavelength destinationState)
         {
             FadeSpheres(destinationState);
             AnimateSlider(destinationState);
@@ -158,7 +158,7 @@ namespace GLEAMoscopeVR.Spectrum
         /// Selects which wavelength to be fading 'from' based on the direction the user would be moving.
         /// </summary>
         /// <param name="destinationState">The target state to transition to.</param>
-        void ChangeStateQuick(Wavelengths destinationState)
+        void ChangeStateQuick(Wavelength destinationState)
         {
             if (destinationState != currentWavelength)
             {
@@ -176,13 +176,13 @@ namespace GLEAMoscopeVR.Spectrum
         /// Starts the coroutines for fading the sky sphere alpha
         /// </summary>
         /// <param name="state">The state being transitioned towards.</param>
-        void FadeSpheres(Wavelengths state)
+        void FadeSpheres(Wavelength state)
         {
             StartCoroutine(FadeDown(spheres[(int)currentWavelength]));
             StartCoroutine(FadeUp(spheres[(int)state]));
         }
 
-        void FadeSpecificSpheres(Wavelengths fadeUp, Wavelengths fadeDown)
+        void FadeSpecificSpheres(Wavelength fadeUp, Wavelength fadeDown)
         {
             foreach(GameObject sphere in spheres)
             {
@@ -198,7 +198,7 @@ namespace GLEAMoscopeVR.Spectrum
         /// </summary>
         /// <param name="state">The state being transitioned towards.</param>
         /// <param name="isStateQuick">Whether the transition was triggered by activating a Slider Pip (fast activation)</param>
-        void AnimateSlider(Wavelengths state, bool isStateQuick = false)
+        void AnimateSlider(Wavelength state, bool isStateQuick = false)
         {
             if (isStateQuick)
             {
@@ -309,7 +309,7 @@ namespace GLEAMoscopeVR.Spectrum
         /// Updates the label showing the current wavelength.
         /// </summary>
         /// <param name="state">The state being transitioned towards.</param>
-        void UpdateWavelengthLabel(Wavelengths state)
+        void UpdateWavelengthLabel(Wavelength state)
         {
             wavelengthLabel.text = state.GetDescription();
         }
