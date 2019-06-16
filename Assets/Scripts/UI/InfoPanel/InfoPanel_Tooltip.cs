@@ -36,18 +36,13 @@ namespace GLEAMoscopeVR.POIs
         public void CreateToolTip(POIObject point, Transform targetTransform, float xOffset, float yOffset, float zOffset)
         {
             #region Assertion
-            currentSpriteWavelength = WavelengthStateController.Instance.CurrentWavelength;
-            Assert.IsTrue(currentSpriteWavelength == Wavelengths.Visible || currentSpriteWavelength == Wavelengths.Radio, 
+            CurrentSpriteWavelength = WavelengthStateController.Instance.CurrentWavelength;
+            Assert.IsTrue(CurrentSpriteWavelength == Wavelength.Visible || CurrentSpriteWavelength == Wavelength.Radio, 
                 $"{gameObject.name} attempting to display sky POI data when wavelength is not Visible or Radio.");
             #endregion
             
             UpdateDisplay(point);
             SetLocation(targetTransform, xOffset, yOffset, zOffset);
-        }
-
-        public void HideToolTip()
-        {
-            SetCanvasGroupState(false);
         }
     }
 }

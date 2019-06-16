@@ -39,7 +39,7 @@ namespace GLEAMoscopeVR.Interaction
         {
             if (this is IActivatable activatable && activatable.CanActivate())
             {
-                _infoPanel.HideToolTip();
+                _infoPanel.SetCanvasGroupAndColliderState(false);
             }
         }
 

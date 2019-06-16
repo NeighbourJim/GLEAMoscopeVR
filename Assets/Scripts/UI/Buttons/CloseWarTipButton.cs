@@ -40,7 +40,7 @@ namespace GLEAMoscopeVR.Interaction
             if (this is IActivatable activatable && activatable.CanActivate())
             {
                 //DC 20190614
-                _infoPanel.SetCanvasGroupState(false);
+                _infoPanel.SetCanvasGroupAndColliderState(false);
             }
         }
 

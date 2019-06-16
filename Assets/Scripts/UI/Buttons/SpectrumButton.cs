@@ -51,7 +51,7 @@ namespace GLEAMoscopeVR.Interaction
         private bool CanMoveInDirection()
         {
             var canMove = false;
-            var stateCount = Enum.GetValues(typeof(Wavelengths)).Length;
+            var stateCount = Enum.GetValues(typeof(Wavelength)).Length;
 
             switch (direction)
             {

@@ -1,5 +1,7 @@
-﻿using GLEAMoscopeVR.Settings;
+﻿using System.Linq;
+using GLEAMoscopeVR.Settings;
 using GLEAMoscopeVR.Spectrum;
+using GLEAMoscopeVR.Utility.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -36,7 +38,7 @@ namespace GLEAMoscopeVR.POIs
 
         
         [Tooltip("Current POI Sprite Index")]
-        protected Wavelengths currentSpriteWavelength;
+        protected Wavelength CurrentSpriteWavelength;
         protected bool canCycleSprites = false;
         public bool CanCycleSprites => canCycleSprites;
 
@@ -49,7 +51,7 @@ namespace GLEAMoscopeVR.POIs
         protected virtual void Awake()
         {
             SetAndCheckReferences();
-            SetCanvasGroupState(false);
+            SetCanvasGroupAndColliderState(false);
         }
 
         
@@ -70,23 +72,23 @@ namespace GLEAMoscopeVR.POIs
             descriptionText.text = currentPOI.Description;
 
             UpdateSprite(WavelengthStateController.Instance.CurrentWavelength);//currentSpriteWavelength);            
-            SetCanvasGroupState(true);
+            SetCanvasGroupAndColliderState(true);
         }
 
         public void CycleSpriteRight()
         {
             if(canCycleSprites)
             {
-                if (currentSpriteWavelength != Wavelengths.Radio)
+                if (CurrentSpriteWavelength != Wavelength.Radio)
                 {
-                    currentSpriteWavelength++;
+                    CurrentSpriteWavelength++;
                 }
                 else
                 {
-                    currentSpriteWavelength = Wavelengths.Gamma;
+                    CurrentSpriteWavelength = Wavelength.Gamma;
                 }
 
-                UpdateSprite(currentSpriteWavelength);
+                UpdateSprite(CurrentSpriteWavelength);
             }
         }
 
@@ -94,41 +96,35 @@ namespace GLEAMoscopeVR.POIs
         {
             if(canCycleSprites)
             {
-                if (currentSpriteWavelength != Wavelengths.Gamma)
+                if (CurrentSpriteWavelength != Wavelength.Gamma)
                 {
-                    currentSpriteWavelength--;
+                    CurrentSpriteWavelength--;
                 }
                 else
                 {
-                    currentSpriteWavelength = Wavelengths.Radio;
+                    CurrentSpriteWavelength = Wavelength.Radio;
                 }
 
-                UpdateSprite(currentSpriteWavelength);
+                UpdateSprite(CurrentSpriteWavelength);
             }
         }
         
 
-        protected void UpdateSprite(Wavelengths wavelength)
+        protected void UpdateSprite(Wavelength wavelength)
         {
+            Assert.IsNotNull(currentPOI, $"<b>[InfoPanel]</b> {gameObject.name} trying to update the sprite for a POI but the POI reference is null.");
             if (currentPOI != null)
             {
-                poiImage.sprite = currentPOI.Name == antennaPOIName ? currentPOI.Sprites[0] : currentPOI.Sprites[(int) wavelength];
-                switch(wavelength)
+                if (currentPOI.Name != antennaPOIName)
                 {
-                    case Wavelengths.XRay:
-                        wavelengthText.text = "X-Ray";
-                        break;
-                    case Wavelengths.Infrared:
-                        wavelengthText.text = "Far-Infrared";
-                        break;
-                    default:
-                        wavelengthText.text = wavelength.ToString();
-                        break;
+                    poiImage.sprite = currentPOI.Sprites[(int) wavelength];
+                    wavelengthText.text = wavelength.GetDescription();
                 }
-            }
-            else
-            {
-                Debug.LogError("The point of interest is not set for this info panel! This should never happen.");
+                else
+                {
+                    poiImage.sprite = currentPOI.Sprites[0];
+                    wavelengthText.text = string.Empty;
+                }
             }
         }
 
@@ -138,11 +134,15 @@ namespace GLEAMoscopeVR.POIs
         /// <param name="visible">Whether the panel should be visible or not.</param>
         /// <param name="interactable">Determines if this component will accept input. When it is set to false interaction is disabled.</param>
         /// <param name="blocksRaycast">Determines whether the panel should act as a collider for raycasts.</param>
-        public virtual void SetCanvasGroupState(bool visible, bool interactable = false, bool blocksRaycast = false)
+        public virtual void SetCanvasGroupAndColliderState(bool visible, bool interactable = false, bool blocksRaycast = false)
         {
             _canvasGroup.alpha = visible ? 1f : 0f;
             _canvasGroup.interactable = interactable;
             _canvasGroup.blocksRaycasts = blocksRaycast;
+
+            gameObject.GetComponentsInChildren<Collider>()
+                .ToList()
+                .ForEach(c => c.enabled = visible);
         }
 
         protected virtual void SetAndCheckReferences()
