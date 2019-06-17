@@ -1,6 +1,5 @@
 ﻿using GLEAMoscopeVR.Menu;
 using GLEAMoscopeVR.SubtitleSystem;
-using GLEAMoscopeVR.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.Video;

@@ -1,6 +1,5 @@
 ﻿using GLEAMoscopeVR.Audio;
 using GLEAMoscopeVR.Settings;
-using GLEAMoscopeVR.UI;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -42,10 +41,10 @@ namespace GLEAMoscopeVR.Interaction
 
         void IActivatable.Activate()
         {
-            var voiceSetting = FindObjectOfType<SettingsManager>().UserSettings.VoiceSetting;
-            var clip = voiceSetting == VoiceoverSetting.Female ? RadioAudioClipFemale : RadioAudioClipMale;
+            //var voiceSetting = FindObjectOfType<SettingsManager>().UserSettings.VoiceSetting;
+            //var clip = voiceSetting == VoiceoverSetting.Female ? RadioAudioClipFemale : RadioAudioClipMale;
 
-            FindObjectOfType<VoiceOverController>().RequestClipPlay(clip);
+            //FindObjectOfType<VoiceOverController>().RequestClipPlay(clip);
         }
 
         void IActivatable.Deactivate() {}
