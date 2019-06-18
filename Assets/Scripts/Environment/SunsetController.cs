@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class SunsetController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class SunsetController : MonoBehaviour
     [SerializeField] private int sunRotationXEnd = 180;
     [SerializeField] private int moonRotationXStart = 40;
     [SerializeField] private int moonRotationXEnd = 90;
+    public UnityEvent SunIsSetting;
     private Color sunColorStart;
     private Material sphereMaterial;
     private Color sunColorCurrent;
@@ -35,7 +37,6 @@ public class SunsetController : MonoBehaviour
     private bool sunHasSet;
     private bool cycleHasCompleted;
     public bool SunsetCompleted => cycleHasCompleted;
-    
 
     private void Start()
     {
@@ -66,6 +67,7 @@ public class SunsetController : MonoBehaviour
     public void StartSunset()
     {
         StartCoroutine(FadeExposure(exposureStart, exposureEnd));
+        SunIsSetting.Invoke();
     }
 
     private void Update()
@@ -141,8 +143,6 @@ public class SunsetController : MonoBehaviour
             cycleHasCompleted = true;
         }
     }
-
-
 
     private void ZeroSpectrumTransparency()
     {
