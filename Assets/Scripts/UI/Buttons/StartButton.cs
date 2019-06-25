@@ -59,6 +59,7 @@ namespace GLEAMoscopeVR.Interaction
             _startManager.StartTeleport();
             _subtitle.SendSubtitle();
             SetVisibleAndInteractableState(false);
+            canActivate = false;
             _canvasGroup.gameObject.GetComponent<SmoothRotate>().enabled = false;
         }
 

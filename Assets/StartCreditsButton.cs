@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class StartBackButton : MonoBehaviour, IActivatable, IHideableUI
+public class StartCreditsButton : MonoBehaviour, IActivatable, IHideableUI
 {
     [SerializeField] private float activationTime = 2f;
     [SerializeField] private bool canActivate = false;
@@ -47,11 +47,8 @@ public class StartBackButton : MonoBehaviour, IActivatable, IHideableUI
 
     void IActivatable.Activate()
     {
-        if(_creditsController != null)
-        {
-            _creditsController.StopCredits();
-        }
-        _startManager.ShowMainCanvas();
+        _startManager.ShowCreditsCanvas();
+        _creditsController.StartCredits();
     }
 
     void IActivatable.Deactivate() { }
@@ -67,16 +64,16 @@ public class StartBackButton : MonoBehaviour, IActivatable, IHideableUI
     private void SetAndCheckReferences()
     {
         _canvasGroup = GetComponentInParent<CanvasGroup>();
-        Assert.IsNotNull(_canvasGroup, $"<b>[BackButton]</b> has no Canvas Group component in parent.");
+        Assert.IsNotNull(_canvasGroup, $"<b>[CreditsButton]</b> has no Canvas Group component in parent.");
 
         _collider = GetComponent<Collider>();
-        Assert.IsNotNull(_collider, $"<b>[BackButton]</b> has no collider component.");
+        Assert.IsNotNull(_collider, $"<b>[CreditsButton]</b> has no collider component.");
 
         _startManager = FindObjectOfType<StartScreenManager>();
-        Assert.IsNotNull(_startManager, $"[BackButton] {gameObject.name} cannot find StartScreenManager in the scene.");
+        Assert.IsNotNull(_startManager, $"[CreditsButton] {gameObject.name} cannot find StartScreenManager in the scene.");
 
-        _creditsController = GetComponentInParent<CreditsController>();
-        // This is allowed to be null as this script is used across both the settings and the credits canvases
+        _creditsController = FindObjectOfType<CreditsController>();
+        Assert.IsNotNull(_startManager, $"[CreditsButton] {gameObject.name} cannot find StartScreenManager in the scene.");
     }
     #endregion
 }

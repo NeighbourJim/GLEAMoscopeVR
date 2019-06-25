@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3128992866966419541}
   - component: {fileID: 7049591738591103765}
   - component: {fileID: 3942753727410073139}
+  - component: {fileID: 5165014844027434907}
   m_Layer: 5
   m_Name: Settings Button
   m_TagString: Untagged
@@ -89,6 +90,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 175, y: 40, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5165014844027434907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 720971025093326624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcd5fe2a708ec2d4588af61a1a1705f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activationTime: 2
+  canActivate: 1
 --- !u!1 &1669827429136003256
 GameObject:
   m_ObjectHideFlags: 0
@@ -1078,6 +1093,7 @@ GameObject:
   - component: {fileID: 5300988261554819820}
   - component: {fileID: 2546751423554684834}
   - component: {fileID: 7082248638398674891}
+  - component: {fileID: 4868196316462929922}
   m_Layer: 5
   m_Name: Credits Button
   m_TagString: Untagged
@@ -1155,6 +1171,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 175, y: 40, z: 1.5}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4868196316462929922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791282958583358281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 840b83feb4b0e534a880ee0cbbaa4efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  activationTime: 2
+  canActivate: 1
 --- !u!1001 &7793124474937034226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1162,6 +1192,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7793124476306193021}
     m_Modifications:
+    - target: {fileID: 3980535095402421513, guid: 4776c8544c7bf7f4bb0773dd7be765f8,
+        type: 3}
+      propertyPath: m_Name
+      value: JVPartners Logos
+      objectReference: {fileID: 0}
     - target: {fileID: 3980535095402421518, guid: 4776c8544c7bf7f4bb0773dd7be765f8,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1266,11 +1301,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3980535095402421513, guid: 4776c8544c7bf7f4bb0773dd7be765f8,
-        type: 3}
-      propertyPath: m_Name
-      value: JVPartners Logos
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4776c8544c7bf7f4bb0773dd7be765f8, type: 3}

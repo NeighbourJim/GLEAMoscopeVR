@@ -11,7 +11,7 @@ public class StartScreenManager : MonoBehaviour
 
     public CanvasGroup StartCanvas = null;
     public CanvasGroup SettingsCanvas = null;
-    //public CanvasGroup CreditsCanvas = null;
+    public CanvasGroup CreditsCanvas = null;
 
     public UnityEvent startFinished;
 
@@ -45,7 +45,7 @@ public class StartScreenManager : MonoBehaviour
         Debug.Log("Show no canvas.");
         ShowMenuCanvasGroup(StartCanvas, false);
         ShowMenuCanvasGroup(SettingsCanvas, false);
-        //ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(CreditsCanvas, false);
     }
 
     public void ShowMainCanvas()
@@ -53,7 +53,7 @@ public class StartScreenManager : MonoBehaviour
         Debug.Log("Show main canvas.");
         ShowMenuCanvasGroup(StartCanvas, true);
         ShowMenuCanvasGroup(SettingsCanvas, false);
-        //ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(CreditsCanvas, false);
     }
 
     public void ShowSettingsCanvas()
@@ -61,14 +61,14 @@ public class StartScreenManager : MonoBehaviour
         Debug.Log("Show settings canvas.");
         ShowMenuCanvasGroup(StartCanvas, false);
         ShowMenuCanvasGroup(SettingsCanvas, true);
-        //ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(CreditsCanvas, false);
     }
 
     public void ShowCreditsCanvas()
     {
         ShowMenuCanvasGroup(StartCanvas, false);
         ShowMenuCanvasGroup(SettingsCanvas, false);
-        //ShowMenuCanvasGroup(CreditsCanvas, true);
+        ShowMenuCanvasGroup(CreditsCanvas, true);
     }
 
     private void ShowMenuCanvasGroup(CanvasGroup cg, bool show)
