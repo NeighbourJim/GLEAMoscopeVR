@@ -17,7 +17,7 @@ namespace GLEAMoscopeVR.Menu
         [SerializeField] private AudioClip audioClip = null;
         [SerializeField] private bool hasSeparateAudio = true;
 
-        public CanvasGroup MenuCanvasGroup;
+        public StartScreenManager startScreenManager;
 
         public event Action OnVideoFinished;
 
@@ -35,7 +35,7 @@ namespace GLEAMoscopeVR.Menu
             SetAndCheckReferences();
             SetVideoPlayerSettings();
             SetAudioSourceSettings();
-            ShowMenuCanvasGroup(false);
+            startScreenManager.ShowNoCanvas();
             StartCoroutine(PlayRoutine());
         }
         #endregion
@@ -76,8 +76,8 @@ namespace GLEAMoscopeVR.Menu
         {
             _rayCastScript.reticleAlpha = _rayCastScript.reticleStartingAlpha;
             _renderer.enabled = false;
+            startScreenManager.ShowMainCanvas();
             gameObject.SetActive(false);
-            ShowMenuCanvasGroup(true);
         }
 
         #endregion
@@ -99,15 +99,6 @@ namespace GLEAMoscopeVR.Menu
             _audioSource.playOnAwake = false;
         }
         #endregion
-
-        #region UI
-        private void ShowMenuCanvasGroup(bool show)
-        {
-            MenuCanvasGroup.alpha = show ? 1 : 0;
-            MenuCanvasGroup.interactable = show;
-            MenuCanvasGroup.blocksRaycasts = show;
-        }
-        #endregion
         
         #region Debugging
 
@@ -126,7 +117,7 @@ namespace GLEAMoscopeVR.Menu
             Assert.IsNotNull(_rayCastScript, $"[PlayVideo] {gameObject.name} cannot find Script_CameraRayCaster component in parent.");
 
             Assert.IsNotNull(videoClip, $"[PlayVideo] {gameObject.name} video clip has not been assigned.");
-            Assert.IsNotNull(MenuCanvasGroup, $"[PlayVideo] {gameObject.name} Start Screen UI Canvas group not assigned.");
+            Assert.IsNotNull(startScreenManager, $"[PlayVideo] {gameObject.name} Start Screen Manager not assigned.");
 
             if(hasSeparateAudio)
             {

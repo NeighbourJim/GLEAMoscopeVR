@@ -33,7 +33,7 @@ namespace GLEAMoscopeVR.Interaction
         void Awake()
         {
             SetAndCheckReferences();
-            SetVisibleAndInteractableState(false);
+            //SetVisibleAndInteractableState(false);
         }
 
         void Start()
@@ -46,7 +46,7 @@ namespace GLEAMoscopeVR.Interaction
         private void HandleVideoFinished()
         {
             canActivate = true;
-            SetVisibleAndInteractableState(true);
+            //SetVisibleAndInteractableState(true);
         }
 
         bool IActivatable.CanActivate()
