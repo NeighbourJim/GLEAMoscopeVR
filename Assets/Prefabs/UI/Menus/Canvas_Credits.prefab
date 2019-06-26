@@ -463,7 +463,7 @@ MonoBehaviour:
   zOffset: 5
   yOffset: 0.5
   rotateSpeed: 0.5
-  tetherRange: 0.5
+  tetherRange: 1
 --- !u!225 &1548065858251439415
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -2879,12 +2879,12 @@ PrefabInstance:
     - target: {fileID: 5828538558647243438, guid: 632fc6ac24c8be6458a2ca80bddd015c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 264.9
+      value: 236.13
       objectReference: {fileID: 0}
     - target: {fileID: 5828538558647243438, guid: 632fc6ac24c8be6458a2ca80bddd015c,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -158.9
+      value: -136.8
       objectReference: {fileID: 0}
     - target: {fileID: 5828538558647243438, guid: 632fc6ac24c8be6458a2ca80bddd015c,
         type: 3}
