@@ -947,7 +947,7 @@ MonoBehaviour:
   zOffset: 5
   yOffset: 0.5
   rotateSpeed: 0.5
-  tetherRange: 1
+  tetherRange: 2
 --- !u!225 &1548065858251439415
 CanvasGroup:
   m_ObjectHideFlags: 0
