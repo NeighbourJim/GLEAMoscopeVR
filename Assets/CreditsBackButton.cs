@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
 
-public class StartBackButton : MonoBehaviour, IActivatable, IHideableUI
+public class CreditsBackButton : MonoBehaviour, IActivatable, IHideableUI
 {
     [SerializeField] private float activationTime = 2f;
     [SerializeField] private bool canActivate = false;
@@ -47,10 +47,7 @@ public class StartBackButton : MonoBehaviour, IActivatable, IHideableUI
 
     void IActivatable.Activate()
     {
-        if(_creditsController != null)
-        {
-            _creditsController.StopCredits();
-        }
+        _creditsController.StopCredits();
         _startManager.ShowMainCanvas();
     }
 
@@ -61,7 +58,7 @@ public class StartBackButton : MonoBehaviour, IActivatable, IHideableUI
         canActivate = visible;
         _canvasGroup.alpha = visible ? 1 : 0;
         _collider.enabled = visible;
-    }
+    }    
 
     #region Debugging
     private void SetAndCheckReferences()
