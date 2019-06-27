@@ -83,10 +83,6 @@ namespace GLEAMoscopeVR.POIs
                 {
                     CurrentSpriteWavelength++;
                 }
-                else
-                {
-                    CurrentSpriteWavelength = Wavelength.Gamma;
-                }
 
                 UpdateSprite(CurrentSpriteWavelength);
             }
@@ -99,10 +95,6 @@ namespace GLEAMoscopeVR.POIs
                 if (CurrentSpriteWavelength != Wavelength.Gamma)
                 {
                     CurrentSpriteWavelength--;
-                }
-                else
-                {
-                    CurrentSpriteWavelength = Wavelength.Radio;
                 }
 
                 UpdateSprite(CurrentSpriteWavelength);
