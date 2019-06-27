@@ -28,6 +28,8 @@ namespace GLEAMoscopeVR.Interaction
         float IActivatable.ActivationTime => activationTime;
         bool IActivatable.IsActivated => false;
 
+        public GameObject _StartArea = null;
+
         #region Unity Methods
 
         void Awake()
@@ -61,6 +63,7 @@ namespace GLEAMoscopeVR.Interaction
             _subtitle.SendSubtitle();
             SetVisibleAndInteractableState(false);
             _canvasGroup.gameObject.GetComponent<SmoothRotate>().enabled = false;
+            Destroy(_StartArea);
         }
 
         void IActivatable.Deactivate(){}
