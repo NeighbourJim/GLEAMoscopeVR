@@ -33,8 +33,8 @@ namespace GLEAMoscopeVR.Settings
 
             filePath = Application.persistentDataPath + fileName;
 
-            //LoadSettings();
             userSettings = new UserSettings();
+            LoadSettings();
         }
 
         void OnApplicationQuit()

@@ -1,11 +1,12 @@
-﻿using GLEAMoscopeVR.Interaction;
-using GLEAMoscopeVR.Settings;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
+using GLEAMoscopeVR.Interaction;
+using GLEAMoscopeVR.Settings;
+using UnityEngine.UI;
 
-public class SettingsBackButton : MonoBehaviour, IActivatable, IHideableUI
+public class StartMenuSubtitleButton : MonoBehaviour, IActivatable, IHideableUI
 {
     [SerializeField] private float activationTime = 2f;
     [SerializeField] private bool canActivate = false;
@@ -14,7 +15,6 @@ public class SettingsBackButton : MonoBehaviour, IActivatable, IHideableUI
     CanvasGroup _canvasGroup;
     Collider _collider;
 
-    StartScreenManager _startManager;
     SettingsManager _settingsManager;
     SoundEffects _soundEffects;
     #endregion
@@ -26,11 +26,14 @@ public class SettingsBackButton : MonoBehaviour, IActivatable, IHideableUI
     float IActivatable.ActivationTime => activationTime;
     bool IActivatable.IsActivated => false;
 
+    [SerializeField] Image checkedImage;
+
     #region Unity Methods
 
     void Awake()
     {
         SetAndCheckReferences();
+        SetCheckedState();
     }
 
     void Start()
@@ -48,8 +51,8 @@ public class SettingsBackButton : MonoBehaviour, IActivatable, IHideableUI
 
     void IActivatable.Activate()
     {
-        _settingsManager.SaveSettings();
-        _startManager.ShowMainCanvas();
+        _settingsManager.SetSubtitleSetting(!_settingsManager.UserSettings.ShowSubtitles);
+        SetCheckedState();
     }
 
     void IActivatable.Deactivate() { }
@@ -59,22 +62,28 @@ public class SettingsBackButton : MonoBehaviour, IActivatable, IHideableUI
         canActivate = visible;
         _canvasGroup.alpha = visible ? 1 : 0;
         _collider.enabled = visible;
-    }    
+    }
+
+    public void SetCheckedState()
+    {
+        checkedImage.enabled = _settingsManager.UserSettings.ShowSubtitles;
+    }
 
     #region Debugging
     private void SetAndCheckReferences()
     {
         _canvasGroup = GetComponentInParent<CanvasGroup>();
-        Assert.IsNotNull(_canvasGroup, $"<b>[SettingsBackButton]</b> has no Canvas Group component in parent.");
+        Assert.IsNotNull(_canvasGroup, $"<b>[StartMenuSubtitleButton]</b> has no Canvas Group component in parent.");
 
         _collider = GetComponent<Collider>();
-        Assert.IsNotNull(_collider, $"<b>[SettingsBackButton]</b> has no collider component.");
-
-        _startManager = FindObjectOfType<StartScreenManager>();
-        Assert.IsNotNull(_startManager, $"[SettingsBackButton] {gameObject.name} cannot find StartScreenManager in the scene.");
+        Assert.IsNotNull(_collider, $"<b>[StartMenuSubtitleButton]</b> has no collider component.");
 
         _settingsManager = FindObjectOfType<SettingsManager>();
-        Assert.IsNotNull(_startManager, $"[SettingsBackButton] {gameObject.name} cannot find SettingsManager in the scene.");
+        Assert.IsNotNull(_settingsManager, $"[StartMenuSubtitleButton] {gameObject.name} cannot find SettingsManager in the scene.");
+
+        Assert.IsNotNull(checkedImage, $"<b>[StartMenuSubtitleButton]</b> checkedImage not set.");
+
     }
     #endregion
+
 }
