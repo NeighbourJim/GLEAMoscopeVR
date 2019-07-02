@@ -7,7 +7,7 @@ using TMPro;
 
 public class SubtitleDisplayer : MonoBehaviour
 {
-    public TextMeshPro SubtitleText;
+    public GameObject SubtitleText;
     [SerializeField] SubtitleData currentSubQueue;
     [SerializeField] bool playing = false;
     
@@ -40,15 +40,15 @@ public class SubtitleDisplayer : MonoBehaviour
         while (SubListCounter < subtitle.subtitle.Count)
         {
             float delay;
-            
-            delay = StateKeeper.Instance.CurrentVoiceoverSetting == VoiceoverSetting.Female ? subtitle.delayLengthF[SubListCounter] : subtitle.delayLengthM[SubListCounter];
-            SubtitleText.text = subtitle.subtitle[SubListCounter];
+            delay = FindObjectOfType<SettingsManager>().UserSettings.VoiceSetting == VoiceoverSetting.Female ? subtitle.delayLengthF[SubListCounter] : subtitle.delayLengthM[SubListCounter];
+            //delay = StateKeeper.Instance.CurrentVoiceoverSetting == VoiceoverSetting.Female ? subtitle.delayLengthF[SubListCounter] : subtitle.delayLengthM[SubListCounter];
+            SubtitleText.GetComponent<TextMeshPro>().text = subtitle.subtitle[SubListCounter];
             SubListCounter++;
             yield return new WaitForSecondsRealtime(delay);
         }
         
         SubListCounter = 0;
-        SubtitleText.text = "";
+        SubtitleText.GetComponent<TextMeshPro>().text = subtitle.subtitle[SubListCounter];
         playing = false;
         currentSubQueue = null;
         yield return new WaitForEndOfFrame();     
