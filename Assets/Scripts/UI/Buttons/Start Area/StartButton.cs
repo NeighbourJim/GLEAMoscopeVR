@@ -19,6 +19,7 @@ namespace GLEAMoscopeVR.Interaction
         VideoPlayer _videoPlayer;
         StartScreenManager _startManager;
         SoundEffects _soundEffects;
+        [SerializeField]
         Subtitle _subtitle;
         #endregion
 
@@ -58,9 +59,12 @@ namespace GLEAMoscopeVR.Interaction
 
         void IActivatable.Activate()
         {
+            if(_subtitle != null)
+            {
+                _subtitle.SendSubtitle();
+            }
             canActivate = false;
             _startManager.StartTeleport();
-            _subtitle.SendSubtitle();
             SetVisibleAndInteractableState(false);
             _canvasGroup.gameObject.GetComponent<SmoothRotate>().enabled = false;
             Destroy(_StartArea);
@@ -91,9 +95,6 @@ namespace GLEAMoscopeVR.Interaction
             
             _startManager = FindObjectOfType<StartScreenManager>();
             Assert.IsNotNull(_startManager, $"[StartButton] {gameObject.name} cannot find StartScreenManager in the scene.");
-
-            _subtitle = gameObject.GetComponent<Subtitle>();
-            Assert.IsNotNull(_subtitle, $"[StartButton] {gameObject.name} cannot find Subtitle component on StartButton script game object.");
         }
         #endregion
     }

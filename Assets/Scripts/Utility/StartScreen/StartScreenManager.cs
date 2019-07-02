@@ -12,6 +12,7 @@ public class StartScreenManager : MonoBehaviour
     public CanvasGroup StartCanvas = null;
     public CanvasGroup SettingsCanvas = null;
     public CanvasGroup CreditsCanvas = null;
+    public CanvasGroup AcknowledgeCanvas = null;
 
     public UnityEvent startFinished;
 
@@ -46,6 +47,7 @@ public class StartScreenManager : MonoBehaviour
         ShowMenuCanvasGroup(StartCanvas, false);
         ShowMenuCanvasGroup(SettingsCanvas, false);
         ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(AcknowledgeCanvas, false);
     }
 
     public void ShowMainCanvas()
@@ -54,6 +56,7 @@ public class StartScreenManager : MonoBehaviour
         ShowMenuCanvasGroup(StartCanvas, true);
         ShowMenuCanvasGroup(SettingsCanvas, false);
         ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(AcknowledgeCanvas, false);
     }
 
     public void ShowSettingsCanvas()
@@ -62,13 +65,25 @@ public class StartScreenManager : MonoBehaviour
         ShowMenuCanvasGroup(StartCanvas, false);
         ShowMenuCanvasGroup(SettingsCanvas, true);
         ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(AcknowledgeCanvas, false);
     }
 
     public void ShowCreditsCanvas()
     {
+        Debug.Log("Show credits canvas.");
         ShowMenuCanvasGroup(StartCanvas, false);
         ShowMenuCanvasGroup(SettingsCanvas, false);
         ShowMenuCanvasGroup(CreditsCanvas, true);
+        ShowMenuCanvasGroup(AcknowledgeCanvas, false);
+    }
+
+    public void ShowAcknowledgeCanvas()
+    {
+        Debug.Log("Show acknowledgements canvas.");
+        ShowMenuCanvasGroup(StartCanvas, false);
+        ShowMenuCanvasGroup(SettingsCanvas, false);
+        ShowMenuCanvasGroup(CreditsCanvas, false);
+        ShowMenuCanvasGroup(AcknowledgeCanvas, true);
     }
 
     private void ShowMenuCanvasGroup(CanvasGroup cg, bool show)
@@ -92,10 +107,11 @@ public class StartScreenManager : MonoBehaviour
     public void TeleportToScene()
     {
         main_camera_parent.transform.position = new Vector3(0, main_camera_parent.transform.position.y, main_camera_parent.transform.position.z);
-        if (startArea != null)
+        if(startArea != null)
         {
             startArea.SetActive(false);
         }
+        
         
         startFinished.Invoke();
 
