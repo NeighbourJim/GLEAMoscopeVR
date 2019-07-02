@@ -30,7 +30,7 @@ namespace GLEAMoscopeVR.SubtitleSystem
 
         public void SendSubtitle()
         {
-            _subtitleDisplayer.SetSubQueue(this);
+            //_subtitleDisplayer.SetSubQueue(this);
         }
     }
 }
