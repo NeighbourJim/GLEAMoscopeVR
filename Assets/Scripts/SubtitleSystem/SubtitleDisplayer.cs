@@ -1,61 +1,56 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using GLEAMoscopeVR;
+using GLEAMoscopeVR.Settings;
 using UnityEngine;
 using GLEAMoscopeVR.SubtitleSystem;
 using TMPro;
 
 public class SubtitleDisplayer : MonoBehaviour
 {
-    [SerializeField]
-    GameObject TextStuff;
-    Subtitle SubQueue = null;
+    public TextMeshPro SubtitleText;
+    [SerializeField] SubtitleData currentSubQueue;
+    [SerializeField] bool playing = false;
+    
+    public bool IsDisplaying => playing;
+
     int SubListCounter = 0;
     Coroutine SubtitleRoutine;
-    [SerializeField]
-    bool IsFemaleVO = false;
+    
 
-    public void SetSubQueue(Subtitle receiveSub)
+    public void SetSubQueue(SubtitleData receiveSub)
     {
-        SubQueue = receiveSub;
+        currentSubQueue = receiveSub;
     }
 
     private void Update()
     {
-        if(SubQueue != null && SubtitleRoutine == null)
+        if (currentSubQueue != null && !playing)
         {
-            SubtitleRoutine = StartCoroutine(DisplaySubtitle(SubQueue));
+            SubtitleRoutine = StartCoroutine(DisplaySubtitle(currentSubQueue));
         }
     }
 
-    IEnumerator DisplaySubtitle(Subtitle Subtitle)
+    IEnumerator DisplaySubtitle(SubtitleData subtitle)
     {
-        yield return new WaitForSecondsRealtime(Subtitle.startDelay);
+        playing = true;
+        SubListCounter = 0;
 
+        yield return new WaitForSecondsRealtime(subtitle.startDelay);
         
-        while (SubListCounter <= Subtitle.subtitle.Count - 1)
+        while (SubListCounter < subtitle.subtitle.Count)
         {
             float delay;
-
-            if (IsFemaleVO)
-            {
-                delay = Subtitle.delayLengthF[SubListCounter];
-            }
-            else
-            {
-                delay = Subtitle.delayLengthM[SubListCounter];
-            }
-
-            TextStuff.GetComponent<TextMeshProUGUI>().text = Subtitle.subtitle[SubListCounter];
+            
+            delay = StateKeeper.Instance.CurrentVoiceoverSetting == VoiceoverSetting.Female ? subtitle.delayLengthF[SubListCounter] : subtitle.delayLengthM[SubListCounter];
+            SubtitleText.text = subtitle.subtitle[SubListCounter];
             SubListCounter++;
             yield return new WaitForSecondsRealtime(delay);
         }
-
-        SubQueue = null;
+        
         SubListCounter = 0;
-        TextStuff.GetComponent<TextMeshProUGUI>().text = "";
-        SubtitleRoutine = null;
-        yield return new WaitForSecondsRealtime(0);
-
+        SubtitleText.text = "";
+        playing = false;
+        currentSubQueue = null;
+        yield return new WaitForEndOfFrame();     
     }
-    //Fucking mediocre system honestly.
 }

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace GLEAMoscopeVR.SubtitleSystem
 {
@@ -7,8 +8,8 @@ namespace GLEAMoscopeVR.SubtitleSystem
     {
         public float startDelay = 0;
         [TextArea]
-        public string[] subtitle;
-        public float[] delayLengthF;
-        public float[] delayLengthM;
+        public List<string> subtitle = new List<string>();
+        public List<float> delayLengthF = new List<float>();
+        public List<float> delayLengthM = new List<float>();
     }
 }
