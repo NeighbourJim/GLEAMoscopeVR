@@ -92,7 +92,10 @@ public class StartScreenManager : MonoBehaviour
     public void TeleportToScene()
     {
         main_camera_parent.transform.position = new Vector3(0, main_camera_parent.transform.position.y, main_camera_parent.transform.position.z);
-        startArea.SetActive(false);
+        if (startArea != null)
+        {
+            startArea.SetActive(false);
+        }
         
         startFinished.Invoke();
 
