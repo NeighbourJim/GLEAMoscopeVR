@@ -9,6 +9,10 @@ The project was conceived after ICRAR wanted a proof of concept application to d
 GLEAMoscopeVR allows the user to experience an immersive outback environment and view the night sky in a variety of wavelengths of energy (Gamma, X-Ray, Visible, Infrared, Microwave, and Radio).
 There are also points of interest in the sky when viewing the Visible and Radio wavelengths which when interacted with will provide information about interstellar objects.
 
+## Installation  
+The repository provided here is that of the Unity Project.  
+To download the application and use it yourself, GLEAMoscope VR will be accessible from the Google Play Store in Mid-to-Late July 2019. I will provide a link here when it becomes available.
+
 ## Built With
 [Unity Engine](http://unity3d.com/)
 
@@ -19,5 +23,7 @@ There are also points of interest in the sky when viewing the Visible and Radio 
 ![](/Screenshots/SS04.png?raw=true)
 
 ## Credits
-Development Team: Chris Proudmore (Myself), Daniel Cherrin, Megan McLean, Brett Jones  
+Development Team: Chris Proudmore (Myself), Daniel Cherrin, Megan McLean, Brett Jones, Gal Rose  
 ICRAR: Greg Rowbotham, Lisa Evans, Natasha Hurley-Walker, Paul Hancock
+
+
