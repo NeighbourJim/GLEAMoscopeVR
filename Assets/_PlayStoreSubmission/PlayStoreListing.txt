@@ -1,0 +1,75 @@
+﻿As provided by Greg Rowbotham 22/07/2019
+
+Title: GLEAMoscopeVR
+-------------------------------------------------------------------------------
+
+Short Description: 
+------------------
+View the night sky in microwaves, IR, UV, gamma, X-rays, and even radio waves. 
+
+
+-------------------------------------------------------------------------------
+Full Description: 
+-----------------
+Enter the Australian outback in VR to a sunset view over red dirt and radio antennas - you're standing on Australia's site of the Square Kilometre Array, what will be the world's largest and most sensitive radio telescope. As the sun goes down the night sky is revealed above you, but not as you might usually see it. What would you see if your eyes could detect X-Rays? Microwaves? Or even Radio Waves? It's all there for you to explore.
+
+
+-------------------------------------------------------------------------------
+High-res Icon:
+--------------
+512 x 512
+32-bit PNG
+
+Asset: Hi-ResIcon_Listing.PNG
+
+-------------------------------------------------------------------------------
+Feature Graphic:
+----------------
+1024 w x 500 h
+JPG or 24-bit PNG (no alpha)
+
+Screenshot of the war table at night with Radio sky.
+
+Asset: FeatureGraphic_Listing.jpg
+
+-------------------------------------------------------------------------------
+Screenshots (req. 2-8):
+-----------------------
+JPEG or 24-bit PNG (no alpha). 
+Min length for any side: 320px. 
+Max length for any side: 3840px.
+
+1.	Day time view of the antennas
+
+Asset (Editor): SS_Listing_Antennas.png
+
+
+2.	Radio sky (no war table or spectrum slider)
+
+Asset (Editor): SS_Listing_RadioSky.png
+
+
+3.	Radio sky with war table (no spectrum slider)
+
+Asset (Editor): SS_Listing_RadioSky_WarTable.png
+
+
+4.	Radio sky with war table and spectrum slider
+
+Asset (Editor): SS_Listing_RadioSky_WarTable&Slider.png
+
+
+5.	Radio sky in passive mode (no war table or spectrum slider)
+
+Asset (Editor): SS_Listing_RadioSky_Passive.png
+
+
+6.	Activated POI (Vela Nebula) with data panel (Radio sky, exploration mode)
+
+Asset (Editor): SS_Listing_RadioSky_Exploration_VNebula.png
+
+7. (Added) Activated POI (Centaurus A) with sky panel (Radio sky, passive mode)
+
+Asset (Editor): SS_Listing_RadioSky_Passive_CenA.png
+
+

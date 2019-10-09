@@ -6,6 +6,5 @@
         bool IsActivated { get; }
         bool CanActivate();
         void Activate();
-        void Deactivate();
     }
 }

@@ -7,8 +7,10 @@ namespace GLEAMoscopeVR.SubtitleSystem
     public class SubtitleData : ScriptableObject
     {
         public float startDelay = 0;
+
         [TextArea]
         public List<string> subtitle = new List<string>();
+
         public List<float> delayLengthF = new List<float>();
         public List<float> delayLengthM = new List<float>();
     }
