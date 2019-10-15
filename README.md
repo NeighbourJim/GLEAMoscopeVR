@@ -1,3 +1,6 @@
+# Download Links
+Now available on the Google Play Store! [You can grab it here.](https://play.google.com/store/apps/details?id=com.Liveworks2019.GLEAMoscopeVR&hl=en)
+
 # GLEAMoscopeVR
 An Educational VR Android application for Google Cardboard.
 Created for [ICRAR](https://www.icrar.org/) and developed by myself and other students as part of my Diploma of Software Development.
