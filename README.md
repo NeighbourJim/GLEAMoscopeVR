@@ -1,5 +1,4 @@
-# Download Links
-Now available on the Google Play Store! [You can grab it here.](https://play.google.com/store/apps/details?id=com.Liveworks2019.GLEAMoscopeVR&hl=en)
+
 
 # GLEAMoscopeVR
 An Educational VR Android application for Google Cardboard.
@@ -13,8 +12,9 @@ GLEAMoscopeVR allows the user to experience an immersive outback environment and
 There are also points of interest in the sky when viewing the Visible and Radio wavelengths which when interacted with will provide information about interstellar objects.
 
 ## Installation  
-The repository provided here is that of the Unity Project.  
-To download the application and use it yourself, GLEAMoscope VR will be accessible from the Google Play Store in Mid-to-Late July 2019. I will provide a link here when it becomes available.
+The repository provided here is that of the Unity Project. Feel free to download and build it yourself if you wish.
+
+**Now available on the Google Play Store!** [You can grab it here.](https://play.google.com/store/apps/details?id=com.Liveworks2019.GLEAMoscopeVR&hl=en)
 
 ## Built With
 [Unity Engine](http://unity3d.com/)
