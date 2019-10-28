@@ -4,9 +4,9 @@ namespace GLEAMoscopeVR.Settings
 {
     public enum VoiceoverSetting
     {
-        [Description("Dr Natasha Hurley-Walker")]
+        [Description("Female Voice for Selected Language")]
         Female,
-        [Description("Dr Paul Hancock")]
+        [Description("Male Voice for Selected Language")]
         Male,
         [Description("No Voice-over")]
         None

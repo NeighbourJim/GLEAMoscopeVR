@@ -12,12 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_VelaNebula
   m_EditorClassIdentifier: 
-  ID: 11420
-  Name: Vela Nebula
-  Description: "11,000 thousand years ago a star exploded in a supernova leaving behind
-    this nebula. At only 800 light-years away it is one of the closest known supernova
-    remnants.\r"
-  Distance: 800 light-years
+  ID: 11076
   Sprites:
   - {fileID: 21300000, guid: 3c8296f5b08fb274291ae5ccdb896839, type: 3}
   - {fileID: 21300000, guid: 4725cb6804cc06e49902c82e90b1718d, type: 3}
@@ -25,10 +20,22 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 22d02569e507781488ac4201b4931d30, type: 3}
   - {fileID: 21300000, guid: 821468bf8902e1d40a3cd6dbb12f8adb, type: 3}
   - {fileID: 21300000, guid: c77c78eb0eb1b3048b1da0a6d72a4dc1, type: 3}
+  EnglishName: Vela Nebula
+  EnglishDescription: 11,000 thousand years ago a star exploded in a supernova leaving
+    behind this nebula. At only 800 light-years away it is one of the closest known
+    supernova remnants.
+  EnglishDistance: 800 light-years
+  EnglishVOMale: {fileID: 8300000, guid: 0e3c606ff353f39438ab72f854700797, type: 3}
+  EnglishVOFemale: {fileID: 8300000, guid: 24dec2f672130a1448a6c055a7195444, type: 3}
+  ItalianName: ?ITA NAME?
+  ItalianDescription: "11 mila anni fa l\u2019esplosione di una stella in supernova
+    ha formato la nebulosa che vediamo ora. A soli 800 anni luce di distanza, questo
+    \xE8 uno dei resti di supernovae pi\xF9 vicini a noi."
+  ItalianDistance: ?ITA DIST?
+  ItalianVOMale: {fileID: 8300000, guid: 3a885f21a43ef194eb6c889c70da2e9f, type: 3}
+  ItalianVOFemale: {fileID: 8300000, guid: 6520a7bc18aa8974580ba32b70069397, type: 3}
   SkyTransform: {fileID: 1399073174638811918, guid: bdae624e8cd119649a06d1294c6a15b5,
     type: 3}
   XOffset: 70
   YOffset: -20
   ZOffset: -40
-  VoiceoverMale: {fileID: 8300000, guid: 0e3c606ff353f39438ab72f854700797, type: 3}
-  VoiceoverFemale: {fileID: 8300000, guid: 24dec2f672130a1448a6c055a7195444, type: 3}

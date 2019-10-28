@@ -36,6 +36,20 @@ namespace GLEAMoscopeVR.Settings
             }
         }
 
+        [SerializeField]
+        private int _languageSetting = 0;
+        public int LanguageSetting
+        {
+            get => _languageSetting;
+            set
+            {
+                if(value >= 0 && value < Enum.GetValues(typeof(LanguageSetting)).Length)
+                {
+                    _languageSetting = value;
+                }
+            }
+        }
+
         
         [SerializeField]
         private bool _showSubtitles = true;
@@ -55,10 +69,11 @@ namespace GLEAMoscopeVR.Settings
         #endregion
 
         #region Constructors
-        public UserSettings(int experienceMode = 0, int voiceoverSetting = 0, bool showSubtitles = true, bool blinkInPassiveMode = false)
+        public UserSettings(int experienceMode = 0, int voiceoverSetting = 0, int languageSetting = 0, bool showSubtitles = true, bool blinkInPassiveMode = false)
         {
             ExperienceMode = experienceMode;
             VoiceoverSetting = voiceoverSetting;
+            LanguageSetting = LanguageSetting;
             ShowSubtitles = showSubtitles;
             BlinkInPassiveMode = blinkInPassiveMode;
         }

@@ -17,6 +17,7 @@ namespace GLEAMoscopeVR.Settings
         [Header("Current Values (Read only)")]
         [SerializeField] private ExperienceMode currentMode;
         [SerializeField] private VoiceoverSetting voiceoverSetting;
+        [SerializeField] private LanguageSetting languageSetting;
         [SerializeField] private bool shouldShowSubtitles;
         [SerializeField] private bool passiveBlinkEnabled;
 
@@ -37,6 +38,14 @@ namespace GLEAMoscopeVR.Settings
             {
                 voiceoverSetting = (VoiceoverSetting) UserSettings.VoiceoverSetting;
                 return voiceoverSetting;
+            }
+        }
+        public LanguageSetting CurrentLanguageSetting
+        {
+            get
+            {
+                languageSetting = (LanguageSetting)UserSettings.LanguageSetting;
+                return languageSetting;
             }
         }
         public bool ShowSubtitles
@@ -110,6 +119,17 @@ namespace GLEAMoscopeVR.Settings
             }
         }
 
+        public void SetLanguageSetting(LanguageSetting newLanguageSetting)
+        {
+            UserSettings.LanguageSetting = (int)newLanguageSetting;
+            EventManager.Instance.Raise(new LanguageSettingChangedEvent(newLanguageSetting, $"Language setting changed to {newLanguageSetting}"));
+            languageSetting = newLanguageSetting;
+            if (!disablePersistentSettings)
+            {
+                SaveSettings();
+            }
+        }
+
         public void SetSubtitleSetting(bool showSubtitles)
         {
             UserSettings.ShowSubtitles = showSubtitles;
@@ -142,6 +162,7 @@ namespace GLEAMoscopeVR.Settings
                     userSettings = JsonUtility.FromJson<UserSettings>(File.ReadAllText(userSettingsPath));
                     Debug.Log($"<b>[{GetType().Name}]</b> Settings loaded. " +
                               $"<b>Mode:</b> {userSettings.ExperienceMode}, " +
+                              $"<b>Language:</b> {userSettings.LanguageSetting}, " +
                               $"<b>Voice:</b> {userSettings.VoiceoverSetting}, " +
                               $"<b>Subtitles:</b> {userSettings.ShowSubtitles}, " +
                               $"<b>Passive blink:</b> {userSettings.BlinkInPassiveMode}.");
@@ -168,6 +189,9 @@ namespace GLEAMoscopeVR.Settings
         {
             EventManager.Instance.Raise(new ExperienceModeChangedEvent(CurrentExperienceMode, $"Experience mode setting changed: {CurrentExperienceMode}"));
             currentMode = CurrentExperienceMode;
+
+            EventManager.Instance.Raise(new LanguageSettingChangedEvent(CurrentLanguageSetting, $"Voiceover setting changed: {CurrentLanguageSetting}"));
+            languageSetting = CurrentLanguageSetting;
 
             EventManager.Instance.Raise(new VoiceoverSettingChangedEvent(CurrentVoiceoverSetting, $"Voiceover setting changed: {CurrentVoiceoverSetting}"));
             voiceoverSetting = CurrentVoiceoverSetting;

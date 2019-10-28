@@ -1,7 +1,0 @@
-﻿GLEAMoscopeVR - Iteration 02 - Prototyping Project
-==================================================
-
-2019/04/15 (MM):
-Project Settings > Player > XR Settings >
-- Virtual Reality SDKs: Move Cardboard above Daydream - first in the list takes priority over second and Cardboard is the target, not Daydream.
-- Stereo Rendering: set to Single Pass instead of Multi Pass - designed for PC and Playstation 4-based VR applications but also applies to compatible Android devices.
