@@ -72,12 +72,14 @@ namespace GLEAMoscopeVR.Audio
         {
             EventManager.Instance.AddListener<POINodeActivatedEvent>(HandlePOINodeEvent);
             EventManager.Instance.AddListener<ExperienceModeChangedEvent>(_ => StopAudioClip(true));
+            EventManager.Instance.AddListener<LanguageSettingChangedEvent>(_ => StopAudioClip(true));
         }
 
         void OnDisable()
         {
             EventManager.Instance.RemoveListener<POINodeActivatedEvent>(HandlePOINodeEvent);
             EventManager.Instance.RemoveListener<ExperienceModeChangedEvent>(_ => StopAudioClip(true));
+            EventManager.Instance.RemoveListener<LanguageSettingChangedEvent>(_ => StopAudioClip(true));
         }
 
         private void Update()

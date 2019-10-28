@@ -16,8 +16,6 @@ namespace GLEAMoscopeVR.Settings
 
     public class ChangeLanguageButton : MonoBehaviour, IActivatable, IHideableUI
     {
-        public TextMeshProUGUI textField = null;
-
         public Direction direction = Direction.left;
 
         [Header("IActivatable")]
@@ -85,8 +83,6 @@ namespace GLEAMoscopeVR.Settings
         {
             _collider = GetComponent<Collider>();
             Assert.IsNotNull(_collider, $"<b>[{GetType().Name}]</b> has no Collider component.");
-
-            Assert.IsNotNull(textField, $"<b>[{GetType().Name}]</b> Text Field not set.");
         }
     }
 }

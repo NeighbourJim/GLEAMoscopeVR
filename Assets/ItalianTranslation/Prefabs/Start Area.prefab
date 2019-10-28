@@ -88,7 +88,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcdb4632480ee294ea378b2591656483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textField: {fileID: 1568924402295404441}
   direction: 1
   activationTime: 2
   isActivated: 0
@@ -117,6 +116,7 @@ GameObject:
   - component: {fileID: 3228502742006880678}
   - component: {fileID: 2183901336437415036}
   - component: {fileID: 1568924402295404441}
+  - component: {fileID: 30695323969994393}
   m_Layer: 5
   m_Name: Language Scroller Text
   m_TagString: Untagged
@@ -171,7 +171,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: Italiano
+  m_text: ?LANG?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cdec32b2a04edf34b8a40390000fb816, type: 2}
   m_sharedMaterial: {fileID: 21386825992770824, guid: cdec32b2a04edf34b8a40390000fb816,
@@ -200,10 +200,10 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 40
+  m_fontSize: 46.5
   m_fontSizeBase: 40
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 33
@@ -241,7 +241,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1568924402295404441}
-    characterCount: 8
+    characterCount: 6
     spriteCount: 0
     spaceCount: 0
     wordCount: 1
@@ -267,6 +267,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &30695323969994393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 485725910443675073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: English
+  italianText: Italiana
 --- !u!1 &1191987958673163661
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,7 +369,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcdb4632480ee294ea378b2591656483, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textField: {fileID: 1568924402295404441}
   direction: 0
   activationTime: 2
   isActivated: 0
@@ -398,20 +411,20 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2078071316249347426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.0001412864}
+  m_LocalPosition: {x: 0, y: 0, z: 0.00043237343}
   m_LocalScale: {x: 0.45, y: 0.45, z: 1}
   m_Children:
   - {fileID: 8796840124127693195}
   - {fileID: 3228502742006880678}
   - {fileID: 187202722200346483}
   m_Father: {fileID: 6018442310022949556}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 450, y: 95}
-  m_Pivot: {x: 0.5, y: 1.45}
+  m_Pivot: {x: 0.5, y: 3.2}
 --- !u!114 &909460874716400316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,6 +792,182 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 0
+--- !u!1 &3913091118339246999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7989537025919083977}
+  - component: {fileID: 8901680030053660231}
+  - component: {fileID: 1571629172466889146}
+  - component: {fileID: 8956350238348813206}
+  m_Layer: 5
+  m_Name: LanguageTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7989537025919083977
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913091118339246999}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0000013013948}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6018442310022949556}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 217.62, y: 95}
+  m_Pivot: {x: 0.5, y: 1.85}
+--- !u!222 &8901680030053660231
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913091118339246999}
+  m_CullTransparentMesh: 0
+--- !u!114 &1571629172466889146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913091118339246999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_text: Language
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: cdec32b2a04edf34b8a40390000fb816, type: 2}
+  m_sharedMaterial: {fileID: 21386825992770824, guid: cdec32b2a04edf34b8a40390000fb816,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 2617240468
+  m_fontColor: {r: 0.5803922, g: 0.92156863, b: 1, a: 0.60784316}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_outlineColor:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontSize: 40
+  m_fontSizeBase: 40
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 33
+  m_textAlignment: 514
+  m_isAlignmentEnumConverted: 1
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_firstOverflowCharacterIndex: -1
+  m_linkedTextComponent: {fileID: 0}
+  m_isLinkedTextComponent: 0
+  m_isTextTruncated: 0
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_ignoreRectMaskCulling: 0
+  m_ignoreCulling: 1
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_firstVisibleCharacter: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_textInfo:
+    textComponent: {fileID: 1571629172466889146}
+    characterCount: 8
+    spriteCount: 0
+    spaceCount: 0
+    wordCount: 1
+    linkCount: 0
+    lineCount: 1
+    pageCount: 1
+    materialCount: 1
+  m_havePropertiesChanged: 0
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_spriteAnimator: {fileID: 0}
+  m_isInputParsingRequired: 0
+  m_inputSource: 0
+  m_hasFontAssetChanged: 0
+  m_subTextObjects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8956350238348813206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3913091118339246999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Language
+  italianText: Lingua
 --- !u!1 &6018442308580035377
 GameObject:
   m_ObjectHideFlags: 0
@@ -990,6 +1179,7 @@ GameObject:
   - component: {fileID: 6018442308628056686}
   - component: {fileID: 6018442308628056684}
   - component: {fileID: 6018442308628056687}
+  - component: {fileID: 1547970017299076939}
   m_Layer: 5
   m_Name: Voiceover Button Text
   m_TagString: Untagged
@@ -1140,6 +1330,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1547970017299076939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442308628056977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Enable Voice-Over
+  italianText: Abilita Voice-Over
 --- !u!1 &6018442308738440822
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,6 +1355,7 @@ GameObject:
   - component: {fileID: 6018442308738440823}
   - component: {fileID: 6018442308738440821}
   - component: {fileID: 6018442308738440820}
+  - component: {fileID: 3107894233633206236}
   m_Layer: 0
   m_Name: Preview Text (Female)
   m_TagString: Untagged
@@ -1174,7 +1379,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -28, y: 0}
   m_SizeDelta: {x: 140, y: 38}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &6018442308738440821
@@ -1249,7 +1454,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
@@ -1301,6 +1506,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3107894233633206236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442308738440822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Preview
+  italianText: Anteprima
 --- !u!1 &6018442308753530166
 GameObject:
   m_ObjectHideFlags: 0
@@ -2457,6 +2676,7 @@ GameObject:
   - component: {fileID: 6018442308874968051}
   - component: {fileID: 6018442308874968049}
   - component: {fileID: 6018442308874968048}
+  - component: {fileID: 7672780810713357870}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -2607,6 +2827,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7672780810713357870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442308874968050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Communications
+  italianText: Comunicazioni
 --- !u!1 &6018442308931091109
 GameObject:
   m_ObjectHideFlags: 0
@@ -2618,6 +2852,7 @@ GameObject:
   - component: {fileID: 6018442308931091106}
   - component: {fileID: 6018442308931091104}
   - component: {fileID: 6018442308931091107}
+  - component: {fileID: 6002529615199785675}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -2768,6 +3003,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6002529615199785675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442308931091109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Prototyping Engineer
+  italianText: Ingegnere di prototipizzazione
 --- !u!1 &6018442308985885693
 GameObject:
   m_ObjectHideFlags: 0
@@ -2915,6 +3164,7 @@ GameObject:
   - component: {fileID: 6018442309041299091}
   - component: {fileID: 6018442309041299089}
   - component: {fileID: 6018442309041299088}
+  - component: {fileID: 6534698456612158668}
   m_Layer: 8
   m_Name: Acknowledgements Button Text
   m_TagString: Untagged
@@ -3065,6 +3315,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6534698456612158668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309041299090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Acknowledgements
+  italianText: Ringraziamenti
 --- !u!1 &6018442309066070650
 GameObject:
   m_ObjectHideFlags: 0
@@ -3426,6 +3690,7 @@ GameObject:
   - component: {fileID: 6018442309110339252}
   - component: {fileID: 6018442309110339255}
   - component: {fileID: 6018442309110339254}
+  - component: {fileID: 5223402057129670539}
   m_Layer: 8
   m_Name: Traditional Owners Text
   m_TagString: Untagged
@@ -3578,6 +3843,24 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5223402057129670539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309110339257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: We acknowledge the Wajarri Yamaji as the traditional owners of the
+    Murchison Radio-astronomy Observatory (MRO) site and pay our respects to their
+    Elders past, present and emerging.
+  italianText: Riconosciamo i Wajarri Yamaji come proprietari tradizionali del sito
+    dell'Osservatorio Radioastronomico di Murchison (MRO, Murchison Radio-Astronomy
+    Observatory) e rendiamo omaggio ai loro Anziani passati, presenti e futuri.
 --- !u!1 &6018442309138514826
 GameObject:
   m_ObjectHideFlags: 0
@@ -4072,6 +4355,7 @@ GameObject:
   - component: {fileID: 6018442309258851895}
   - component: {fileID: 6018442309258851893}
   - component: {fileID: 6018442309258851892}
+  - component: {fileID: 4422814857083565436}
   m_Layer: 5
   m_Name: Back Button Text
   m_TagString: Untagged
@@ -4222,6 +4506,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4422814857083565436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309258851894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Back
+  italianText: Indietro
 --- !u!1 &6018442309269470230
 GameObject:
   m_ObjectHideFlags: 0
@@ -4356,6 +4654,7 @@ GameObject:
   - component: {fileID: 6018442309318100640}
   - component: {fileID: 6018442309318100670}
   - component: {fileID: 6018442309318100641}
+  - component: {fileID: 4792208104232522556}
   m_Layer: 0
   m_Name: Title Text
   m_TagString: Untagged
@@ -4506,6 +4805,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4792208104232522556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309318100643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Audio Settings
+  italianText: Impostazioni Audio
 --- !u!1 &6018442309371090638
 GameObject:
   m_ObjectHideFlags: 0
@@ -4860,7 +5173,6 @@ RectTransform:
   m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_Children:
   - {fileID: 6018442310022949556}
-  - {fileID: 6018442309596933222}
   m_Father: {fileID: 6018442309884427178}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4952,6 +5264,7 @@ GameObject:
   - component: {fileID: 6018442309409291067}
   - component: {fileID: 6018442309409291065}
   - component: {fileID: 6018442309409291064}
+  - component: {fileID: 8572397094437499393}
   m_Layer: 0
   m_Name: Name Text
   m_TagString: Untagged
@@ -5102,6 +5415,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8572397094437499393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309409291066}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Dr Natasha Hurley-Walker
+  italianText: Dott.ssa Barbara Catinella
 --- !u!1 &6018442309424029749
 GameObject:
   m_ObjectHideFlags: 0
@@ -5498,19 +5825,19 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6018442309514485857}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00037970496}
+  m_LocalPosition: {x: 0, y: 0, z: 0.0007645098}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
   - {fileID: 6018442310283351404}
   - {fileID: 6018442308628056686}
   m_Father: {fileID: 6018442310022949556}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 450, y: 95}
-  m_Pivot: {x: 0.5, y: 2.2}
+  m_Pivot: {x: 0.5, y: 3.6}
 --- !u!114 &6018442309514485887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5545,6 +5872,7 @@ GameObject:
   - component: {fileID: 6018442309539857454}
   - component: {fileID: 6018442309539857489}
   - component: {fileID: 6018442309539857488}
+  - component: {fileID: 4138458889549144283}
   m_Layer: 8
   m_Name: ICRAR Text
   m_TagString: Untagged
@@ -5700,6 +6028,28 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4138458889549144283
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309539857491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'The International Centre for Radio Astronomy Research (ICRAR) is a
+    joint venture between Curtin University and The University of Western Australia
+    with strong support from the State Government of Western Australia and the Australian
+    Government.
+
+    <u>www.icrar.org</u>'
+  italianText: "Il Centro Internazionale per la Ricerca Radio Astronomica (ICRAR,
+    International Centre for Radio Astronomy Research) \xE8 una `joint venture\u2019
+    tra la Curtin University e l'Universit\xE0 Dell'Australia Occidentale con il forte
+    sostegno del Governo dello Stato dell'Australia Occidentale e del Governo Australiano.\n<u>www.icrar.org</u>"
 --- !u!1 &6018442309547402643
 GameObject:
   m_ObjectHideFlags: 0
@@ -6022,8 +6372,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6018442309258851895}
-  m_Father: {fileID: 6018442309404073960}
-  m_RootOrder: 1
+  m_Father: {fileID: 6018442310022949556}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -6200,6 +6550,7 @@ GameObject:
   - component: {fileID: 6018442309609439030}
   - component: {fileID: 6018442309609439028}
   - component: {fileID: 6018442309609439031}
+  - component: {fileID: 1201564691854170160}
   m_Layer: 8
   m_Name: Settings Button Text
   m_TagString: Untagged
@@ -6350,6 +6701,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1201564691854170160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309609439033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Settings
+  italianText: Impostazioni
 --- !u!1 &6018442309653897822
 GameObject:
   m_ObjectHideFlags: 0
@@ -6616,6 +6981,7 @@ GameObject:
   - component: {fileID: 6018442309713443592}
   - component: {fileID: 6018442309713443590}
   - component: {fileID: 6018442309713443593}
+  - component: {fileID: 7036703039997759450}
   m_Layer: 0
   m_Name: Job Title Text
   m_TagString: Untagged
@@ -6766,6 +7132,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7036703039997759450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309713443595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Space Detective
+  italianText: 
 --- !u!1 &6018442309714605498
 GameObject:
   m_ObjectHideFlags: 0
@@ -6777,6 +7157,7 @@ GameObject:
   - component: {fileID: 6018442309714605499}
   - component: {fileID: 6018442309714605497}
   - component: {fileID: 6018442309714605496}
+  - component: {fileID: 6233365380843030163}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -6927,6 +7308,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6233365380843030163
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309714605498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Research
+  italianText: Ricerca
 --- !u!1 &6018442309739335843
 GameObject:
   m_ObjectHideFlags: 0
@@ -6938,6 +7333,7 @@ GameObject:
   - component: {fileID: 6018442309739335840}
   - component: {fileID: 6018442309739335870}
   - component: {fileID: 6018442309739335841}
+  - component: {fileID: 7970679431846007567}
   m_Layer: 0
   m_Name: Name Text
   m_TagString: Untagged
@@ -7088,6 +7484,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7970679431846007567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309739335843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Dr Paul Hancock
+  italianText: 'Dott. Luca Cortese '
 --- !u!1 &6018442309749214608
 GameObject:
   m_ObjectHideFlags: 0
@@ -7099,6 +7509,7 @@ GameObject:
   - component: {fileID: 6018442309749214609}
   - component: {fileID: 6018442309749214319}
   - component: {fileID: 6018442309749214318}
+  - component: {fileID: 6834834222173703168}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -7249,6 +7660,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6834834222173703168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309749214608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Developer
+  italianText: Sviluppatore
 --- !u!1 &6018442309776703804
 GameObject:
   m_ObjectHideFlags: 0
@@ -7372,6 +7797,7 @@ GameObject:
   - component: {fileID: 6018442309818823182}
   - component: {fileID: 6018442309818823180}
   - component: {fileID: 6018442309818823183}
+  - component: {fileID: 3209401436338018123}
   m_Layer: 8
   m_Name: Credits Button Text
   m_TagString: Untagged
@@ -7522,6 +7948,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3209401436338018123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309818823217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Credits
+  italianText: Crediti
 --- !u!1 &6018442309884427181
 GameObject:
   m_ObjectHideFlags: 0
@@ -7698,6 +8138,7 @@ GameObject:
   - component: {fileID: 6018442309920347741}
   - component: {fileID: 6018442309920347739}
   - component: {fileID: 6018442309920347738}
+  - component: {fileID: 5138678631619284726}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -7848,6 +8289,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5138678631619284726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309920347740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Developer
+  italianText: Sviluppatore
 --- !u!1 &6018442309930958318
 GameObject:
   m_ObjectHideFlags: 0
@@ -8560,9 +9015,11 @@ RectTransform:
   m_Children:
   - {fileID: 6018442309318100640}
   - {fileID: 6018442308763888894}
+  - {fileID: 7989537025919083977}
   - {fileID: 688956366017369054}
   - {fileID: 6018442309514485886}
   - {fileID: 6018442310646539431}
+  - {fileID: 6018442309596933222}
   m_Father: {fileID: 6018442309404073960}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8753,6 +9210,7 @@ GameObject:
   - component: {fileID: 6018442310057557412}
   - component: {fileID: 6018442310057557410}
   - component: {fileID: 6018442310057557413}
+  - component: {fileID: 1813663967833097076}
   m_Layer: 0
   m_Name: Preview Text (Male)
   m_TagString: Untagged
@@ -8776,7 +9234,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -20, y: 0}
+  m_AnchoredPosition: {x: -28, y: 0}
   m_SizeDelta: {x: 140, y: 38}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!222 &6018442310057557410
@@ -8851,7 +9309,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_firstOverflowCharacterIndex: -1
@@ -8903,6 +9361,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1813663967833097076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310057557415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Preview
+  italianText: Anteprima
 --- !u!1 &6018442310058973358
 GameObject:
   m_ObjectHideFlags: 0
@@ -8975,6 +9447,7 @@ GameObject:
   - component: {fileID: 6018442310066305385}
   - component: {fileID: 6018442310066305384}
   - component: {fileID: 6018442310066305387}
+  - component: {fileID: 7886805867505937135}
   m_Layer: 8
   m_Name: MWA Text
   m_TagString: Untagged
@@ -9126,6 +9599,22 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7886805867505937135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310066305386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: "The Murchison Widefield Array (MWA) is an international collaboration
+    led and operated by Curtin University <br><u>www.mwatelescope.org\r</u>"
+  italianText: "Il Murchison Widefield Array (MWA) \xE8 una collaborazione internazionale
+    condotta e gestita dalla Curtin University. <br><u>www.mwatelescope.org\r</u>"
 --- !u!1 &6018442310084356293
 GameObject:
   m_ObjectHideFlags: 0
@@ -9244,6 +9733,7 @@ GameObject:
   - component: {fileID: 6018442310088130135}
   - component: {fileID: 6018442310088130133}
   - component: {fileID: 6018442310088130132}
+  - component: {fileID: 7392776189968798260}
   m_Layer: 0
   m_Name: Job Title Text
   m_TagString: Untagged
@@ -9394,6 +9884,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7392776189968798260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310088130134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Super Scientist
+  italianText: 
 --- !u!1 &6018442310094166080
 GameObject:
   m_ObjectHideFlags: 0
@@ -9405,6 +9909,7 @@ GameObject:
   - component: {fileID: 6018442310094166081}
   - component: {fileID: 6018442310094166111}
   - component: {fileID: 6018442310094166110}
+  - component: {fileID: 6230327445310527854}
   m_Layer: 5
   m_Name: Subtitle Button Text
   m_TagString: Untagged
@@ -9429,7 +9934,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 355, y: 95}
+  m_SizeDelta: {x: 396.77, y: 95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6018442310094166111
 CanvasRenderer:
@@ -9555,6 +10060,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &6230327445310527854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310094166080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Show Subtitles
+  italianText: Mostra Sottotitoli
 --- !u!1 &6018442310095772978
 GameObject:
   m_ObjectHideFlags: 0
@@ -10137,6 +10656,7 @@ GameObject:
   - component: {fileID: 6018442310233180809}
   - component: {fileID: 6018442310233180807}
   - component: {fileID: 6018442310233180806}
+  - component: {fileID: 3557820911993246780}
   m_Layer: 8
   m_Name: Back Button Text
   m_TagString: Untagged
@@ -10287,6 +10807,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3557820911993246780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310233180808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Back
+  italianText: Indietro
 --- !u!1 &6018442310233928036
 GameObject:
   m_ObjectHideFlags: 0
@@ -10298,6 +10832,7 @@ GameObject:
   - component: {fileID: 6018442310233928035}
   - component: {fileID: 6018442310233928034}
   - component: {fileID: 6018442310233928037}
+  - component: {fileID: 5474752466276594202}
   m_Layer: 8
   m_Name: SKAO Text
   m_TagString: Untagged
@@ -10449,6 +10984,22 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5474752466276594202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310233928036}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: The EDA2 and AAVS1.5 test platforms are a collaboration with the Square
+    Kilometre Array Office and are hosted by the MWA.
+  italianText: Le piattaforme di test EDA2 e AAVS1.5 sono una collaborazione con lo
+    Square Kilometre Array Office e sono ospitate dall'MWA.
 --- !u!1 &6018442310270442377
 GameObject:
   m_ObjectHideFlags: 0
@@ -10799,6 +11350,7 @@ GameObject:
   - component: {fileID: 6018442310379875359}
   - component: {fileID: 6018442310379875357}
   - component: {fileID: 6018442310379875356}
+  - component: {fileID: 4197190447810216149}
   m_Layer: 8
   m_Name: Back Button Text
   m_TagString: Untagged
@@ -10949,6 +11501,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4197190447810216149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310379875358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Back
+  italianText: Indietro
 --- !u!1 &6018442310390531220
 GameObject:
   m_ObjectHideFlags: 0
@@ -11304,6 +11870,7 @@ GameObject:
   - component: {fileID: 6018442310414455626}
   - component: {fileID: 6018442310414455624}
   - component: {fileID: 6018442310414455627}
+  - component: {fileID: 5404697167643115688}
   m_Layer: 0
   m_Name: OrganisationTitle
   m_TagString: Untagged
@@ -11454,6 +12021,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5404697167643115688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310414455629}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: 'Development Team '
+  italianText: Team di sviluppo
 --- !u!1 &6018442310415822570
 GameObject:
   m_ObjectHideFlags: 0
@@ -12229,6 +12810,7 @@ GameObject:
   - component: {fileID: 6018442310548073635}
   - component: {fileID: 6018442310548073633}
   - component: {fileID: 6018442310548073632}
+  - component: {fileID: 2123575760903599469}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -12379,6 +12961,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &2123575760903599469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310548073634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Technical Artist
+  italianText: Artista tecnico
 --- !u!1 &6018442310559932969
 GameObject:
   m_ObjectHideFlags: 0
@@ -12390,6 +12986,7 @@ GameObject:
   - component: {fileID: 6018442310559932966}
   - component: {fileID: 6018442310559932964}
   - component: {fileID: 6018442310559932967}
+  - component: {fileID: 5967971139015699818}
   m_Layer: 8
   m_Name: Start Button Text
   m_TagString: Untagged
@@ -12540,6 +13137,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &5967971139015699818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310559932969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Start
+  italianText: Avvio
 --- !u!1 &6018442310577786437
 GameObject:
   m_ObjectHideFlags: 0
@@ -12792,6 +13403,7 @@ GameObject:
   - component: {fileID: 6018442310631290731}
   - component: {fileID: 6018442310631290729}
   - component: {fileID: 6018442310631290728}
+  - component: {fileID: 461706694994710659}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -12942,6 +13554,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &461706694994710659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310631290730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Systems Designer
+  italianText: Progettista di sistemi
 --- !u!1 &6018442310635651739
 GameObject:
   m_ObjectHideFlags: 0
@@ -13132,19 +13758,19 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6018442310646539430}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.00037690776}
+  m_LocalPosition: {x: 0, y: 0, z: 0.000755652}
   m_LocalScale: {x: 0.35, y: 0.35, z: 1}
   m_Children:
   - {fileID: 6018442310270442374}
   - {fileID: 6018442310094166081}
   m_Father: {fileID: 6018442310022949556}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 450, y: 95}
-  m_Pivot: {x: 0.5, y: 3.2}
+  m_Pivot: {x: 0.5, y: 4.6}
 --- !u!114 &6018442310646539428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13179,6 +13805,7 @@ GameObject:
   - component: {fileID: 6018442310651083773}
   - component: {fileID: 6018442310651083772}
   - component: {fileID: 6018442310651083775}
+  - component: {fileID: 4875085102872579445}
   m_Layer: 8
   m_Name: CSIRO Text
   m_TagString: Untagged
@@ -13330,6 +13957,22 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &4875085102872579445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310651083774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: The MRO and the Australian Pathfinder (ASKAP) telescope are managed
+    and operated by CSIRO <u>www.csiro.au</u>
+  italianText: L'MRO e il telescopio Australian Pathfinder (ASKAP) sono amministrati
+    e gestiti da CSIRO. <u>www.csiro.au</u>
 --- !u!1 &6018442310658063715
 GameObject:
   m_ObjectHideFlags: 0
@@ -13409,6 +14052,7 @@ GameObject:
   - component: {fileID: 6018442310689426333}
   - component: {fileID: 6018442310689426331}
   - component: {fileID: 6018442310689426330}
+  - component: {fileID: 3141125368439395443}
   m_Layer: 8
   m_Name: Title Text
   m_TagString: Untagged
@@ -13559,6 +14203,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3141125368439395443
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310689426332}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Developer
+  italianText: Sviluppatore
 --- !u!1 &6018442310694935149
 GameObject:
   m_ObjectHideFlags: 0

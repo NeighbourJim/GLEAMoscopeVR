@@ -43,7 +43,15 @@ namespace GLEAMoscopeVR.POIs
         {
             SkyPanel.CurrentSpriteWavelength = wavelength;
             SkyPanel.POIImage.sprite = currentPOI.Sprites[(int) wavelength];
-            SkyPanel.WavelengthText.text = wavelength.GetDescription();
+            switch (SettingsManager.Instance.CurrentLanguageSetting)
+            {
+                case LanguageSetting.English:
+                    SkyPanel.WavelengthText.text = englishSpectrum[(int)wavelength];
+                    break;
+                case LanguageSetting.Italian:
+                    SkyPanel.WavelengthText.text = italianSpectrum[(int)wavelength];
+                    break;
+            }
         }
 
         protected override void SetAndCheckReferences()

@@ -40,6 +40,9 @@ namespace GLEAMoscopeVR.POIs
         protected bool canCycleSprites = true;
         protected bool ignoreModeChange = false;
 
+        [Header("Spectrum Names")]
+        public string[] englishSpectrum = new string[6];
+        public string[] italianSpectrum = new string[6];
 
         [HideInInspector]
         public Wavelength CurrentSpriteWavelength { get; internal set; }
@@ -65,13 +68,14 @@ namespace GLEAMoscopeVR.POIs
             EventManager.Instance.AddListener<POINodeActivatedEvent>(HandlePOINodeActivated);
             EventManager.Instance.AddListener<ExperienceModeChangedEvent>(_ => SetCanvasGroupAndColliderState(false));
             EventManager.Instance.AddListener<VoiceoverSettingChangedEvent>(HandleVoiceoverSettingChanged);
-            
+            EventManager.Instance.AddListener<LanguageSettingChangedEvent>(_ => RefreshDisplayCurrent());
         }
         protected virtual void OnDisable()
         {
             EventManager.Instance.RemoveListener<POINodeActivatedEvent>(HandlePOINodeActivated);
             EventManager.Instance.RemoveListener<ExperienceModeChangedEvent>(_ => SetCanvasGroupAndColliderState(false));
             EventManager.Instance.RemoveListener<VoiceoverSettingChangedEvent>(HandleVoiceoverSettingChanged);
+            EventManager.Instance.RemoveListener<LanguageSettingChangedEvent>(_ => RefreshDisplayCurrent());
         }
         
         #endregion
@@ -106,6 +110,19 @@ namespace GLEAMoscopeVR.POIs
             SetCanvasGroupAndColliderState(true);
         }
 
+        public virtual void RefreshDisplayCurrent()
+        {
+            if (currentPOI != null)
+            {
+                TitleText.text = currentPOI.Name;
+                DistanceText.text = $"Distance: {currentPOI.Distance}";
+                DescriptionText.text = currentPOI.Description;
+                CurrentSpriteWavelength = SpectrumStateController.Instance.CurrentWavelength;
+                UpdateSprite(CurrentSpriteWavelength);
+                SetCanvasGroupAndColliderState(true);
+            }
+        }
+
         #region Sprite Change
         public void CycleSpriteRight()
         {
@@ -135,12 +152,25 @@ namespace GLEAMoscopeVR.POIs
 
             CurrentSpriteWavelength = wavelength;
             POIImage.sprite = currentPOI.Sprites[(int)wavelength];
-            WavelengthText.text = wavelength.GetDescription();
+            UpdateSpriteText(wavelength);
             if (SettingsManager.Instance.CurrentExperienceMode == ExperienceMode.Exploration)
             {
                 UpdateAlternatePanel(wavelength);
             }
             EventManager.Instance.Raise(new SpriteWavelengthChangedEvent(CurrentSpriteWavelength, $"Sprite wavelength changed to {CurrentSpriteWavelength}"));
+        }
+
+        protected void UpdateSpriteText(Wavelength wavelength)
+        {
+            switch(SettingsManager.Instance.CurrentLanguageSetting)
+            {
+                case LanguageSetting.English:
+                    WavelengthText.text = englishSpectrum[(int)wavelength];
+                    break;
+                case LanguageSetting.Italian:
+                    WavelengthText.text = italianSpectrum[(int)wavelength];
+                    break;
+            }
         }
         #endregion
 

@@ -279,6 +279,7 @@
     <Compile Include="Assets\Scripts\UI\Spectrum\SpectrumButton.cs" />
     <Compile Include="Assets\Scripts\UI\Spectrum\SpectrumCanvas.cs" />
     <Compile Include="Assets\Scripts\UI\Spectrum\SpectrumPip.cs" />
+    <Compile Include="Assets\Scripts\UI\TranslationTextChanger.cs" />
     <Compile Include="Assets\Scripts\Utility\Debugging\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\ArrayExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\EnumExtensionMethods.cs" />
