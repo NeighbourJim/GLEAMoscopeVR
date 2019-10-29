@@ -280,7 +280,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   englishText: English
-  italianText: Italiana
+  italianText: Italiano
 --- !u!1 &1191987958673163661
 GameObject:
   m_ObjectHideFlags: 0
@@ -2054,7 +2054,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ce7f647aca1394abd562bb448f23e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: ca56edb84bf200a458c684bb74b63035, type: 3}
+  AudioClipEnglish: {fileID: 8300000, guid: ca56edb84bf200a458c684bb74b63035, type: 3}
+  AudioClipItalian: {fileID: 8300000, guid: 15991e73a2d063d458c63a6043fd8e18, type: 3}
   AudioSource: {fileID: 6018442308763888864}
   BorderImage: {fileID: 6018442309180354350}
   activationTime: 1
@@ -8475,6 +8476,7 @@ GameObject:
   - component: {fileID: 6018442309962938528}
   - component: {fileID: 6018442309962938558}
   - component: {fileID: 6018442309962938529}
+  - component: {fileID: 8383268919780351376}
   m_Layer: 0
   m_Name: Photo
   m_TagString: Untagged
@@ -8538,6 +8540,20 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &8383268919780351376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442309962938531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb34214ad5ed4a419cbca624de7151e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishImage: {fileID: 21300000, guid: 805233740c8121049bc8a1e1c3ebff96, type: 3}
+  italianImage: {fileID: 21300000, guid: 02a29215c77adab49b38fad2cc1da805, type: 3}
 --- !u!1 &6018442309965768514
 GameObject:
   m_ObjectHideFlags: 0
@@ -11687,6 +11703,7 @@ GameObject:
   - component: {fileID: 6018442310393838074}
   - component: {fileID: 6018442310393838072}
   - component: {fileID: 6018442310393838075}
+  - component: {fileID: 6642471112662291117}
   m_Layer: 0
   m_Name: Photo
   m_TagString: Untagged
@@ -11750,6 +11767,20 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &6642471112662291117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6018442310393838077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb34214ad5ed4a419cbca624de7151e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishImage: {fileID: 21300000, guid: 33d9c9a4a12cc5e4d8454ada11b24c52, type: 3}
+  italianImage: {fileID: 21300000, guid: 27db6b29604f18d4e9707c418541da36, type: 3}
 --- !u!1 &6018442310404729032
 GameObject:
   m_ObjectHideFlags: 0
@@ -11853,7 +11884,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09ce7f647aca1394abd562bb448f23e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AudioClip: {fileID: 8300000, guid: 723621b315488fb4298b595cea82415a, type: 3}
+  AudioClipEnglish: {fileID: 8300000, guid: 723621b315488fb4298b595cea82415a, type: 3}
+  AudioClipItalian: {fileID: 8300000, guid: ed05dd03dc65b6846a06f413bf369cb0, type: 3}
   AudioSource: {fileID: 6018442308763888864}
   BorderImage: {fileID: 6018442308774160340}
   activationTime: 1

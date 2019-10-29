@@ -26,31 +26,47 @@ namespace GLEAMoscopeVR.Interaction
 
         [Header("Greeting")]
         [SerializeField] private float greetingAudioDelay = 2.5f;
-        public AudioClip GreetingClipFemale;
-        public AudioClip GreetingClipMale;
-        public SubtitleData GreetingClipSubtitle;
+        public AudioClip GreetingEngFemale;
+        public AudioClip GreetingEngMale;
+        public SubtitleData GreetingEngSubtitle;
+        [Space]
+        public AudioClip GreetingItaFemale;
+        public AudioClip GreetingItaMale;
+        public SubtitleData GreetingItaSubtitle;
 
         [Header("Antenna POI")]
         public AntennaPOI AntennaNode;
-        public AudioClip AntennaClipFemale;
-        public AudioClip AntennaClipMale;
-        public SubtitleData AntennaSubtitle;
+        public AudioClip AntennaEngFemale;
+        public AudioClip AntennaEngMale;
+        public SubtitleData AntennaEngSubtitle;
         public InfoPanelAntenna AntennaInfoPanel;
+        [Space]
+        public AudioClip AntennaItaFemale;
+        public AudioClip AntennaItaMale;
+        public SubtitleData AntennaItaSubtitle;
 
         [Header("Wavelength Prompt")]
         [SerializeField] private float changeWavelengthAudioDelay = 5f;
-        public AudioClip ChangeWavelengthClipFemale;
-        public AudioClip ChangeWavelengthClipMale;
-        public SubtitleData ChangeWavelengthSubtitle;
+        public AudioClip WavelengthEngFemale;
+        public AudioClip WavelengthEngMale;
+        public SubtitleData WavelengthEngSubtitle;
         public RadioWavelengthPrompt RadioPrompt;
+        [Space]
+        public AudioClip WavelengthItaFemale;
+        public AudioClip WavelengthItaMale;
+        public SubtitleData WavelengthItaSubtitle;
 
         [Header("Radio Intro")]
         [SerializeField] private float radioIntroDelay = 1f;
-        public AudioClip RadioIntroClipFemale;
-        public AudioClip RadioIntroClipMale;
-        public SubtitleData RadioIntroSubtitle;
+        public AudioClip RadioIntroEngFemale;
+        public AudioClip RadioIntroEngMale;
+        public SubtitleData RadioIntroEngSubtitle;
         //public RadioInfoButton RadioInfoButton;
-        
+        [Space]
+        public AudioClip RadioIntroItaFemale;
+        public AudioClip RadioIntroItaMale;
+        public SubtitleData RadioIntroItaSubtitle;
+
         [Header("Sky POI Prompt")]
         public GameObject SkyPOIPrompt;
         
@@ -143,7 +159,16 @@ namespace GLEAMoscopeVR.Interaction
         {
             if (playVoiceover)
             {
-                PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? GreetingClipFemale : GreetingClipMale, GreetingClipSubtitle);
+                switch(SettingsManager.Instance.CurrentLanguageSetting)
+                {
+                    case LanguageSetting.English:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? GreetingEngFemale : GreetingEngMale, GreetingEngSubtitle);
+                        break;
+                    case LanguageSetting.Italian:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? GreetingItaFemale : GreetingItaMale, GreetingItaSubtitle);
+                        break;
+                }
+                
             }
         }
 
@@ -151,7 +176,16 @@ namespace GLEAMoscopeVR.Interaction
         {
             if (playVoiceover)
             {
-                PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? AntennaClipFemale : AntennaClipMale, AntennaSubtitle);
+                switch(SettingsManager.Instance.CurrentLanguageSetting)
+                {
+                    case LanguageSetting.English:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? AntennaEngFemale : AntennaEngMale, AntennaEngSubtitle);
+                        break;
+                    case LanguageSetting.Italian:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? AntennaItaFemale : AntennaItaMale, AntennaItaSubtitle);
+                        break;
+                }
+                
             }
             SunsetController.StartSunset();
             SpectrumStateController.Instance.SetSpectrumStateToVisible();
@@ -161,7 +195,16 @@ namespace GLEAMoscopeVR.Interaction
         {
             if (playVoiceover)
             {
-                PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? ChangeWavelengthClipFemale : ChangeWavelengthClipMale, ChangeWavelengthSubtitle);
+                switch (SettingsManager.Instance.CurrentLanguageSetting)
+                {
+                    case LanguageSetting.English:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? WavelengthEngFemale : WavelengthEngMale, WavelengthEngSubtitle);
+                        break;
+                    case LanguageSetting.Italian:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? WavelengthItaFemale : WavelengthItaMale, WavelengthItaSubtitle);
+                        break;
+                }
+                
             }
             SpectrumCanvas.SetVisibleAndInteractableState(true);
             SpectrumCanvas.SetSpectrumSliderPanelVisible(true);
@@ -179,8 +222,16 @@ namespace GLEAMoscopeVR.Interaction
         {
             if (playVoiceover)
             {
-                PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? RadioIntroClipFemale : RadioIntroClipMale,
-                    RadioIntroSubtitle);
+                switch (SettingsManager.Instance.CurrentLanguageSetting)
+                {
+                    case LanguageSetting.English:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? RadioIntroEngFemale : RadioIntroEngMale, RadioIntroEngSubtitle);
+                        break;
+                    case LanguageSetting.Italian:
+                        PlayAudioAndDisplaySubtitles(voice == VoiceoverSetting.Female ? RadioIntroItaFemale : RadioIntroItaMale, RadioIntroItaSubtitle);
+                        break;
+                }
+                
             }
         }
 
@@ -287,25 +338,25 @@ namespace GLEAMoscopeVR.Interaction
             Assert.IsNotNull(_audioSource, $"<b>[{GetType().Name}]</b> has no Audio Source component.");
 
             Assert.IsFalse(greetingAudioDelay < 0, $"<b>[{GetType().Name}]</b> greeting audio delay is less than zero.");
-            Assert.IsNotNull(GreetingClipFemale, $"<b>[{GetType().Name}]</b> greeting clip female is not assigned.");
-            Assert.IsNotNull(GreetingClipMale, $"<b>[{GetType().Name}]</b> greeting clip male is not assigned.");
-            Assert.IsNotNull(GreetingClipSubtitle, $"<b>[{GetType().Name}]</b> greeting clip subtitle is not assigned.");
+            Assert.IsNotNull(GreetingEngFemale, $"<b>[{GetType().Name}]</b> greeting clip female is not assigned.");
+            Assert.IsNotNull(GreetingEngMale, $"<b>[{GetType().Name}]</b> greeting clip male is not assigned.");
+            Assert.IsNotNull(GreetingEngSubtitle, $"<b>[{GetType().Name}]</b> greeting clip subtitle is not assigned.");
 
             Assert.IsNotNull(AntennaNode, $"<b>[{GetType().Name}]</b> antenna node is not assigned.");
-            Assert.IsNotNull(AntennaSubtitle, $"<b>[{GetType().Name}]</b> antenna subtitle is not assigned.");
-            Assert.IsNotNull(AntennaClipFemale, $"<b>[{GetType().Name}]</b> Antenna clip female is not assigned");
-            Assert.IsNotNull(AntennaClipMale, $"<b>[{GetType().Name}]</b> Antenna clip male is not assigned");
+            Assert.IsNotNull(AntennaEngSubtitle, $"<b>[{GetType().Name}]</b> antenna subtitle is not assigned.");
+            Assert.IsNotNull(AntennaEngFemale, $"<b>[{GetType().Name}]</b> Antenna clip female is not assigned");
+            Assert.IsNotNull(AntennaEngMale, $"<b>[{GetType().Name}]</b> Antenna clip male is not assigned");
 
             Assert.IsFalse(changeWavelengthAudioDelay < 0, $"<b>[{GetType().Name}]</b> change wavelength audio delay is less than zero.");
-            Assert.IsNotNull(ChangeWavelengthClipFemale, $"<b>[{GetType().Name}]</b> change wavelength clip female is not assigned.");
-            Assert.IsNotNull(ChangeWavelengthClipMale, $"<b>[{GetType().Name}]</b> change wavelength clip male is not assigned.");
-            Assert.IsNotNull(ChangeWavelengthSubtitle, $"<b>[{GetType().Name}]</b> change wavelength subtitle is not assigned.");
+            Assert.IsNotNull(WavelengthEngFemale, $"<b>[{GetType().Name}]</b> change wavelength clip female is not assigned.");
+            Assert.IsNotNull(WavelengthEngMale, $"<b>[{GetType().Name}]</b> change wavelength clip male is not assigned.");
+            Assert.IsNotNull(WavelengthEngSubtitle, $"<b>[{GetType().Name}]</b> change wavelength subtitle is not assigned.");
             Assert.IsNotNull(RadioPrompt, $"<b>[{GetType().Name}]</b> radio prompt is not assigned and cannot be found in the scene.");
 
             Assert.IsFalse(radioIntroDelay < 0, $"<b>[{GetType().Name}]</b> radio intro audio delay is less than zero.");
-            Assert.IsNotNull(RadioIntroClipFemale, $"<b>[{GetType().Name}]</b> radio intro clip female is not assigned.");
-            Assert.IsNotNull(RadioIntroClipMale, $"<b>[{GetType().Name}]</b> radio intro clip female is not assigned.");
-            Assert.IsNotNull(RadioIntroSubtitle, $"<b>[{GetType().Name}]</b> radio intro subtitle is not assigned.");
+            Assert.IsNotNull(RadioIntroEngFemale, $"<b>[{GetType().Name}]</b> radio intro clip female is not assigned.");
+            Assert.IsNotNull(RadioIntroEngMale, $"<b>[{GetType().Name}]</b> radio intro clip female is not assigned.");
+            Assert.IsNotNull(RadioIntroEngSubtitle, $"<b>[{GetType().Name}]</b> radio intro subtitle is not assigned.");
             
             Assert.IsNotNull(SkyPOIPrompt, $"<b>[{GetType().Name}]</b> Sky POI prompt game object is not assigned.");
             

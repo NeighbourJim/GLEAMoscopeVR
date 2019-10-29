@@ -2843,28 +2843,41 @@ MonoBehaviour:
   firstPOIActivated: 0
   sequenceComplete: 0
   greetingAudioDelay: 2.5
-  GreetingClipFemale: {fileID: 8300000, guid: c60a39a9f82c7ba48ae05a53c8441d5a, type: 3}
-  GreetingClipMale: {fileID: 8300000, guid: f1926f614f17613459f2a4c5e59f496d, type: 3}
-  GreetingClipSubtitle: {fileID: 11400000, guid: 3b28be4d6bf7ff441aca51cef8c2b985,
+  GreetingEngFemale: {fileID: 8300000, guid: c60a39a9f82c7ba48ae05a53c8441d5a, type: 3}
+  GreetingEngMale: {fileID: 8300000, guid: f1926f614f17613459f2a4c5e59f496d, type: 3}
+  GreetingEngSubtitle: {fileID: 11400000, guid: 3b28be4d6bf7ff441aca51cef8c2b985,
+    type: 2}
+  GreetingItaFemale: {fileID: 8300000, guid: 3b6690b23bcbf6a479ee21fbf90e8693, type: 3}
+  GreetingItaMale: {fileID: 8300000, guid: 971a67bd675a2634e906ef9d61bf8790, type: 3}
+  GreetingItaSubtitle: {fileID: 11400000, guid: 3320491f8f61f95409bf8555bafbadd7,
     type: 2}
   AntennaNode: {fileID: 6047301620283683252}
-  AntennaClipFemale: {fileID: 8300000, guid: 95fc3782a79a16347a9d29e8097f68e4, type: 3}
-  AntennaClipMale: {fileID: 8300000, guid: dbe47cb6b36363141b083869bf64d9a7, type: 3}
-  AntennaSubtitle: {fileID: 11400000, guid: 5e63d93e76213354eba115e9352404bf, type: 2}
+  AntennaEngFemale: {fileID: 8300000, guid: 95fc3782a79a16347a9d29e8097f68e4, type: 3}
+  AntennaEngMale: {fileID: 8300000, guid: dbe47cb6b36363141b083869bf64d9a7, type: 3}
+  AntennaEngSubtitle: {fileID: 11400000, guid: 5e63d93e76213354eba115e9352404bf, type: 2}
   AntennaInfoPanel: {fileID: 8867489423593090511}
+  AntennaItaFemale: {fileID: 8300000, guid: f0517a93cffab994db88cad2ed5f65a8, type: 3}
+  AntennaItaMale: {fileID: 8300000, guid: 612a139cfa60bf945badcaf1f0d99c28, type: 3}
+  AntennaItaSubtitle: {fileID: 11400000, guid: 1f168625aaf1e47478ec924fd194ddde, type: 2}
   changeWavelengthAudioDelay: 6.5
-  ChangeWavelengthClipFemale: {fileID: 8300000, guid: 723621b315488fb4298b595cea82415a,
-    type: 3}
-  ChangeWavelengthClipMale: {fileID: 8300000, guid: ca56edb84bf200a458c684bb74b63035,
-    type: 3}
-  ChangeWavelengthSubtitle: {fileID: 11400000, guid: 5ce72f9978adc3e4ebc6b3603de2606b,
+  WavelengthEngFemale: {fileID: 8300000, guid: 723621b315488fb4298b595cea82415a, type: 3}
+  WavelengthEngMale: {fileID: 8300000, guid: ca56edb84bf200a458c684bb74b63035, type: 3}
+  WavelengthEngSubtitle: {fileID: 11400000, guid: 5ce72f9978adc3e4ebc6b3603de2606b,
     type: 2}
   RadioPrompt: {fileID: 5567729842033493340}
+  WavelengthItaFemale: {fileID: 8300000, guid: ed05dd03dc65b6846a06f413bf369cb0, type: 3}
+  WavelengthItaMale: {fileID: 8300000, guid: 15991e73a2d063d458c63a6043fd8e18, type: 3}
+  WavelengthItaSubtitle: {fileID: 11400000, guid: 18be3e7e2a6c33b4bb002d8802211387,
+    type: 2}
   radioIntroDelay: 1
-  RadioIntroClipFemale: {fileID: 8300000, guid: b58afbfcc0a473247bfa539aec145287,
-    type: 3}
-  RadioIntroClipMale: {fileID: 8300000, guid: f94e6ae898a61404a9b96fbcb3755b20, type: 3}
-  RadioIntroSubtitle: {fileID: 11400000, guid: 052afe7f350dd0742ab332f36108764d, type: 2}
+  RadioIntroEngFemale: {fileID: 8300000, guid: b58afbfcc0a473247bfa539aec145287, type: 3}
+  RadioIntroEngMale: {fileID: 8300000, guid: f94e6ae898a61404a9b96fbcb3755b20, type: 3}
+  RadioIntroEngSubtitle: {fileID: 11400000, guid: 052afe7f350dd0742ab332f36108764d,
+    type: 2}
+  RadioIntroItaFemale: {fileID: 8300000, guid: 35bcfd428b50b4e4289a72bab60747ca, type: 3}
+  RadioIntroItaMale: {fileID: 8300000, guid: ab224d4fb59b1564ea5a9d0a7fd97c23, type: 3}
+  RadioIntroItaSubtitle: {fileID: 11400000, guid: 566a7c9415f0e2f4b92514e752c5fde2,
+    type: 2}
   SkyPOIPrompt: {fileID: 8213046790359197227}
   SubtitleDisplayer: {fileID: 7874122107384404716}
   SunsetController: {fileID: 3559732765299167950}

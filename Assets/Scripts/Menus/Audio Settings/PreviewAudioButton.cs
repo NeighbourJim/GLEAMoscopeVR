@@ -2,12 +2,14 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using UnityEngine.UI;
+using GLEAMoscopeVR.Settings;
 
 namespace GLEAMoscopeVR.Audio
 {
     public class PreviewAudioButton : MonoBehaviour, IActivatable
     {
-        public AudioClip AudioClip;
+        public AudioClip AudioClipEnglish;
+        public AudioClip AudioClipItalian;
         public AudioSource AudioSource;
         public Image BorderImage;
         
@@ -31,10 +33,23 @@ namespace GLEAMoscopeVR.Audio
             SetAndCheckReferences();
         }
         #endregion
+
+        private AudioClip selectLanguageClip()
+        {
+            switch(SettingsManager.Instance.CurrentLanguageSetting)
+            {
+                case LanguageSetting.English:
+                    return AudioClipEnglish;
+                case LanguageSetting.Italian:
+                    return AudioClipItalian;
+                default:
+                    return null;
+            }
+        }
         
         public bool CanActivate()
         {
-            return !(AudioSource.clip == AudioClip && AudioSource.isPlaying);
+            return !(AudioSource.clip == selectLanguageClip() && AudioSource.isPlaying);
         }
 
         public void Activate()
@@ -44,7 +59,7 @@ namespace GLEAMoscopeVR.Audio
                 AudioSource.Stop();
             }
 
-            AudioSource.clip = AudioClip;
+            AudioSource.clip = selectLanguageClip();
             AudioSource.Play();
         }
 
@@ -62,7 +77,8 @@ namespace GLEAMoscopeVR.Audio
             _collider = GetComponent<Collider>();
             Assert.IsNotNull(_collider, $"<b>[{GetType().Name} - {gameObject.name}]</b> has no collider component.");
 
-            Assert.IsNotNull(AudioClip, $"<b>[{GetType().Name} - {gameObject.name}]</b> audio clip has not been assigned.");
+            Assert.IsNotNull(AudioClipEnglish, $"<b>[{GetType().Name} - {gameObject.name}]</b> english audio clip has not been assigned.");
+            Assert.IsNotNull(AudioClipItalian, $"<b>[{GetType().Name} - {gameObject.name}]</b> italian audio clip has not been assigned.");
             Assert.IsNotNull(AudioSource, $"<b>[{GetType().Name} - {gameObject.name}]</b> audio source has not been assigned.");
 
             Assert.IsNotNull(BorderImage, $"<b>[{GetType().Name} - {gameObject.name}]</b> border image has not been assigned.");

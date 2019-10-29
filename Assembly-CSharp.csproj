@@ -284,6 +284,7 @@
     <Compile Include="Assets\Scripts\Utility\Extensions\ArrayExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\EnumExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Utility\Management\GenericSingleton.cs" />
+    <Compile Include="Assets\SwapPhotoOnLanguageChange.cs" />
     <None Include="Assets\Shaders\BackfaceBumpedDiffuse.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
