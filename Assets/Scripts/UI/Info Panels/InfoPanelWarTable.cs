@@ -23,6 +23,12 @@ namespace GLEAMoscopeVR.POIs
             UpdatePanelState();
         }
 
+        public override void RefreshDisplayCurrent()
+        {
+            base.RefreshDisplayCurrent();
+            UpdatePanelState();
+        }
+
         private void UpdatePanelState()
         {
             if (SettingsPanel.IsActive)

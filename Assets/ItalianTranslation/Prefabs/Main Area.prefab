@@ -9754,6 +9754,7 @@ GameObject:
   - component: {fileID: 4846778744499202363}
   - component: {fileID: 4210940160735241724}
   - component: {fileID: 7108876080352915892}
+  - component: {fileID: 3346957742869852453}
   m_Layer: 0
   m_Name: Description
   m_TagString: Untagged
@@ -9903,6 +9904,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &3346957742869852453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2775257416771511640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: ' '
+  italianText: ' '
 --- !u!1 &2786188001638405371
 GameObject:
   m_ObjectHideFlags: 0
@@ -31812,6 +31827,7 @@ GameObject:
   - component: {fileID: 2989704953649618964}
   - component: {fileID: 346603399342481057}
   - component: {fileID: 8210330625705687445}
+  - component: {fileID: 8829058843284982910}
   m_Layer: 0
   m_Name: Title Text
   m_TagString: Untagged
@@ -31961,6 +31977,20 @@ MonoBehaviour:
   - {fileID: 0}
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &8829058843284982910
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8889738942531850941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: SKA-Low Frequency Antenna
+  italianText: ?ITA NAME?
 --- !u!1 &8926810504048617040
 GameObject:
   m_ObjectHideFlags: 0
