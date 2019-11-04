@@ -13868,6 +13868,7 @@ GameObject:
   - component: {fileID: 5942700540214836721}
   - component: {fileID: 4843444943563523612}
   - component: {fileID: 1750164826570714672}
+  - component: {fileID: 2950112775170653968}
   m_Layer: 0
   m_Name: LookAbove Text
   m_TagString: Untagged
@@ -14063,6 +14064,20 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &2950112775170653968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4379748017709254105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99726fc404e0e3f4fb31ff586affa497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  englishText: Activate another swirl in the sky above you
+  italianText: "Attiva un\u2019altro cerchio rosso nel cielo sopra di te"
 --- !u!1 &4401373603704254677
 GameObject:
   m_ObjectHideFlags: 0
@@ -31990,7 +32005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   englishText: SKA-Low Frequency Antenna
-  italianText: ?ITA NAME?
+  italianText: Antenna SKA a bassa frequenza
 --- !u!1 &8926810504048617040
 GameObject:
   m_ObjectHideFlags: 0

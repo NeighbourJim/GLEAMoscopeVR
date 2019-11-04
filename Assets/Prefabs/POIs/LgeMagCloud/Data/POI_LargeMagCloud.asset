@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_LargeMagCloud
   m_EditorClassIdentifier: 
-  ID: 13400
+  ID: 13464
   Sprites:
   - {fileID: 21300000, guid: b532cf3b1d17a07449f3747d26b537eb, type: 3}
   - {fileID: 21300000, guid: fef873efc2129474090a98ad9535598b, type: 3}
@@ -24,15 +24,15 @@ MonoBehaviour:
   EnglishDescription: "The Large Magellanic Cloud is a dwarf galaxy orbiting around
     our own Milky Way. The LMC is one of the closest galaxies to us, and contains
     about 10 billion stars, compared to the Milky Way\u2019s 400 billion stars.\r"
-  EnglishDistance: Approx. 163,000 light-years
+  EnglishDistance: 'Distance: Approx. 163,000 light-years'
   EnglishVOMale: {fileID: 8300000, guid: 02e004a58f1561541bd0a334de5efeab, type: 3}
   EnglishVOFemale: {fileID: 8300000, guid: 47f7bbb9edb16e948b55bb0768ef4194, type: 3}
-  ItalianName: ?ITA NAME?
+  ItalianName: Grande Nube di Magellano
   ItalianDescription: "La Grande Nube di Magellano \xE8 una galassia nana che orbita
     attorno alla nostra Via Lattea. Si tratta di una delle galassie pi\xF9 vicine
     alla nostra, e contiene circa 10 miliardi di stelle, rispetto ai 400 miliardi
     di stelle della Via Lattea."
-  ItalianDistance: ?ITA DIST?
+  ItalianDistance: 'Distanze: Circa 163,000 anni luce'
   ItalianVOMale: {fileID: 8300000, guid: 418c32f43affef94e933da9dce84562c, type: 3}
   ItalianVOFemale: {fileID: 8300000, guid: 60dfb1b5799f81745a8dbc2b6631c63e, type: 3}
   SkyTransform: {fileID: 2477086622726655338, guid: 060b587046aa3694cbe642761f0a71eb,

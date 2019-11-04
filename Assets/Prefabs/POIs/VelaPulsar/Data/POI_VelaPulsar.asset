@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_VelaPulsar
   m_EditorClassIdentifier: 
-  ID: 10810
+  ID: 10826
   Sprites:
   - {fileID: 21300000, guid: 07f7eb1fd1716414abc5874733ed0cf4, type: 3}
   - {fileID: 21300000, guid: 7a2ee98092175d046b217b1628d6c70d, type: 3}
@@ -24,15 +24,15 @@ MonoBehaviour:
   EnglishDescription: "The Vela pulsar is a rotating neutron star at the heart of
     the Vela nebula.  It rotates 11 times per second and at radio frequencies, it\u2019s
     the brightest pulsar visible from Earth."
-  EnglishDistance: 958.9 light years
+  EnglishDistance: 'Distance: 958.9 light years'
   EnglishVOMale: {fileID: 8300000, guid: b5f82320422ee26468c85a9cfde681c7, type: 3}
   EnglishVOFemale: {fileID: 8300000, guid: 7f03531f83234a2449c5c0dc48a27af9, type: 3}
-  ItalianName: ?ITA NAME?
+  ItalianName: Pulsar Vela
   ItalianDescription: "La cosiddetta Vela pulsar \xE8 una stella di neutroni che ruota,
     situata al centro della nebulosa Vela.  Con una rotazione di 11 rivoluzioni al
     secondo, questa \xE8 la pulsar pi\xF9 luminosa a frequenze radio visibile dalla
     Terra. "
-  ItalianDistance: ?ITA DIST?
+  ItalianDistance: 'Distanze: 958.9 anni luce'
   ItalianVOMale: {fileID: 8300000, guid: 928db07a53e1a134db16334d80fab703, type: 3}
   ItalianVOFemale: {fileID: 8300000, guid: 50ffe8a53b30f864d87ba4c6e853eaea, type: 3}
   SkyTransform: {fileID: 1668592331232166591, guid: bf2b806486816c14191f868d31322c64,

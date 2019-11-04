@@ -103,7 +103,7 @@ namespace GLEAMoscopeVR.POIs
             currentPOI = poi;
             
             TitleText.text = currentPOI.Name;
-            DistanceText.text = $"Distance: {currentPOI.Distance}";
+            DistanceText.text = currentPOI.Distance;
             DescriptionText.text = currentPOI.Description;
             CurrentSpriteWavelength = SpectrumStateController.Instance.CurrentWavelength;
             UpdateSprite(CurrentSpriteWavelength);
@@ -115,7 +115,7 @@ namespace GLEAMoscopeVR.POIs
             if (currentPOI != null)
             {
                 TitleText.text = currentPOI.Name;
-                DistanceText.text = $"Distance: {currentPOI.Distance}";
+                DistanceText.text = currentPOI.Distance;
                 DescriptionText.text = currentPOI.Description;
                 CurrentSpriteWavelength = SpectrumStateController.Instance.CurrentWavelength;
                 UpdateSprite(CurrentSpriteWavelength);

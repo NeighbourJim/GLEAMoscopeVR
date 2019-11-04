@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
   m_Name: POI_SupernovaRemnant
   m_EditorClassIdentifier: 
-  ID: 13304
+  ID: 13366
   Sprites:
   - {fileID: 21300000, guid: 3fd9d5e73e471e447a74fae6d74febb5, type: 3}
   - {fileID: 21300000, guid: 66be89052635e274d861eb934e68ba3b, type: 3}
@@ -26,10 +26,10 @@ MonoBehaviour:
     across the Universe. It glows in visible light for weeks to months and continues
     to glow at radio wavelengths for many millennia, allowing us to study what happened
     in our galaxy long ago.
-  EnglishDistance: Various
+  EnglishDistance: 'Distance: Various'
   EnglishVOMale: {fileID: 8300000, guid: 4aeb1756ecce81445b7d1fc6c337630b, type: 3}
   EnglishVOFemale: {fileID: 8300000, guid: ac6531c53d0859c4d9cf98524780884a, type: 3}
-  ItalianName: ?ITA NAME?
+  ItalianName: Resto di Supernova
   ItalianDescription: "Quando una stella di grande massa termina la sua esistenza,
     pu\xF2 esplodere in una supernova. Una supernova \xE8 pi\xF9 luminosa di tutte
     le altre stelle nella sua galassia, ed  \xE8 talmente potente che pu\xF2 essere
@@ -37,7 +37,7 @@ MonoBehaviour:
     luce splende per settimane o anche mesi, ma a lunghezze d\u2019onda radio continuer\xE0
     a brillare per molti millenni, consentendoci quindi di studiare eventi successi
     \ nella galassia molto tempo fa."
-  ItalianDistance: ?ITA DIST?
+  ItalianDistance: 'Distanze: Varie'
   ItalianVOMale: {fileID: 8300000, guid: 8c59e2c0bdc114042bee649ea71924b8, type: 3}
   ItalianVOFemale: {fileID: 8300000, guid: f618c0146483cf94d90661efab652a6f, type: 3}
   SkyTransform: {fileID: 3050189315552327496, guid: 96d78def229fa1f42a38a4c72e172049,

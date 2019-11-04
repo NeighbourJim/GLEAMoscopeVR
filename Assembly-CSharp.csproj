@@ -184,7 +184,6 @@
     <Compile Include="Assets\3rd-Party\GoogleVR\Scripts\Utilities\Internal\GvrCursorHelper.cs" />
     <Compile Include="Assets\3rd-Party\GoogleVR\Scripts\Utilities\Internal\SuppressMemoryAllocationErrorAttribute.cs" />
     <Compile Include="Assets\3rd-Party\GoogleVR\Scripts\Video\GvrVideoPlayerTexture.cs" />
-    <Compile Include="Assets\CHANGELANGTEST.cs" />
     <Compile Include="Assets\Scripts\Audio\AmbienceController.cs" />
     <Compile Include="Assets\Scripts\Audio\SoundEffect.cs" />
     <Compile Include="Assets\Scripts\Audio\SoundEffectPlayer.cs" />
@@ -272,6 +271,7 @@
     <Compile Include="Assets\Scripts\UI\Settings\Buttons\SettingsPanelButton.cs" />
     <Compile Include="Assets\Scripts\UI\Settings\Buttons\SkipIntroButton.cs" />
     <Compile Include="Assets\Scripts\UI\Settings\Buttons\VoiceoverSettingButton.cs" />
+    <Compile Include="Assets\Scripts\UI\Settings\SwapPhotoOnLanguageChange.cs" />
     <Compile Include="Assets\Scripts\UI\Settings\WarTableSettingsPanel.cs" />
     <Compile Include="Assets\Scripts\UI\Shared\CanvasBGSpriteControl.cs" />
     <Compile Include="Assets\Scripts\UI\Shared\IHideableUI.cs" />
@@ -284,7 +284,6 @@
     <Compile Include="Assets\Scripts\Utility\Extensions\ArrayExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Utility\Extensions\EnumExtensionMethods.cs" />
     <Compile Include="Assets\Scripts\Utility\Management\GenericSingleton.cs" />
-    <Compile Include="Assets\SwapPhotoOnLanguageChange.cs" />
     <None Include="Assets\Shaders\BackfaceBumpedDiffuse.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\3rd-Party\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />

@@ -6,7 +6,8 @@ using UnityEngine.Assertions;
 
 public class TranslationTextChanger : MonoBehaviour
 {
-    private TextMeshProUGUI textField = null;
+    private TextMeshProUGUI textfieldUGUI = null;
+    private TextMeshPro textfieldGeneric = null;
 
     [Tooltip("The text this object will display when in English mode"), TextArea(3, 10)]
     [SerializeField] private string englishText;
@@ -19,10 +20,16 @@ public class TranslationTextChanger : MonoBehaviour
         switch (CurrentLanguage)
         {
             case LanguageSetting.English:
-                textField.text = englishText;
+                if (textfieldUGUI != null)
+                    textfieldUGUI.text = englishText;
+                else
+                    textfieldGeneric.text = englishText;
                 break;
             case LanguageSetting.Italian:
-                textField.text = italianText;
+                if (textfieldUGUI != null)
+                    textfieldUGUI.text = italianText;
+                else
+                    textfieldGeneric.text = italianText;
                 break;
         }
     }
@@ -46,7 +53,8 @@ public class TranslationTextChanger : MonoBehaviour
 
     private void SetAndCheckReferences()
     {
-        textField = GetComponent<TextMeshProUGUI>();
-        Assert.IsNotNull(textField, "Translation Text Changer is on an object without a TextMeshProUGUI component.");
+        textfieldUGUI = GetComponent<TextMeshProUGUI>();
+        textfieldGeneric = GetComponent<TextMeshPro>();
+        Assert.IsFalse(textfieldUGUI == null && textfieldGeneric == null, $"<b>[{GetType().Name} - {gameObject.name}]</b> Translation Text Changer has no text field.");
     }
 }
