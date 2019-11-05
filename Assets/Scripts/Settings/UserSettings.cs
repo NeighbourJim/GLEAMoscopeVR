@@ -73,7 +73,7 @@ namespace GLEAMoscopeVR.Settings
         {
             ExperienceMode = experienceMode;
             VoiceoverSetting = voiceoverSetting;
-            LanguageSetting = LanguageSetting;
+            LanguageSetting = languageSetting;
             ShowSubtitles = showSubtitles;
             BlinkInPassiveMode = blinkInPassiveMode;
         }
