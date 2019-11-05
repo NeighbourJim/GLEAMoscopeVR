@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 973e31fab918f2c4fa20fa38549f0cd8, type: 3}
+  m_Name: Eng_Subtitle_RadioIntro
+  m_EditorClassIdentifier: 
+  startDelay: 0
+  subtitle:
+  - These are the lowest frequencies astronomers can observe,
+  - covering the same band people use for FM radio.
+  - "What you\u2019re seeing is radio light produced from electrons in space"
+  - moving through cosmic magnetic fields.
+  - The bright band across the sky is our own Milky Way Galaxy.
+  delayLengthF:
+  - 3
+  - 3.25
+  - 3.75
+  - 2.75
+  - 3.5
+  delayLengthM:
+  - 3
+  - 3.25
+  - 2.75
+  - 2.5
+  - 2.75

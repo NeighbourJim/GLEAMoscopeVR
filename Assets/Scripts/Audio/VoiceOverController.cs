@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
+using GLEAMoscopeVR.Cameras;
+using GLEAMoscopeVR.Events;
+using GLEAMoscopeVR.POIs;
 using GLEAMoscopeVR.Settings;
-using GLEAMoscopeVR.Utility.Management;
+using GLEAMoscopeVR.Utility;
 using UnityEngine;
 using UnityEngine.Assertions;
 
@@ -10,10 +12,8 @@ namespace GLEAMoscopeVR.Audio
     /// <summary>
     /// Audio source that fades between clips instead of playing them immediately.
     /// Adapted from https://wiki.unity3d.com/index.php/Fading_Audio_Source
-    /// Todo: revisit if we need to handle fading and delays at the same time. Works for now.
     /// </summary>
-    [RequireComponent(typeof(AudioSource))]
-    public class VoiceOverController : GenericSingleton<VoiceOverController>
+    public class VoiceoverController : GenericSingleton<VoiceoverController>
     {
         public enum FadeState
         {
@@ -21,13 +21,6 @@ namespace GLEAMoscopeVR.Audio
             FadingOut,
             FadingIn
         }
-
-        public AudioClip GreetingClip;
-        public AudioClip ChangeWavelength;
-        public AudioClip RadioIntroduction;
-
-        [SerializeField]
-        private float greetingClipDelay = 2f;
 
         /// <summary> Volume to end the previous clip at. </summary>
         [Tooltip("Volume to end the previous clip at.")]
@@ -46,6 +39,10 @@ namespace GLEAMoscopeVR.Audio
         /// <summary> Target volume to fade the next clip to. </summary>
         private float targetVolume;
 
+        [SerializeField] private float mapNodeBlinkDelay = 1.5f;
+
+        [Space] public CameraBlinkCanvas CameraBlink;
+
         /// <summary> Current clip of the audio source. </summary>
         public AudioClip Clip => _audioSource.clip;
 
@@ -54,12 +51,9 @@ namespace GLEAMoscopeVR.Audio
 
         /// <summary> Current volume of the audio source. </summary>
         public float Volume => _audioSource.volume;
-
-        public event Action OnGreetingComplete;         
-
+        
         #region References
         AudioSource _audioSource;
-        StartScreenManager _startManager;
         #endregion
 
         #region Unity Methods
@@ -72,7 +66,20 @@ namespace GLEAMoscopeVR.Audio
         void Start()
         {
             targetVolume = _audioSource.volume;
-            _startManager.startFinished.AddListener(TriggerIntroAudio);
+        }
+
+        void OnEnable()
+        {
+            EventManager.Instance.AddListener<POINodeActivatedEvent>(HandlePOINodeEvent);
+            EventManager.Instance.AddListener<ExperienceModeChangedEvent>(_ => StopAudioClip(true));
+            EventManager.Instance.AddListener<LanguageSettingChangedEvent>(_ => StopAudioClip(true));
+        }
+
+        void OnDisable()
+        {
+            EventManager.Instance.RemoveListener<POINodeActivatedEvent>(HandlePOINodeEvent);
+            EventManager.Instance.RemoveListener<ExperienceModeChangedEvent>(_ => StopAudioClip(true));
+            EventManager.Instance.RemoveListener<LanguageSettingChangedEvent>(_ => StopAudioClip(true));
         }
 
         private void Update()
@@ -80,30 +87,6 @@ namespace GLEAMoscopeVR.Audio
             PerformFadeBehaviour();
         }
         #endregion
-
-        /// <summary>
-        /// If the audio source is enabled and playing, fades out the current clip and fades in the specified one, after.
-        /// If the audio source is enabled and not playing, fades in the specified clip immediately.
-        /// If the audio source is not enabled, fades in the specified clip as soon as it gets enabled.
-        /// </summary>
-        /// <param name="clip">Clip to fade in.</param>
-        /// <param name="delaySeconds">Time, in seconds, to wait before playing the audio clip.</param>
-        public void RequestClipPlay(AudioClip clip, float delaySeconds = 0)
-        {
-            if (clip == null || clip == _audioSource.clip) return;
-
-            fadeInClip = clip;
-            targetVolume = _audioSource.volume;
-
-            if (IsPlaying)
-            {
-                fadeState = FadeState.FadingOut;
-            }
-            else
-            {
-                FadeToNextClip(delaySeconds);
-            }
-        }
 
         private void PerformFadeBehaviour()
         {
@@ -134,6 +117,44 @@ namespace GLEAMoscopeVR.Audio
                 }
             }
         }
+        
+        /// <summary>
+        /// If the audio source is enabled and playing, fades out the current clip and fades in the specified one, after.
+        /// If the audio source is enabled and not playing, fades in the specified clip immediately.
+        /// If the audio source is not enabled, fades in the specified clip as soon as it gets enabled.
+        /// </summary>
+        /// <param name="clip">Clip to fade in.</param>
+        /// <param name="delaySeconds">Time, in seconds, to wait before playing the audio clip.</param>
+        public void RequestClipPlay(AudioClip clip, float delaySeconds = 0)
+        {
+            if (clip == _audioSource.clip) return;
+            //if (clip == null || clip == _audioSource.clip) return;
+
+            fadeInClip = clip;
+            targetVolume = _audioSource.volume;
+
+            if (IsPlaying)
+            {
+                fadeState = FadeState.FadingOut;
+            }
+            else
+            {
+                FadeToNextClip(delaySeconds);
+            }
+        }
+
+        public void StopAudioClip(bool unloadClip = true)
+        {
+            if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }
+
+            if (unloadClip)
+            {
+                _audioSource.clip = null;
+            }
+        }
 
         private void FadeToNextClip(float delaySeconds = 0)
         {
@@ -147,30 +168,47 @@ namespace GLEAMoscopeVR.Audio
             }
         }
 
-        private void TriggerIntroAudio()//todo: refactor out
+        private void HandlePOINodeEvent(POINodeActivatedEvent e)
         {
-            RequestClipPlay(GreetingClip, greetingClipDelay);
-            _startManager.startFinished.RemoveListener(TriggerIntroAudio);
-            StartCoroutine(WaitUntilGreetingComplete());
+            var voice = SettingsManager.Instance.CurrentVoiceoverSetting;
+            if (voice == VoiceoverSetting.None) return;
+
+            var clip = voice == VoiceoverSetting.Female ? e.Node.Data.VoiceoverFemale : e.Node.Data.VoiceoverMale;
+
+            if (e.Node is POIMapNode && SettingsManager.Instance.BlinkInPassiveMode)
+            {
+                HandleAudioForPassiveBlinkMode(clip);
+                return;
+            }
+            
+            RequestClipPlay(clip);
         }
 
-        private IEnumerator WaitUntilGreetingComplete()//todo: abstract to wait for any, currently playing clip
+        private void HandleAudioForPassiveBlinkMode(AudioClip clip)
         {
-            yield return new WaitUntil(() => !_audioSource.isPlaying);
-            OnGreetingComplete?.Invoke();
-            yield break;
+            RequestClipPlay(clip, mapNodeBlinkDelay);//placeholder until implemented properly
         }
 
-        #region Debugging
+        private IEnumerator FadeClipOut()
+        {
+            yield return null;
+        }
+
+        private IEnumerator FadeClipIn()
+        {
+            yield return null;
+        }
+
         private void SetAndCheckReferences()
         {
             _audioSource = GetComponent<AudioSource>();
-            _startManager = FindObjectOfType<StartScreenManager>();
-            Assert.IsNotNull(_startManager, $"[[VoiceOverController] cannot find StartScreenManager in scene.");
-            Assert.IsNotNull(_audioSource, $"[VoiceOverController] has no AudioSource component.");
-            Assert.IsNotNull(GreetingClip, $"[VoiceOverController] GreetingClip has not been assigned.");
-            
+            Assert.IsNotNull(_audioSource, $"<b>[{GetType().Name}]</b> has no Audio Source component.");
+
+            if (CameraBlink == null)
+            {
+                CameraBlink = Camera.main.GetComponentInChildren<CameraBlinkCanvas>();
+            }
+            Assert.IsNotNull(CameraBlink, $"<b>[{GetType().Name}]</b> Camera blink is not assigned and not found in camera children.");
         }
-        #endregion
     }
 }

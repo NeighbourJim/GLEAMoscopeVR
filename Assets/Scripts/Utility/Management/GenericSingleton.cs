@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace GLEAMoscopeVR.Utility.Management
+namespace GLEAMoscopeVR.Utility
 {
     /// <summary>
     /// Generic implementation of the Singleton pattern.
@@ -22,11 +22,12 @@ namespace GLEAMoscopeVR.Utility.Management
                 if (instance == null)
                 {
                     instance = FindObjectOfType<T>();
-                    if (instance == null)
-                    {
-                        instance = new GameObject("_" + typeof(T).Name).AddComponent<T>();
-                        DontDestroyOnLoad(instance);
-                    }
+                    //if (instance == null)
+                    //{
+                        
+                    //    instance = new GameObject("_" + typeof(T).Name).AddComponent<T>();
+                    //    DontDestroyOnLoad(instance);
+                    //}
                 }
 
                 return instance;

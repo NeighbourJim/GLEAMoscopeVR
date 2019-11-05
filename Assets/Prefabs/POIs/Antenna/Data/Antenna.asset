@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
+  m_Name: Antenna
+  m_EditorClassIdentifier: 
+  ID: 13390
+  Sprites:
+  - {fileID: 21300000, guid: 0e732dba52c2e234ea514d8904ed72c3, type: 3}
+  EnglishName: SKA-Low Frequency Antenna
+  EnglishDescription: "This is an artist\u2019s representation of what one of the
+    SKA-low frequency antennas might look like. SKA-low will be made up of over 100,000
+    of these, broken up into stations of 256 antennas each. When the signal from each
+    of these antennas is joined together using powerful supercomputers, it will allow
+    us to search the Universe with radio-eyes at a resolution never before possible."
+  EnglishDistance: 'Distance: N/A'
+  EnglishVOMale: {fileID: 8300000, guid: dbe47cb6b36363141b083869bf64d9a7, type: 3}
+  EnglishVOFemale: {fileID: 8300000, guid: 95fc3782a79a16347a9d29e8097f68e4, type: 3}
+  ItalianName: Antenna SKA a bassa frequenza
+  ItalianDescription: "Questa \xE8 una rappresentazione artistica dell\u2019aspetto
+    che una delle antenne a bassa frequenza dell\u2019SKA potrebbe avere. A basse
+    frequenze, SKA sar\xE0 composto da pi\xF9 di 100 mila di queste antenne, suddivise
+    in stazioni da 256 antenne ciascuna. Grazie all\u2019utilizzo di potentissimi
+    super-computers, sar\xE0 possibile combinare il segnale ricevuto da ognuna di
+    queste antenne ed ottenere immagini dell\u2019Universo radio con un livello di
+    dettaglio mai raggiunto prima d\u2019ora.  "
+  ItalianDistance: 'Distanze: N/A'
+  ItalianVOMale: {fileID: 8300000, guid: 612a139cfa60bf945badcaf1f0d99c28, type: 3}
+  ItalianVOFemale: {fileID: 8300000, guid: f0517a93cffab994db88cad2ed5f65a8, type: 3}
+  SkyTransform: {fileID: 0}
+  XOffset: 0
+  YOffset: 0
+  ZOffset: 0

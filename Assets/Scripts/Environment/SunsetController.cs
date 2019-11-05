@@ -1,182 +1,226 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+using GLEAMoscopeVR.Events;
+using GLEAMoscopeVR.Settings;
+using GLEAMoscopeVR.Spectrum;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SunsetController : MonoBehaviour
+namespace GLEAMoscopeVR.Environment
 {
-    // There are two publicly available methods - StartSunset() and ResetSky(). 
-    // For testing in Unity, press 'P' to call StartSunset() and press 'R' to call ResetSky().
-
-    [SerializeField] private Transform fullSkyImagery;
-    [SerializeField] private Transform visibleSpectrum;
-    [SerializeField] private Material[] billboardMaterials;
-    [SerializeField] private Light sun;
-    [SerializeField] private Material sunsetSkyboxMat;
-    [SerializeField] private float fadeTime = 6;
-    [SerializeField] private float fadeInPoint = 0.2f;
-    [SerializeField] private float exposureStart = 3f;
-    [SerializeField] private Color sunColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
-    [SerializeField] private Color billboardsColorStart = new Color(0.274f, 0.129f, 0.086f, 1.000f);
-    [SerializeField] private Color billboardsColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
-    [SerializeField] private int sunRotationXStart = 150;
-    [SerializeField] private int sunRotationXEnd = 180;
-    [SerializeField] private int moonRotationXStart = 40;
-    [SerializeField] private int moonRotationXEnd = 90;
-    public UnityEvent SunIsSetting;
-    private Color sunColorStart;
-    private Material sphereMaterial;
-    private Color sunColorCurrent;
-    private Color billboardsColorCurrent;
-    private float exposureEnd;
-    private float sunRotationXCurrent;
-    private float moonRotationXCurrent;
-    private float exposureCurrent;
-    private float currentTransparency;
-    private float elapsedTime;
-    private bool sunHasSet;
-    private bool cycleHasCompleted;
-    public bool SunsetCompleted => cycleHasCompleted;
-
-    private void Start()
+    public class SunsetController : MonoBehaviour
     {
-        sunColorStart = sun.color;
-        ResetSky();
-    }
+        // There are two publicly available methods - StartSunset() and ResetSky(). 
+        // For testing in Unity, press 'P' to call StartSunset() and press 'R' to call ResetSky().
 
-    // Resets the skybox to the sunset material and resets other necessary values for calling StartSunset().
-    public void ResetSky()
-    {
-        cycleHasCompleted = false;
-        sunHasSet = false;
-        SetSkyboxExposure();
-        ZeroSpectrumTransparency();
-        elapsedTime = 0f;
-        currentTransparency = 0;
-        exposureCurrent = exposureStart;
-        exposureCurrent = RenderSettings.skybox.GetFloat("_Exposure");
-        sun.color = sunColorStart;
-        foreach (Material mat in billboardMaterials)
+        [SerializeField] private Transform fullSkyImagery;
+        [SerializeField] private Transform visibleSpectrum;
+        [SerializeField] private Material[] billboardMaterials;
+        [SerializeField] private Light sun;
+        [SerializeField] private Material sunsetSkyboxMat;
+        [SerializeField] private float fadeTime = 6;
+        [SerializeField] private float fadeInPoint = 0.2f;
+        [SerializeField] private float exposureStart = 3f;
+        [SerializeField] private Color sunColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
+        [SerializeField] private Color billboardsColorStart = new Color(0.274f, 0.129f, 0.086f, 1.000f);
+        [SerializeField] private Color billboardsColorEnd = new Color(0.745f, 0.745f, 0.980f, 1.000f);
+        [SerializeField] private int sunRotationXStart = 150;
+        [SerializeField] private int sunRotationXEnd = 180;
+        [SerializeField] private int moonRotationXStart = 40;
+        [SerializeField] private int moonRotationXEnd = 90;
+        private Color sunColorStart;
+        private Material sphereMaterial;
+        private Color sunColorCurrent;
+        private Color billboardsColorCurrent;
+        private float exposureEnd;
+        private float sunRotationXCurrent;
+        private float moonRotationXCurrent;
+        private float exposureCurrent;
+        private float currentTransparency;
+        private float elapsedTime;
+        private bool sunHasSet;
+        private bool cycleHasCompleted;
+
+        [Space]
+        public UnityEvent SunIsSetting;
+
+        public bool SunsetCompleted => cycleHasCompleted;
+
+        private void Start()
         {
-            mat.color = billboardsColorStart;
-        }
-        sun.transform.eulerAngles = new Vector3(sunRotationXStart, 0, 0);
-    }
-
-    // Starts the sunset and eventual fade in of visible spectrum.
-    public void StartSunset()
-    {
-        StartCoroutine(FadeExposure(exposureStart, exposureEnd));
-        SunIsSetting.Invoke();
-    }
-
-    private void Update()
-    {
-        WaitForInput();
-
-        if (sunHasSet && !cycleHasCompleted)
-        {
-            FadeInfullSkyImagery();
-        }
-    }
-
-    // Press P to start sunset. Press R to reset sky.
-    private void WaitForInput()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            StartSunset();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
+            sunColorStart = sun.color;
             ResetSky();
         }
-    }
-
-    IEnumerator FadeExposure(float expStart, float expEnd)
-    {
-        float elapsedTime = 0f;
-
-        while (elapsedTime < fadeTime)
+        
+        // Resets the skybox to the sunset material and resets other necessary values for calling StartSunset().
+        public void ResetSky()
         {
-            if (exposureCurrent <= fadeInPoint & !cycleHasCompleted)
-            {
-                sunHasSet = true;
-            }
-
-            elapsedTime += Time.deltaTime;
-            exposureCurrent = Mathf.Lerp(expStart, expEnd, Mathf.Clamp01(elapsedTime / fadeTime));
-            sunColorCurrent = Color.Lerp(sunColorStart, sunColorEnd, Mathf.Clamp01(elapsedTime / fadeTime * 0.5f));
-            billboardsColorCurrent = Color.Lerp(billboardsColorStart, billboardsColorEnd, Mathf.Clamp01(elapsedTime / fadeTime * 1.2f));
-            sunRotationXCurrent = Mathf.Lerp(sunRotationXStart, sunRotationXEnd, elapsedTime / fadeTime * 0.5f);
-            if (exposureCurrent > fadeInPoint)
-            {
-                sun.transform.eulerAngles = new Vector3(sunRotationXCurrent, transform.eulerAngles.y, transform.eulerAngles.z);
-            }
-            sun.color = Color.Lerp(sunColorStart, sunColorEnd, elapsedTime / fadeTime);
+            cycleHasCompleted = false;
+            sunHasSet = false;
+            SetSkyboxExposure();
+            ZeroSpectrumTransparency();
+            elapsedTime = 0f;
+            currentTransparency = 0;
+            exposureCurrent = exposureStart;
+            exposureCurrent = RenderSettings.skybox.GetFloat("_Exposure");
+            sun.color = sunColorStart;
             foreach (Material mat in billboardMaterials)
             {
-                mat.color = billboardsColorCurrent;
+                mat.color = billboardsColorStart;
             }
-            RenderSettings.skybox.SetFloat("_Exposure", exposureCurrent);
-            yield return new WaitForEndOfFrame();
+
+            sun.transform.eulerAngles = new Vector3(sunRotationXStart, 0, 0);
         }
 
-        elapsedTime = 0f;
-    }
-
-    private void FadeInfullSkyImagery()
-    {
-        if (exposureCurrent < fadeInPoint && currentTransparency < 1)
+        // Starts the sunset and eventual fade in of visible spectrum.
+        public void StartSunset(float delay = 0)
         {
-            elapsedTime += Time.deltaTime;
-            currentTransparency = Mathf.Lerp(0, 1, Mathf.Clamp01(elapsedTime / fadeTime));
-            sphereMaterial.SetFloat("_Transparency", currentTransparency);
-            moonRotationXCurrent = Mathf.SmoothStep(moonRotationXStart, moonRotationXEnd, elapsedTime / fadeTime);
-            sun.transform.eulerAngles = new Vector3(moonRotationXCurrent, transform.eulerAngles.y, transform.eulerAngles.z);
+            StartCoroutine(FadeExposure(exposureStart, exposureEnd, delay));
+            SunIsSetting.Invoke();
         }
-        else
-        {
-            Debug.Log("Day/Night Cycle Complete");
-            
-            cycleHasCompleted = true;
-        }
-    }
 
-    private void ZeroSpectrumTransparency()
-    {
-        foreach (Transform spectrum in fullSkyImagery)
+        private void Update()
         {
-            if (spectrum.GetComponent<Renderer>() != null)
+            WaitForInput();
+
+            if (sunHasSet && !cycleHasCompleted)
             {
-                spectrum.GetComponent<Renderer>().enabled = true;
-                sphereMaterial = spectrum.GetComponent<Renderer>().material;
-                sphereMaterial.SetFloat("_Transparency", 0);
+                FadeInfullSkyImagery();
             }
         }
 
-        sphereMaterial = visibleSpectrum.GetComponent<Renderer>().material;
-    }
-
-    private void SetSkyboxExposure()
-    {
-        RenderSettings.skybox.SetFloat("_Exposure", exposureStart);
-    }
-
-    private void SetBillboardColor()
-    {
-        foreach (Material mat in billboardMaterials)
+        // Press P to start sunset. Press R to reset sky.
+        private void WaitForInput()
         {
-            mat.color = billboardsColorStart;
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                StartSunset();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ResetSky();
+            }
+        }
+
+        IEnumerator FadeExposure(float expStart, float expEnd, float delay)
+        {
+            if (delay > 0)
+            {
+                yield return new WaitForSecondsRealtime(delay);
+            }
+            EventManager.Instance.Raise(new SunsetStateChangedEvent(EventState.Started, $"Sunset cycle started."));
+
+            float elapsedTime = 0f;
+
+            while (elapsedTime < fadeTime)
+            {
+                if (exposureCurrent <= fadeInPoint & !cycleHasCompleted)
+                {
+                    sunHasSet = true;
+                }
+
+                elapsedTime += Time.deltaTime;
+                exposureCurrent = Mathf.Lerp(expStart, expEnd, Mathf.Clamp01(elapsedTime / fadeTime));
+                sunColorCurrent = Color.Lerp(sunColorStart, sunColorEnd, Mathf.Clamp01(elapsedTime / fadeTime * 0.5f));
+                billboardsColorCurrent = Color.Lerp(billboardsColorStart, billboardsColorEnd,
+                    Mathf.Clamp01(elapsedTime / fadeTime * 1.2f));
+                sunRotationXCurrent = Mathf.Lerp(sunRotationXStart, sunRotationXEnd, elapsedTime / fadeTime * 0.5f);
+                if (exposureCurrent > fadeInPoint)
+                {
+                    sun.transform.eulerAngles = new Vector3(sunRotationXCurrent, transform.eulerAngles.y,
+                        transform.eulerAngles.z);
+                }
+
+                sun.color = Color.Lerp(sunColorStart, sunColorEnd, elapsedTime / fadeTime);
+                foreach (Material mat in billboardMaterials)
+                {
+                    mat.color = billboardsColorCurrent;
+                }
+
+                RenderSettings.skybox.SetFloat("_Exposure", exposureCurrent);
+                yield return new WaitForEndOfFrame();
+            }
+
+            elapsedTime = 0f;
+        }
+
+        private void FadeInfullSkyImagery()
+        {
+            if (SettingsManager.Instance.CurrentExperienceMode == ExperienceMode.Passive)
+            {
+                EventManager.Instance.Raise(new SunsetFadeInEvent("Fading in full sky imagery."));
+            }
+
+            if (exposureCurrent < fadeInPoint && currentTransparency < 1)
+            {
+                elapsedTime += Time.deltaTime;
+                currentTransparency = Mathf.Lerp(0, 1, Mathf.Clamp01(elapsedTime / fadeTime));
+                sphereMaterial.SetFloat("_Transparency", currentTransparency);
+                moonRotationXCurrent = Mathf.SmoothStep(moonRotationXStart, moonRotationXEnd, elapsedTime / fadeTime);
+                sun.transform.eulerAngles =
+                    new Vector3(moonRotationXCurrent, transform.eulerAngles.y, transform.eulerAngles.z);
+            }
+            else
+            {
+                Debug.Log("Day/Night Cycle Complete");
+
+                cycleHasCompleted = true;
+                EventManager.Instance.Raise(new SunsetStateChangedEvent(EventState.Completed, $"Sunset completed."));
+            }
+        }
+
+        private void ZeroSpectrumTransparency()
+        {
+            foreach (Transform spectrum in fullSkyImagery)
+            {
+                if (spectrum.GetComponent<Renderer>() != null)
+                {
+                    spectrum.GetComponent<Renderer>().enabled = true;
+                    sphereMaterial = spectrum.GetComponent<Renderer>().material;
+                    sphereMaterial.SetFloat("_Transparency", 0);
+                }
+            }
+
+            sphereMaterial = visibleSpectrum.GetComponent<Renderer>().material;
+        }
+
+        private void SetSkyboxExposure()
+        {
+            RenderSettings.skybox.SetFloat("_Exposure", exposureStart);
+        }
+
+        private void SetBillboardColor()
+        {
+            foreach (Material mat in billboardMaterials)
+            {
+                mat.color = billboardsColorStart;
+            }
+        }
+
+        public void ForceEndSunset()
+        {
+            StopAllCoroutines();
+
+            RenderSettings.skybox.SetFloat("_Exposure", 0);
+            sphereMaterial.SetFloat("_Transparency", 1);
+
+            sun.color = sunColorEnd;
+            sun.transform.eulerAngles = new Vector3(moonRotationXEnd, transform.eulerAngles.y, transform.eulerAngles.z);
+
+            foreach (Material mat in billboardMaterials)
+            {
+                mat.color = billboardsColorEnd;
+            }
+
+            cycleHasCompleted = true;
+            EventManager.Instance.Raise(new SunsetStateChangedEvent(EventState.Completed, $"Force sunset completed."));
+        }
+
+        private void OnApplicationQuit()
+        {
+            SetSkyboxExposure();
+            SetBillboardColor();
+            ZeroSpectrumTransparency();
         }
     }
-
-    private void OnApplicationQuit()
-    {
-        SetSkyboxExposure();
-        SetBillboardColor();
-        ZeroSpectrumTransparency();
-    }
-
 }

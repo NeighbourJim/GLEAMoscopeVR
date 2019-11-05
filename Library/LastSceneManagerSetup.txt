@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/ItalianTranslation/ItalianTranslationScene-111019.unity
+  isLoaded: 1
+  isActive: 1

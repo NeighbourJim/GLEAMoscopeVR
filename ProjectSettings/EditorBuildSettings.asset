@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/WorkingScene/BaseWorkScene20190627.unity
-    guid: 5835df224c6e66a4bad02232f001cfa2
+    path: Assets/_PlayStoreSubmission/Scenes/PlayStore.unity
+    guid: 48661e06bf47d454ca68fc86a5e03f93
   m_configObjects: {}

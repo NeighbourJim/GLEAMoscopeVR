@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 982064941ca2ff7469d9ecd9b2b2acea, type: 3}
+  m_Name: POI_SupernovaRemnant
+  m_EditorClassIdentifier: 
+  ID: 13366
+  Sprites:
+  - {fileID: 21300000, guid: 3fd9d5e73e471e447a74fae6d74febb5, type: 3}
+  - {fileID: 21300000, guid: 66be89052635e274d861eb934e68ba3b, type: 3}
+  - {fileID: 21300000, guid: 928c08c63a9e3ff468fece33ba8d3587, type: 3}
+  - {fileID: 21300000, guid: a87c80cb6a00df44bb33cb05d89f7988, type: 3}
+  - {fileID: 21300000, guid: 1a6b2e5af955328459bb76250b95c870, type: 3}
+  - {fileID: 21300000, guid: 4ec204a0ccfbb4e4ea7ca337bb85f0cb, type: 3}
+  EnglishName: Supernova Remnant
+  EnglishDescription: When a large star dies it erupts as a supernova explosion. Brighter
+    than all the other stars in its galaxy, a supernova is so powerful it can be seen
+    across the Universe. It glows in visible light for weeks to months and continues
+    to glow at radio wavelengths for many millennia, allowing us to study what happened
+    in our galaxy long ago.
+  EnglishDistance: 'Distance: Various'
+  EnglishVOMale: {fileID: 8300000, guid: 4aeb1756ecce81445b7d1fc6c337630b, type: 3}
+  EnglishVOFemale: {fileID: 8300000, guid: ac6531c53d0859c4d9cf98524780884a, type: 3}
+  ItalianName: Resto di Supernova
+  ItalianDescription: "Quando una stella di grande massa termina la sua esistenza,
+    pu\xF2 esplodere in una supernova. Una supernova \xE8 pi\xF9 luminosa di tutte
+    le altre stelle nella sua galassia, ed  \xE8 talmente potente che pu\xF2 essere
+    vista in tutto l\u2019Universo. Se osservata a frequenze nel visibile, la sua
+    luce splende per settimane o anche mesi, ma a lunghezze d\u2019onda radio continuer\xE0
+    a brillare per molti millenni, consentendoci quindi di studiare eventi successi
+    \ nella galassia molto tempo fa."
+  ItalianDistance: 'Distanze: Varie'
+  ItalianVOMale: {fileID: 8300000, guid: 8c59e2c0bdc114042bee649ea71924b8, type: 3}
+  ItalianVOFemale: {fileID: 8300000, guid: f618c0146483cf94d90661efab652a6f, type: 3}
+  SkyTransform: {fileID: 3050189315552327496, guid: 96d78def229fa1f42a38a4c72e172049,
+    type: 3}
+  XOffset: 60
+  YOffset: -5
+  ZOffset: 0
