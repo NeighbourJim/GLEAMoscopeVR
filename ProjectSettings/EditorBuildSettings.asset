@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_PlayStoreSubmission/Scenes/PlayStore.unity
-    guid: 48661e06bf47d454ca68fc86a5e03f93
+    path: Assets/ItalianTranslation/ItalianTranslationScene-111019.unity
+    guid: 1a392691c94ae134596ebce9e4c848ec
   m_configObjects: {}
