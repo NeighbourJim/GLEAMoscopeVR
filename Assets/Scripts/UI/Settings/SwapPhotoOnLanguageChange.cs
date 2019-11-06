@@ -9,19 +9,24 @@ using UnityEngine.Assertions;
 public class SwapPhotoOnLanguageChange : MonoBehaviour
 {
     Image imageComponent;
+    LanguageSetting currentLanguage = LanguageSetting.English;
     public Sprite englishImage;
     public Sprite italianImage;
 
     private void ChangeSprite()
     {
-        switch(SettingsManager.Instance.CurrentLanguageSetting)
+        if (currentLanguage != SettingsManager.Instance.CurrentLanguageSetting)
         {
-            case LanguageSetting.English:
-                imageComponent.sprite = englishImage;
-                break;
-            case LanguageSetting.Italian:
-                imageComponent.sprite = italianImage;
-                break;
+            currentLanguage = SettingsManager.Instance.CurrentLanguageSetting;
+            switch (currentLanguage)
+            {
+                case LanguageSetting.English:
+                    imageComponent.sprite = englishImage;
+                    break;
+                case LanguageSetting.Italian:
+                    imageComponent.sprite = italianImage;
+                    break;
+            }
         }
     }
 
@@ -36,6 +41,11 @@ public class SwapPhotoOnLanguageChange : MonoBehaviour
     private void Awake()
     {
         SetAndCheckReferences();
+    }
+
+    private void Update()
+    {
+        ChangeSprite();
     }
 
     private void OnEnable()
